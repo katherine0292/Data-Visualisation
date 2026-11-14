@@ -1,6 +1,6 @@
 # Data and methodology
 
-The project is a descriptive analysis of Australian public aggregate data, using 2019–2026 snapshots. The figures support a decision narrative for prospective students. They use separate geographic scopes, reporting conventions and source releases.
+I designed and completed the project as a descriptive analysis of Australian public aggregate data, using 2019–2026 snapshots. The figures support a decision narrative for prospective students. They use separate geographic scopes, reporting conventions and source releases.
 
 ## Source register
 

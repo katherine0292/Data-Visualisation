@@ -4,12 +4,12 @@
 | Commission details | |
 | --- | --- |
 | Commissioned by | Harbourline Education Consulting |
-| Commissioned designer | Shangcheng Lin (Katherine) |
+| Commissioned designer | Shangcheng Lin (Katherine), independent data visualisation designer |
 | Subject | International student mobility and living costs in Sydney |
 | Analytical period | 2019–2026, using partial 2026 observations where specified |
 | Deliverables | English interactive story, six core figures, companion story film and supporting materials |
 
-This English version translates and expands the supplied commission. It aligns the scope and review criteria with the artifacts available for the project.
+This English version translates and expands the supplied commission. The scope and review criteria correspond to the deliverables prepared by Shangcheng Lin (Katherine).
 
 ## Purpose and audience
 
@@ -53,8 +53,8 @@ Record the observation period, frequency, units, transformations and source for 
 | --- | --- |
 | Interactive story | [Browser presentation](../index.html) with progressive reveals, six figures and speaker notes. |
 | Companion film | [Story video](../artifacts/the-price-of-arrival-story.mp4) for linear playback. |
-| Audience and narrative rationale | [Discovery canvas](../artifacts/value-proposition-canvas.jpg) and [design process](design-process.md), including the empathy insights, prioritised user stories and ten-scene storyboard. |
+| Audience and narrative rationale | [Value proposition canvas](../artifacts/value-proposition-canvas.jpg) and [design process](design-process.md), including the empathy insights, prioritised user stories and ten-scene storyboard. |
 | Reusable figure context | [Methodology and figure notes](methodology.md), including sources, scopes, definitions and interpretation limits. The presentation includes a preview of an adviser-ready Figure 5 slide. |
 | Evaluation framework | [Benchmark workbook](../artifacts/story-benchmark.xlsx) with communication goals, proposed KPIs, internal self-assessment and improvement actions. |
 
-Review consists of inspecting the handover artifacts and walking through the figure checks above. The workbook proposes audience comprehension and completion targets for a future evaluation. Its scores reflect internal review, with audience testing and timed rehearsals still to be confirmed.
+Review consists of inspecting the handover artifacts and walking through the figure checks above. The workbook proposes audience comprehension and completion targets for a future evaluation. Its scores reflect the designer's self-assessment, with audience testing and timed rehearsals still to be confirmed.

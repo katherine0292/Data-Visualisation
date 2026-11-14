@@ -1,17 +1,15 @@
 # Design process and contribution
 
-This is my portfolio account of *The Price of Arrival*, which I developed with the three-person DataLens team. I focused on data preparation, audience framing, narrative design and the sector visualisation in Figure 5.
+I completed *The Price of Arrival* as an independent data visualisation project. I handled the data preparation, visual analysis, audience and narrative design, and production of the interactive story and companion film.
 
 ## How the work evolved
 
-| Stage | Work and decisions | My contribution |
-| --- | --- | --- |
-| 1. Discovery and data preparation | The team gathered education, visa and price data and explored separate charts. The [value proposition canvas](../artifacts/value-proposition-canvas.jpg) set out what students needed to decide and the challenges each visual could address. Some early concepts included a nationality comparison and a personal budget aid. | I sourced and cleaned data, aligned fields and reporting periods, and designed the canvas. It helped me evaluate whether each comparison resolved a specific audience question. |
-| 2. Analysis and visual redesign | We organised the analysis around four reader questions and reduced the number of standalone views. An SA4 map and a region-by-field heatmap answered different geographic questions. The CPI section became a comparison of price pressure. | I developed the narrative rationale, kept track of chart feedback, coordinated ownership across the team and built Figure 5 in Tableau. |
-| 3. Audience and story | We developed two research-informed personas, tagged the empathy insights and wrote testable user stories. We sequenced ten illustrated scenes around Mei's decisions and added adviser-facing caption requirements. | I helped define the persona needs and acceptance criteria and connected the insights to figures and storyboard beats. |
-| 4. Responsible practice and handover | The final reflection explored respectful treatment of Indigenous Cultural and Intellectual Property as a general design practice. For this project, the relevant data decisions were to keep the analysis aggregate, respect source suppression and use official geographic boundaries with clear place labels. | I reflected on source attribution and the limits of using statistical geography to describe place. |
-
-The journals are represented here through a consolidated portfolio account. The original [HTML story](../index.html), [film](../artifacts/the-price-of-arrival-story.mp4), canvas and [benchmark workbook](../artifacts/story-benchmark.xlsx) carry the team's work forward.
+| Stage | Decisions and deliverables |
+| --- | --- |
+| 1. Discovery and data preparation | I sourced education, visa and price data, reconciled field names and reporting periods, and used the [value proposition canvas](../artifacts/value-proposition-canvas.jpg) to map the initial chart ideas to audience decisions. Early concepts included a nationality comparison and a personal budget aid. |
+| 2. Analysis and visual design | I organised the analysis around four reader questions and designed the six figures. I used separate views for geographic concentration and field-of-study differences, compared enrolments and prices on indexed scales, and placed policy milestones beside historical visa grant rates. |
+| 3. Audience and story | I developed two research-informed personas, wrote user stories and acceptance criteria, and turned the figures into ten illustrated scenes. I added benchmark targets and adviser-facing caption requirements. |
+| 4. Production and handover | I assembled the [HTML presentation](../index.html) and [story film](../artifacts/the-price-of-arrival-story.mp4), documented the sources and interpretation limits, and evaluated the design with the [benchmark workbook](../artifacts/story-benchmark.xlsx). The final journal also records my reflection on geographic attribution and respectful treatment of Indigenous Cultural and Intellectual Property in future design work. |
 
 ## Figure 5 from data to Tableau
 
@@ -21,7 +19,7 @@ An earlier Sankey linked separate snapshots and suggested a flow the data could 
 
 ## Audience insights and user stories
 
-Mei trusts official statistics and still takes rent and visa anecdotes seriously. We used that tension when writing questions about the intake, location, timing and budget she is considering. Daniel needs to brief clients quickly and keep the definitions and qualifications with each figure. The personas reflect project research and team experience. Interviews were proposed as a future validation step.
+Mei trusts official statistics and still takes rent and visa anecdotes seriously. I used that tension when writing questions about the intake, location, timing and budget she is considering. Daniel needs to brief clients quickly and keep the definitions and qualifications with each figure. The personas reflect project research and my own experience. Interviews were proposed as a future validation step.
 
 | Insight and user story | Evidence and viewer task |
 | --- | --- |

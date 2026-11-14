@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="author" content="DataLens">
+<meta name="author" content="Shangcheng Lin (Katherine)">
 <title>The Price of Arrival</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -108,8 +108,8 @@ p{margin:0}
 .cover h1{font-size:168px;text-transform:uppercase;line-height:.84;margin-top:34px}
 .cover h1 span{display:block;color:var(--amber)}
 .cover .sub{margin-top:26px;font-size:26px;line-height:1.4;color:var(--mute);max-width:36ch}
-.team{margin-top:40px;font-family:var(--f-mono);font-size:15px;letter-spacing:.06em;color:var(--mute);display:flex;flex-wrap:wrap;gap:8px 22px}
-.team b{color:var(--paper);font-weight:500}
+.byline{margin-top:40px;font-family:var(--f-mono);font-size:15px;letter-spacing:.06em;color:var(--mute);display:flex;flex-wrap:wrap;gap:8px 22px}
+.byline b{color:var(--paper);font-weight:500}
 .coverside{position:relative;height:640px}
 .coverside .scene{position:absolute;inset:0}
 .bubble{position:absolute;background:#FBFAFF;border-radius:28px;padding:18px 24px;box-shadow:0 18px 40px -16px #000c}
@@ -340,7 +340,7 @@ p{margin:0}
 <div id="stage" role="region" aria-label="Presentation. Click or press the right arrow to advance.">
 
 <div id="board" aria-hidden="true">
-  <div class="brand"><i></i>DataLens · The Price of Arrival</div>
+  <div class="brand"><i></i>The Price of Arrival · Shangcheng Lin</div>
   <div class="acts">
     <span class="act" data-act="1">01 Problem</span>
     <span class="act" data-act="2">02 Data &amp; Method</span>
@@ -360,7 +360,7 @@ p{margin:0}
       <h1>The Price<span>of Arrival</span></h1>
       <p class="sub">A data story for one person: someone deciding whether coming to Sydney is still worth it.</p>
       <p class="sub f" data-s="1" style="margin-top:14px;color:var(--amber)">Who is actually arriving, and what does that mean for Mei?</p>
-      <div class="team"><span>Team <b>DataLens</b></span><span>Data-Driven Storytelling</span></div>
+      <div class="byline"><span><b>Shangcheng Lin (Katherine)</b></span><span>Data-Driven Storytelling</span></div>
     </div>
     <div class="coverside">
       <div class="scene"><img data-img="s1" alt="Storyboard scene 1: Mei reads a record-high headline"><span class="sid">S1</span></div>
@@ -368,8 +368,8 @@ p{margin:0}
     </div>
   </div>
   <div class="notes">
-    <p>Open on the headline everyone has seen: international student numbers at a record high. Our story is not for a policy analyst. It is for someone like us eighteen months ago, reading that headline and trying to decide whether coming here was still worth it.</p>
-    <p>Click: the board flips. The question we chase all the way through is who is actually arriving, and what that means for one person's decision.</p>
+    <p>Open on the headline everyone has seen: international student numbers at a record high. I wrote the story for someone weighing whether to move to Sydney for study.</p>
+    <p>Click: the board flips. The first comparison asks how many courses are starting and what that tells Mei about her intake.</p>
   </div>
 </section>
 
@@ -400,7 +400,7 @@ p{margin:0}
     </div>
   </div>
   <div class="notes">
-    <p>Meet Mei, our primary persona, built directly from Journal 2's reader definition. Twenty-three, considering a Master's in Sydney, undecided.</p>
+    <p>Meet Mei, my primary persona, built directly from Journal 2's reader definition. Twenty-three, considering a Master's in Sydney, undecided.</p>
     <p>Click through her four questions. Each is an insight from the empathy map (E1 to E4) and each becomes one act of the story, in the order she would actually ask them: headline, then where, then when, then cost.</p>
     <p>Why worth analysing: public numbers are built for policy readers. With the visa fee rising from A$710 to A$1,600 and the Genuine Student test, the cost of a poorly timed decision is now substantial.</p>
   </div>
@@ -442,15 +442,15 @@ p{margin:0}
     </div>
   </div>
   <div class="notes">
-    <p>Built from real artifacts: headlines, forum threads, agent messages, policy milestones (visa fee, Genuine Student test, Ministerial Direction 111), plus our own experience applying to Sydney.</p>
-    <p>Walk quadrant by quadrant. The point to land: we wrote about her fear and her trust in sources, not about our charts. The most useful insight is a contradiction: she trusts official data with her head but anecdotes with her gut.</p>
+    <p>Built from real artifacts: headlines, forum threads, agent messages, policy milestones (visa fee, Genuine Student test, Ministerial Direction 111), plus my own experience applying to Sydney.</p>
+    <p>Walk through each quadrant. Mei trusts official data and still takes stories about rent and visa refusals seriously. The tension informed the design of her journey.</p>
     <p>Every note carries an E-code, so it can be traced into a user story and a storyboard panel.</p>
   </div>
 </section>
 
 <!-- ============ 4 DANIEL ============ -->
 <section class="slide" data-act="1">
-  <div class="kicker"><b>01 · Problem</b> Secondary reader · P2 · kept from our Journal 1 Value Proposition Canvas</div>
+  <div class="kicker"><b>01 · Problem</b> Secondary reader · P2 · kept from the original value proposition canvas</div>
   <div class="dan">
     <div>
       <div class="avatar">D</div>
@@ -473,15 +473,15 @@ p{margin:0}
   </div>
   <div class="req f" data-s="3"><span class="num">E5</span><p>Every chart must be <b>standalone and citable</b>: the caption states exactly what is counted and what is excluded. This sets the caption standard across all six figures.</p></div>
   <div class="notes">
-    <p>We kept Daniel rather than dropping him, because Journal 2 already tested and kept him as a value proposition item.</p>
-    <p>His need is different from Mei's: he lifts our charts into client decks with no surrounding text. That gives us insight E5, which governs how every caption is written.</p>
+    <p>Daniel represents education advisers who need charts and captions they can use in a client briefing.</p>
+    <p>His need is different from Mei's: he lifts charts into client decks with no surrounding text. That need informed the caption standard.</p>
   </div>
 </section>
 
 <!-- ============ 5 DATA ============ -->
 <section class="slide" data-act="2">
   <div class="kicker"><b>02 · Data &amp; Method</b> Five public datasets · six figures</div>
-  <h2>What we <em>measured</em></h2>
+  <h2>What I <em>measured</em></h2>
   <div class="sources">
     <div class="src f" data-s="1"><div class="hd"><span>Dept of Education</span><b>01</b></div><div class="bd"><h5>Monthly student summary</h5><p>NSW enrolments and commencements, by sector and source country.</p><div class="fig">→ Fig 1 · Fig 5</div></div></div>
     <div class="src f" data-s="1" style="transition-delay:.08s"><div class="hd"><span>Dept of Education</span><b>02</b></div><div class="bd"><h5>Enrolments by ABS SA4</h5><p>Known enrolments across 14 Sydney SA4 regions and 13 fields of study.</p><div class="fig">→ Fig 2 · Fig 3</div></div></div>
@@ -494,9 +494,9 @@ p{margin:0}
     <div class="m"><svg viewBox="0 0 44 44"><rect x="4" y="4" width="16" height="16" fill="#1E2A6E"/><rect x="24" y="4" width="16" height="16" fill="#B8B0FF"/><rect x="4" y="24" width="16" height="16" fill="#5648BE"/><rect x="24" y="24" width="16" height="16" fill="#FFB547"/></svg><div><b>Log-scaled space</b>log10 choropleth and region × field heatmap, so small hubs stay visible.</div></div>
     <div class="m"><svg viewBox="0 0 44 44"><path d="M4 14 L14 12 L20 30 L28 16 L40 20" fill="none" stroke="#FFB547" stroke-width="3"/><line x1="20" y1="4" x2="20" y2="40" stroke="#FF7A6B" stroke-width="2"/></svg><div><b>Policy-annotated timeline</b>Selected policy dates provide context for the grant-rate trend.</div></div>
   </div>
-  <p class="qual f" data-s="2"><b>Qualitative inputs</b> for the empathy maps: media headlines, forum threads, agent communications, policy milestones, and our own experience applying to study in Sydney.</p>
+  <p class="qual f" data-s="2"><b>Qualitative inputs</b> for the empathy maps: media headlines, forum threads, agent communications, policy milestones, and my own experience applying to study in Sydney.</p>
   <div class="notes">
-    <p>Five public datasets. Two from the Department of Education give us scale and geography; Home Affairs gives visa grant rates; ABS gives CPI and SA4 boundaries.</p>
+    <p>Five public datasets. Two from the Department of Education describe the scale and geography of course enrolments; Home Affairs gives visa grant rates; ABS gives CPI and SA4 boundaries.</p>
     <p>Three methods carry the analysis: indexing everything to January–May 2019 so different scales compare fairly; log scales so small hubs are visible next to the CBD; and putting policy dates directly on the visa timeline so viewers can compare the timing.</p>
   </div>
 </section>
@@ -515,7 +515,7 @@ p{margin:0}
     <div class="trow conv f" data-s="6"><div class="cell-t" style="grid-column:1/4;margin-right:28px">All four of Mei's insights converge</div><div class="cell-t">S8 Aha → S9 Action → S10 Outcome</div></div>
   </div>
   <div class="notes">
-    <p>This is our method in one picture. Every empathy note has an insight code. Each insight became a user story with a persona, a want and a reason, and each MUST story is tied to a figure we already built, with a testable success criterion.</p>
+    <p>The table connects each insight to a figure and a storyboard scene. Every empathy note has an insight code. Each insight became a user story with a persona, a want and a reason, and each MUST story is tied to a figure I built, with a testable success criterion.</p>
     <p>Then each figure is placed in a storyboard scene. So the human problem and the data solution are the same chain, read left to right. Daniel's stories are SHOULDs for the next iteration.</p>
   </div>
 </section>
@@ -629,7 +629,7 @@ p{margin:0}
   <div class="notes">
     <p>Scene 5: Mei hears the rules are tightening and wonders whether it's just a bad time.</p>
     <p>The national series gives context for policy dates. The three stamps mark the Genuine Student requirement in March 2024, the fee increase in July 2024 and MD111 processing priorities in December 2024. Timing alone cannot establish whether a policy caused a change.</p>
-    <p>It also keeps the chart self-contained: nobody has to take our word for the explanation.</p>
+    <p>The chart labels record the historical events alongside the national series.</p>
   </div>
 </section>
 
@@ -657,7 +657,7 @@ p{margin:0}
   <div class="notes">
     <p>Scene 6: Mei and her agent look at sectors. Click: Higher Education, 177,204 enrolments, 61% of the NSW total, but only 22.3% are new commencements.</p>
     <p>Click: at the other end ELICOS, 49.9% new. Among these sectors Higher Education has the smallest share of new course registrations.</p>
-    <p>Method note: we replaced Journal 1's Sankey, which implied a flow between two unrelated annual snapshots, with paired stacked bars.</p>
+    <p>Method note: I replaced Journal 1's Sankey, which implied a flow between two unrelated annual snapshots, with paired stacked bars.</p>
   </div>
 </section>
 
@@ -673,7 +673,7 @@ p{margin:0}
     <div class="act-right">
       <h2 style="font-size:58px;margin-top:0">Price pressure <em>persisted</em></h2>
       <div class="chartbox"><div class="ct"><span>Series-specific 2019 baselines · 2026 = Jan–May means</span><span>ABS CPI · Dept of Education</span></div><svg id="fig6" viewBox="0 0 980 380"></svg></div>
-      <div class="story f" data-s="4"><span class="tag">US-M4 ✓</span>Mei can compare price and enrolment trajectories and explain why a personal budget needs separate cost estimates. <i>We withdrew a "monthly budget" promise in Journal 2 because this data cannot support it.</i></div>
+      <div class="story f" data-s="4"><span class="tag">US-M4 ✓</span>Mei can compare price and enrolment trajectories and explain why a personal budget needs separate cost estimates. <i>I removed the proposed monthly-budget feature because the available data measures relative prices.</i></div>
     </div>
   </div>
   <div class="notes">
@@ -721,7 +721,7 @@ p{margin:0}
 <!-- ============ 16 FOR AGENTS ============ -->
 <section class="slide" data-act="4">
   <div class="kicker"><b>04 · Recommendations</b> For Daniel and the organisations around Mei</div>
-  <h2>Charts that <em>travel</em> without us</h2>
+  <h2><em>Reusable</em> charts for advisers</h2>
   <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:28px;margin-top:34px">
     <div class="f" data-s="1"><h3 style="color:var(--mint)">US-S2 · Caption standard</h3><p class="lede" style="font-size:18px;margin:10px 0 16px">Each figure needs a caption that works outside the story.</p>
       <div class="cap">
@@ -743,7 +743,7 @@ p{margin:0}
     </div>
   </div>
   <div class="notes">
-    <p>For Daniel, two SHOULD stories. The caption standard: every caption says what is counted, the period, what is excluded and the source, because his charts travel without our text. The slide preview shows how the sector view could be reused.</p>
+    <p>For Daniel, two SHOULD stories. The caption standard: every caption says what is counted, the period, what is excluded and the source, so his charts carry that context into other materials. The slide preview shows how the sector view could be reused.</p>
     <p>Wider value: newsrooms, universities and planners, and agents can each act on these figures.</p>
   </div>
 </section>
@@ -768,10 +768,10 @@ p{margin:0}
 
 <!-- ============ 18 LIMITS ============ -->
 <section class="slide" data-act="4">
-  <div class="kicker"><b>04 · Recommendations</b> What the data can't say, and what we'd do next</div>
-  <h2>The <em>limits</em> we kept visible</h2>
+  <div class="kicker"><b>04 · Recommendations</b> Interpretation and future evaluation</div>
+  <h2>Data <em>limitations</em></h2>
   <div class="limits">
-    <div class="lim"><span class="num">01</span><div><b>An index is not a dollar figure</b>CPI shows relative change. We withdrew a monthly-budget promise rather than overstate it.</div></div>
+    <div class="lim"><span class="num">01</span><div><b>An index is not a dollar figure</b>CPI shows relative change. A personal budget requires separate estimates.</div></div>
     <div class="lim"><span class="num">02</span><div><b>Place of study, not residence</b>SA4 data records place of study. Residential location requires a separate source.</div></div>
     <div class="lim"><span class="num">03</span><div><b>2026 is partial</b>Jan–May means are not directly equivalent to a full year.</div></div>
     <div class="lim"><span class="num">04</span><div><b>Patterns, not causation</b>Mixed observation frequencies and baselines limit comparisons.</div></div>
@@ -782,8 +782,8 @@ p{margin:0}
     <div><b>Interact</b>An interactive version of the storyboard, like this one, so readers can step through Mei's journey.</div>
   </div>
   <div class="notes">
-    <p>Credibility comes from saying what the data can't do. Four limits we deliberately kept visible.</p>
-    <p>Click for next steps, drawn from our individual reflections: validate personas with interviews, storyboard earlier, and make the storyboard interactive, which is what you're looking at.</p>
+    <p>Use these limits when interpreting the figures.</p>
+    <p>The final reveal records three design reflections, including validating the personas through interviews.</p>
   </div>
 </section>
 
@@ -796,7 +796,7 @@ p{margin:0}
     <h1 style="margin-top:20px">From a headline<span>to a plan</span></h1>
     <p class="lede" style="margin-top:24px;color:var(--paper);font-size:24px">Mei doesn't decide because of one headline or one number. Sydney becomes a choice she can plan for.</p>
     <div class="eq f" data-s="1"><span>Study opportunity</span><i>+</i><span>Location</span><i>+</i><span>Visa timing</span><i>+</i><span>Affordability</span></div>
-    <div class="team f" data-s="2" style="margin-top:44px;font-size:17px"><span>Portfolio case study · Shangcheng Lin (Katherine)</span><span><b>DataLens</b></span></div>
+    <div class="byline f" data-s="2" style="margin-top:44px;font-size:17px"><span>Designed and produced by <b>Shangcheng Lin (Katherine)</b></span></div>
   </div>
   <div class="notes">
     <p>Scene 10. At the start Sydney was an abstract destination shaped by headlines. Now Mei knows which areas matter, which intake to consider, which policies to watch, and how much flexibility she needs.</p>
