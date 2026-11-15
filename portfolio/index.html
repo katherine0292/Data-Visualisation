@@ -866,7 +866,7 @@ svg .slb{font-size:12.5px;font-weight:500}
 .legend{display:flex;align-items:center;gap:10px;font-size:11.5px;color:var(--ink-2);padding:0 20px 14px;flex-wrap:wrap}
 .legend i{display:block;height:9px;width:180px;border-radius:5px;background:linear-gradient(90deg,var(--heat0),var(--heat1),var(--heat2),var(--heat3))}
 .legend s{display:inline-block;width:14px;height:10px;background:repeating-linear-gradient(135deg,var(--line-2) 0 2px,transparent 2px 5px);border-radius:2px;text-decoration:none}
-.hmread{padding:12px 20px;border-top:1px solid var(--line);font-size:14px;min-height:56px;color:var(--ink-2)}
+.hmread{padding:12px 20px;border-top:1px solid var(--line);font-size:14px;color:var(--ink-2)}
 .hmread b{color:var(--ink);font-weight:500}
 .mix{display:grid;gap:8px;font-size:12.5px}
 .mix .r{display:grid;grid-template-columns:130px 1fr;gap:10px;align-items:center}
@@ -874,7 +874,7 @@ svg .slb{font-size:12.5px;font-weight:500}
 .mix .st{display:flex;height:22px;border-radius:4px;overflow:hidden;gap:1px}
 .mix .st i{display:block;height:100%;transition:opacity .2s,flex-grow .8s var(--ease)}
 .mixleg{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12px;color:var(--ink-2);margin-top:12px}
-.mixleg span{display:inline-flex;gap:6px;align-items:center;cursor:pointer}
+.mixleg>span{display:inline-flex;gap:6px;align-items:center;cursor:pointer}
 .mixleg i{width:10px;height:10px;border-radius:2px;display:block}
 
 /* image figure + overlay */
@@ -884,7 +884,7 @@ svg .slb{font-size:12.5px;font-weight:500}
 .mk.on{opacity:1}
 .mk::after{content:"";position:absolute;top:-4px;left:-6px;width:10px;height:10px;border-radius:50%;background:var(--c3);animation:pl 1.6s infinite}
 @keyframes pl{0%{box-shadow:0 0 0 0 #D9483B88}100%{box-shadow:0 0 0 14px #D9483B00}}
-.pcard{padding:16px 20px;font-size:14.5px;color:var(--ink-2);min-height:128px}
+.pcard{padding:16px 20px;font-size:14.5px;color:var(--ink-2)}
 .pcard b{color:var(--ink);font-weight:500;display:block;font-size:16px;margin-bottom:4px}
 .pcard .w{margin-top:8px;font-size:12.5px;color:var(--c3)}
 
@@ -923,7 +923,7 @@ svg .slb{font-size:12.5px;font-weight:500}
 /* chain */
 .pchain{display:grid;gap:10px;margin-top:6px}
 @media (min-width:860px){.pchain{grid-template-columns:repeat(4,1fr)}}
-.pchain>div{border:1px solid var(--line);border-radius:14px;padding:16px 18px;background:var(--paper);position:relative;min-height:110px;transition:.4s}
+.pchain>div{border:1px solid var(--line);border-radius:14px;padding:16px 18px;background:var(--paper);position:relative;transition:.4s}
 .pchain>div::after{content:"→";position:absolute;right:-14px;top:50%;margin-top:-10px;color:var(--ink-3);z-index:1;display:none}
 @media (min-width:860px){.pchain>div:not(:last-child)::after{display:block}}
 .pchain b{display:block}
@@ -959,8 +959,8 @@ svg .slb{font-size:12.5px;font-weight:500}
 .prng{text-align:center}
 .prng svg{width:130px;height:130px}
 .prng p{font-size:13.5px;color:var(--ink-2);margin-top:8px}
-.flip{perspective:900px;cursor:pointer;min-height:150px}
-.flip .in2{position:relative;min-height:150px;transition:transform .6s var(--ease);transform-style:preserve-3d}
+.flip{perspective:900px;cursor:pointer;min-height:118px}
+.flip .in2{position:relative;min-height:118px;transition:transform .6s var(--ease);transform-style:preserve-3d}
 .flip.on .in2{transform:rotateY(180deg)}
 .flip .f,.flip .b{position:absolute;inset:0;border:1px solid var(--line);border-radius:16px;padding:20px;backface-visibility:hidden;-webkit-backface-visibility:hidden;background:var(--paper)}
 .flip .b{transform:rotateY(180deg);background:var(--acc-soft)}
@@ -976,11 +976,27 @@ video{width:100%;border-radius:14px;background:#000;display:block}
 
 .lbx{position:fixed;inset:0;background:#0009;z-index:100;display:grid;place-items:center;padding:20px;cursor:zoom-out;overflow:auto}
 .lbx img{max-width:min(96vw,1500px);max-height:94vh;border-radius:8px;background:#fff}
+
+.pol{padding:14px 15px;border:1px solid var(--line);border-radius:12px;margin-bottom:8px;cursor:pointer;transition:border-color .2s,background .2s}
+.pol:hover{border-color:var(--ink-3)}
+.pol.on{border-color:var(--c3);background:color-mix(in srgb,var(--c3) 7%,var(--paper))}
+.pol b{display:block;font-size:14.5px;color:var(--ink);font-weight:500}
+.pol>span{font-size:13px;line-height:1.45;display:block;margin-top:2px}
+.pcard .how{font-size:13px;margin-top:12px;line-height:1.45}.pcard .how b{display:inline;font-size:13px;margin:0}
+.pcard .w{margin-top:6px}
+.tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.tiles>div{border:1px solid var(--line);border-radius:12px;padding:12px 12px 10px}
+.tiles b{display:block;font-size:26px;font-weight:300;letter-spacing:-.02em;color:var(--ink);line-height:1.1}
+.tiles>div>span{display:block;font-size:12px;line-height:1.35;margin-top:4px}
+.pfig .tbl th,.pfig .tbl td{padding:8px 10px;font-size:13px}
+.t-zh{display:none!important}html.zh .t-zh{display:inline!important}html.zh .t-en{display:none!important}
+
+.pcard .how{font-size:13px;line-height:1.45;margin-top:14px;color:var(--ink-2)}
 </style>
 </head><body>
 <header class="top" id="top">
   <div class="in">
-    <a class="word" href="#" data-go="hero">THE PRICE OF ARRIVAL</a>
+    <a class="word" href="#" data-go="overview">THE PRICE OF ARRIVAL</a>
     <button class="menu-btn" id="menu-open" aria-haspopup="dialog"><i><b></b><b></b></i><span>Menu</span></button>
     <span class="sp"></span>
     <div class="langs" role="group" aria-label="Language"><button id="l-zh" aria-pressed="false">中</button><button id="l-en" aria-pressed="true">EN</button></div>
@@ -993,15 +1009,6 @@ video{width:100%;border-radius:14px;background:#000;display:block}
 <div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Chapters"><div class="mh"><span class="word">THE PRICE OF ARRIVAL</span><button id="menu-close">✕</button></div><ol id="menu-list"></ol></div>
 
 <div class="sheet">
-
-<!-- hero: the headline vs the arrivals -->
-<section class="banner hstage" id="hero" aria-label="The Price of Arrival">
-  <span class="st-k"><span class="t-en">Data visualisation · NSW and Sydney · 2019–2026</span><span class="t-zh">数据可视化 · 新州与悉尼 · 2019–2026</span></span>
-  <h2 class="st-w"><b class="w1">The Price</b> <b class="w2">of Arrival</b></h2>
-  <div class="st-chips" id="st-chips" role="tablist"></div>
-  <div class="rp"><div class="hcv" id="heroChart"></div><div class="rp-row" id="heroRow"></div></div>
-  <p class="st-hint"><span class="t-en">Index, Jan–May 2019 = 100. Pick a view, or let it play.</span><span class="t-zh">指数，2019 年 1–5 月 = 100。选择一个视角，或等它自动播放。</span></p>
-</section>
 
 <!-- 01 overview -->
 <section class="ch intro" id="overview" data-nav="Overview||概览">
@@ -1027,7 +1034,7 @@ video{width:100%;border-radius:14px;background:#000;display:block}
       <p class="muted small rv" style="max-width:68ch;margin-bottom:18px"><span class="t-en">Harbourline Education Consulting commissioned an English interactive data story for prospective students choosing Sydney. I took it from sourcing the data to the film and evaluation workbook.</span><span class="t-zh">Harbourline 教育咨询委托制作一套面向拟赴悉尼留学者的英文互动数据故事。我从数据整理一直做到成片和评估工作簿。</span></p>
       <div class="rv" style="display:grid;gap:14px">
         <div class="ctl" id="roleTabs" role="tablist"></div>
-        <div class="card" id="roleBody" style="min-height:110px"></div>
+        <div class="card" id="roleBody"></div>
       </div>
       <div class="cards rv" style="margin-top:22px">
         <div class="card"><span class="lbl"><span class="t-en">Deliverable</span><span class="t-zh">交付 1</span></span><h4><span class="t-en">Interactive story</span><span class="t-zh">互动故事</span></h4><p><span class="t-en">19 slides, ten scenes, step-by-step reveals and speaker notes.</span><span class="t-zh">19 页幻灯片、十个场景，逐步揭示图表并附演讲者备注。</span></p></div>
@@ -1129,9 +1136,10 @@ video{width:100%;border-radius:14px;background:#000;display:block}
         </div>
       </div>
       <div class="split two" style="border-top:1px solid var(--line)">
-        <div class="imgfig" data-zoom><img src="img/map.jpg" alt="Choropleth map of Sydney SA4 enrolments" loading="lazy" style="max-height:480px;object-fit:contain;margin:0 auto"></div>
-        <div style="padding:20px;font-size:14.5px;color:var(--ink-2)"><p class="lbl" style="margin-bottom:8px"><span class="t-en">Original Tableau map</span><span class="t-zh">原始 Tableau 地图</span></p>
-          <p><span class="t-en">Log-scaled colour keeps the smaller hubs visible. City and Inner South alone holds 223,386 known enrolments; the next two SA4s are Eastern Suburbs and Parramatta.</span><span class="t-zh">对数色阶让较小的学习中心也看得出来。仅 City and Inner South 就有 223,386 已披露注册量；其后两个 SA4 是 Eastern Suburbs 和 Parramatta。</span></p></div>
+        <div class="imgfig" data-zoom><img src="img/map.jpg" alt="Choropleth map of Sydney SA4 enrolments" loading="lazy" style="max-height:320px;object-fit:contain;margin:0 auto"></div>
+        <div style="padding:20px;font-size:14.5px;color:var(--ink-2);display:grid;gap:14px;align-content:center"><p class="lbl"><span class="t-en">Original Tableau map, log-scaled colour</span><span class="t-zh">原始 Tableau 地图，对数色阶</span></p>
+          <div class="tiles"><div><b class="num">60.1%</b><span><span class="t-en">City and Inner South, 223,386</span><span class="t-zh">City and Inner South，223,386</span></span></div><div><b class="num">25.7%</b><span><span class="t-en">next two: Eastern Suburbs, Parramatta</span><span class="t-zh">其后两个：Eastern Suburbs、Parramatta</span></span></div><div><b class="num">14.2%</b><span><span class="t-en">the other 11 SA4s together</span><span class="t-zh">其余 11 个 SA4 合计</span></span></div></div>
+          <p><span class="t-en">Log-scaled colour keeps the smaller hubs visible on the map.</span><span class="t-zh">对数色阶让地图上较小的学习中心也看得出来。</span></p></div>
       </div>
       <div class="cs">
         <div><b>COUNTS</b><p><span class="t-en">Course enrolments by place of study, disclosed values only, 14 Sydney SA4s.</span><span class="t-zh">按学习地点统计的课程注册量，仅含已披露值，14 个悉尼 SA4。</span></p></div>
@@ -1162,8 +1170,8 @@ video{width:100%;border-radius:14px;background:#000;display:block}
       <div class="legend"><span>5</span><i></i><span>81,426</span><span style="margin-left:16px"><s></s> <span class="t-en">blank = not disclosed or unavailable, not zero</span><span class="t-zh">空白 = 未披露或不可用，不是 0</span></span></div>
       <div class="hmread" id="hmread"></div>
       <div class="split two" style="border-top:1px solid var(--line)">
-        <div style="padding:20px"><p class="lbl" style="margin-bottom:12px"><span class="t-en">Field mix within each of the six largest SA4s (derived)</span><span class="t-zh">六个最大 SA4 内部的专业构成（推算）</span></p><div class="mix" id="mix"></div><div class="mixleg" id="mixleg"></div></div>
-        <div style="padding:20px"><p class="lbl" style="margin-bottom:12px"><span class="t-en">Where each field concentrates (derived)</span><span class="t-zh">各专业集中在哪里（推算）</span></p><div id="conc"></div></div>
+        <div style="padding:20px"><p class="lbl" style="margin-bottom:12px"><span class="t-en">Field mix within each of the nine largest SA4s (derived)</span><span class="t-zh">九个最大 SA4 内部的专业构成（推算）</span></p><div class="mix" id="mix"></div><div class="mixleg" id="mixleg"></div></div>
+        <div style="padding:20px"><p class="lbl" style="margin-bottom:12px"><span class="t-en">Where ten fields concentrate most (derived)</span><span class="t-zh">十个专业最集中的地方（推算）</span></p><div id="conc"></div></div>
       </div>
       <div class="cs">
         <div><b>COUNTS</b><p><span class="t-en">Disclosed enrolments for each SA4 × field cell; each filled cell shows its original count.</span><span class="t-zh">每个 SA4 × 专业单元格的已披露注册量；每个有值的格子都显示原始数字。</span></p></div>
@@ -1221,7 +1229,9 @@ video{width:100%;border-radius:14px;background:#000;display:block}
         <div style="display:flex;gap:18px;font-size:12.5px;color:var(--ink-2);margin-top:16px"><span><i style="display:inline-block;width:10px;height:10px;background:var(--c2);border-radius:2px"></i> <span class="t-en">New commencements</span><span class="t-zh">新入学</span></span><span><i style="display:inline-block;width:10px;height:10px;background:color-mix(in srgb,var(--c5) 40%,var(--paper));border-radius:2px"></i> <span class="t-en">Continuing</span><span class="t-zh">继续注册</span></span></div></div>
       <div class="split two" style="border-top:1px solid var(--line)">
         <div class="imgfig" data-zoom><img src="img/fig5-slide.webp" alt="Figure 5 slide from the interactive story" loading="lazy"></div>
-        <div style="padding:20px;font-size:14.5px;color:var(--ink-2)"><p class="lbl" style="margin-bottom:8px"><span class="t-en">Method note</span><span class="t-zh">方法说明</span></p><p><span class="t-en">An earlier Sankey linked two unrelated snapshots and implied a flow the data could not identify. I replaced it with stacked bars that show absolute counts and a share label.</span><span class="t-zh">早期的桑基图把两个互不相关的快照连起来，暗示了数据无法识别的流动。我换成堆叠条形图，同时显示绝对数量和占比标签。</span></p></div>
+        <div style="padding:20px;font-size:14.5px;color:var(--ink-2);display:grid;gap:14px;align-content:start"><p class="lbl"><span class="t-en">Method note</span><span class="t-zh">方法说明</span></p>
+          <p><span class="t-en">An earlier Sankey linked two unrelated snapshots and implied a flow the data could not identify. I replaced it with stacked bars that show absolute counts and a share label.</span><span class="t-zh">早期的桑基图把两个互不相关的快照连起来，暗示了数据无法识别的流动。我换成堆叠条形图，同时显示绝对数量和占比标签。</span></p>
+          <table class="tbl"><thead><tr><th><span class="t-en">Sector</span><span class="t-zh">部门</span></th><th><span class="t-en">Total</span><span class="t-zh">总数</span></th><th><span class="t-en">New share</span><span class="t-zh">新入学占比</span></th></tr></thead><tbody><tr><td>Higher Education</td><td class="mono">177,204</td><td class="mono">22.3%</td></tr><tr><td>VET</td><td class="mono">83,848</td><td class="mono">27.9%</td></tr><tr><td>ELICOS</td><td class="mono">16,403</td><td class="mono">49.9%</td></tr></tbody></table></div>
       </div>
       <div class="cs">
         <div><b>COUNTS</b><p><span class="t-en">Enrolments by sector. Continuing = total minus commencements; new share = commencements ÷ total.</span><span class="t-zh">各部门注册量。继续注册 = 总数 − 新入学；新入学占比 = 新入学 ÷ 总数。</span></p></div>
@@ -1295,7 +1305,7 @@ video{width:100%;border-radius:14px;background:#000;display:block}
 
     <div class="pfig rv"><div class="plot" style="padding:20px">
       <div class="scope" id="scope"></div>
-      <p class="pcard" id="scopeTxt" style="padding:16px 4px 4px;min-height:60px"></p>
+      <p class="pcard" id="scopeTxt" style="padding:16px 4px 4px"></p>
     </div></div>
     <p class="lbl rv" style="margin:44px 0 14px"><span class="t-en">Design decisions</span><span class="t-zh">设计决策</span></p>
     <div class="cards rv">
@@ -1459,15 +1469,14 @@ $('#menu-open').onclick=()=>{$('#menu').classList.add('open');setTimeout(()=>$('
 $('#menu-close').onclick=()=>$('#menu').classList.remove('open');
 addEventListener('keydown',e=>{if(e.key==='Escape')$('#menu').classList.remove('open')});
 function go(id){const el=document.getElementById(id);if(!el)return;$('#menu').classList.remove('open');
-  const top=id==='hero'?0:el.getBoundingClientRect().top+scrollY-64;scrollTo({top,behavior:RM?'auto':'smooth'})}
+  const top=id==='overview'?0:el.getBoundingClientRect().top+scrollY-64;scrollTo({top,behavior:RM?'auto':'smooth'})}
 document.addEventListener('click',e=>{const bt=e.target.closest('[data-go]');if(bt){e.preventDefault();go(bt.dataset.go)}});
-function onScroll(){const bn=$('.banner');if(bn){const away=bn.getBoundingClientRect().bottom>innerHeight*.35;$('.rail').classList.toggle('away',away);$('.chip-now').classList.toggle('away',away)}const h=document.documentElement.scrollHeight-innerHeight;$('#prog').style.setProperty('--p',(scrollY/h).toFixed(4));
+function onScroll(){const h=document.documentElement.scrollHeight-innerHeight;$('#prog').style.setProperty('--p',(scrollY/h).toFixed(4));
   const mid=innerHeight*.45;let idx=-1;SECS.forEach((s,i)=>{const r=s.getBoundingClientRect();if(r.top<=mid&&r.bottom>mid)idx=i});setNow(idx)}
 addEventListener('scroll',()=>requestAnimationFrame(onScroll),{passive:true});addEventListener('resize',()=>{moveDot();onScroll()});
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('revealed');io.unobserve(e.target)}}),{threshold:.12,rootMargin:'0px 0px -8% 0px'});
 $$('.head,.rv,.body').forEach(el=>io.observe(el));
 if(RM)$$('.head,.rv,.body').forEach(el=>el.classList.add('revealed'));
-requestAnimationFrame(()=>$('.banner').classList.add('in'));
 $$('[data-c]').forEach(bn=>{if(RM)return;const o=new IntersectionObserver(es=>{if(!es[0].isIntersecting)return;o.disconnect();const n=+bn.dataset.c,t0=performance.now();(function f(tm){const p=Math.min(1,(tm-t0)/1100);bn.textContent=Math.round(n*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(f)})(t0)},{threshold:.5});o.observe(bn)});
 /* copy email */
 $('#copy').onclick=async function(){try{await navigator.clipboard.writeText($('#mail').textContent);this.innerHTML=b('Copied','已复制')}catch(e){const r=document.createRange();r.selectNodeContents($('#mail'));const s=getSelection();s.removeAllRanges();s.addRange(r)}};
@@ -1476,21 +1485,6 @@ rend.push(()=>{$('#copy').innerHTML=b('Copy email','复制邮箱')});
 document.addEventListener('click',e=>{const z=e.target.closest('[data-zoom]');if(!z||e.target.closest('button'))return;const im=z.querySelector('img');if(!im)return;
   const d=document.createElement('div');d.className='lbx';d.innerHTML=`<img src="${im.src}" alt="">`;d.onclick=()=>d.remove();document.body.appendChild(d)});
 addEventListener('keydown',e=>{if(e.key==='Escape')$$('.lbx').forEach(x=>x.remove())});
-
-/* ---------------- hero stage ---------------- */
-const hero=lineChart($('#heroChart'),{id:'h',n:8,min:55,max:125,ticks:[60,80,100,120],h:300,rm:128,idx:7,aria:'Indexed NSW enrolments and commencements, 2019 to 2026',
-  xl:YRS,series:[{id:'e',c:'--c1',name:['Enrolments','总注册量'],data:ENR,dy:-4},{id:'c',c:'--c2',name:['Commencements','新入学量'],data:COM,dy:12}]});
-let hv=0,hTimers=[];
-const HCARD=[[['Headline','标题'],'+8.8%',['NSW course enrolments, Jan–May 2026 vs 2019: the line a “record high” describes.','新州课程注册量，2026 年 1–5 月对比 2019 年：“创新高”说的就是这条线。']],
- [['Arrivals','新到的人'],'−17.6%',['NSW course commencements, same period: the new starts Mei would actually join.','新州课程新入学量，同期：Mei 真正要加入的新增批次。']],
- [['The gap','差距'],'26.5',['Index points between the two lines in 2026. Volume recovered; new intake did not.','2026 年两条线相差的指数点。存量恢复了，新增没有。']]];
-function heroDraw(){
-  $('#st-chips').innerHTML=HCARD.map((c,k)=>`<button type="button" role="tab" aria-selected="${k===hv}" data-i="${k}">${b(...c[0])}</button>`).join('');
-  $$('#st-chips button').forEach(x=>x.onclick=()=>{hTimers.forEach(clearTimeout);hTimers=[];hv=+x.dataset.i;heroDraw()});
-  $('#heroRow').innerHTML=HCARD.map((c,k)=>`<div class="rn${k<=hv?' on':''}" data-n="${k}"><span class="rl">${b(...c[0])}</span><b>${c[1]}</b><p>${b(...c[2])}</p></div>`).join('');
-  hero.show('c',hv>=1)}
-heroDraw();rend.push(heroDraw);
-if(!RM){hv=0;heroDraw();hTimers.push(setTimeout(()=>{hv=1;heroDraw()},2600),setTimeout(()=>{hv=2;heroDraw()},4800))}else{hv=2;heroDraw()}
 
 /* ---------------- role tabs ---------------- */
 const ROLE=[
@@ -1525,7 +1519,7 @@ drawChain();rend.push(drawChain);
 
 /* ---------------- FIG 1 ---------------- */
 const f1read=()=>{};
-const f1=lineChart($('#f1chart'),{id:'f1',n:8,rm:150,min:55,max:125,ticks:[60,80,100,120],idx:7,aria:'Indexed NSW enrolments and commencements, January to May, 2019 equals 100',
+const f1=lineChart($('#f1chart'),{id:'f1',n:8,rm:150,h:440,min:55,max:125,ticks:[60,80,100,120],idx:7,aria:'Indexed NSW enrolments and commencements, January to May, 2019 equals 100',
   xl:YRS,series:[{id:'e',c:'--c1',name:['Enrolments','总注册量'],data:ENR,dy:-4},{id:'c',c:'--c2',name:['Commencements','新入学量'],data:COM,dy:12}],
   onIdx:i=>{upd1(i);$('#f1r').value=i;gapHL(i)},
   extra:(X,Y)=>`<g><line x1="${X(7)+4}" x2="${X(7)+4}" y1="${Y(108.83)}" y2="${Y(82.38)}" stroke="var(--ink)" stroke-opacity=".4"/><text class="slb" x="${X(7)-12}" y="${Y(108.83)-9}" text-anchor="end" style="fill:var(--c1)">+8.8%</text><text class="slb" x="${X(7)-12}" y="${Y(82.38)+20}" text-anchor="end" style="fill:var(--c2)">−17.6%</text></g>`});
@@ -1560,7 +1554,7 @@ drawF2();
 chips($('#f2ctl'),[{id:'lin',label:b('Linear','线性'),on:1},{id:'log',label:b('Log scale','对数')}],'one',id=>{f2mode=id;drawF2()});
 function cumDraw(){
   const ord=[...TOT].sort((a,b2)=>b2-a);let c=0;const cum=ord.map(v=>(c+=v)/GT*100);
-  const W=380,H=260,Lm=34,X=i=>Lm+(W-Lm-10)*i/13,Y=v=>H-30-(v/100)*(H-44);
+  const W=380,H=350,Lm=34,X=i=>Lm+(W-Lm-10)*i/13,Y=v=>H-30-(v/100)*(H-44);
   let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Cumulative share of known enrolments by SA4 rank">`;
   [0,25,50,75,100].forEach(t=>{s+=`<line class="grid" x1="${Lm}" x2="${W-10}" y1="${Y(t)}" y2="${Y(t)}"/><text class="ax" x="${Lm-6}" y="${Y(t)+4}" text-anchor="end">${t}%</text>`});
   s+=`<path class="draw" pathLength="1" d="${cum.map((v,i)=>(i?'L':'M')+X(i)+' '+Y(v)).join(' ')}" fill="none" stroke="var(--c1)" stroke-width="3"/>`;
@@ -1599,14 +1593,14 @@ matchMedia('(prefers-color-scheme: dark)').addEventListener('change',()=>drawHM(
 const MIXG=[[2,'--c1'],[12,'--c4'],[9,'--c2'],[6,'--c3'],[5,'--heat1'],[7,'--c5']];
 function drawMix(){
   const used=MIXG.map(m=>m[0]);let h='';
-  ROWS.slice(0,6).forEach(([n,v],r)=>{const tot=TOT[r];const segs=MIXG.map(([c,col])=>`<i data-c="${c}" style="flex-grow:${v[c]};flex-basis:0;background:var(${col})" title="${FIELDS[c][0]} ${(v[c]/tot*100).toFixed(0)}%"></i>`).join('');
+  ROWS.slice(0,9).forEach(([n,v],r)=>{const tot=TOT[r];const segs=MIXG.map(([c,col])=>`<i data-c="${c}" style="flex-grow:${v[c]};flex-basis:0;background:var(${col})" title="${FIELDS[c][0]} ${(v[c]/tot*100).toFixed(0)}%"></i>`).join('');
     const other=tot-used.reduce((a,c)=>a+v[c],0);h+=`<div class="r"><span>${n}</span><div class="st">${segs}<i style="flex-grow:${other};flex-basis:0;background:var(--line-2)" title="Other"></i></div></div>`});
   $('#mix').innerHTML=h;
   $('#mixleg').innerHTML=MIXG.map(([c,col])=>`<span data-c="${c}"><i style="background:var(${col})"></i>${b(...FIELDS[c])}</span>`).join('')+`<span><i style="background:var(--line-2)"></i>${b('Other','其他')}</span>`;
   $$('#mixleg span[data-c]').forEach(s=>{const c=s.dataset.c;s.onpointerenter=()=>$$('#mix i[data-c]').forEach(i=>i.style.opacity=i.dataset.c===c?1:.2);s.onpointerleave=()=>$$('#mix i').forEach(i=>i.style.opacity=1)})}
 drawMix();rend.push(drawMix);
 function drawConc(){ // top region share per field
-  const rows=FIELDS.map((f,c)=>{const mx=ROWS.reduce((best,r,i)=>r[1][c]>best[1]?[i,r[1][c]]:best,[0,0]);return {c,i:mx[0],sh:mx[1]/COLTOT[c]*100}}).sort((a,b2)=>b2.sh-a.sh);
+  const rows=FIELDS.map((f,c)=>{const mx=ROWS.reduce((best,r,i)=>r[1][c]>best[1]?[i,r[1][c]]:best,[0,0]);return {c,i:mx[0],sh:mx[1]/COLTOT[c]*100}}).sort((a,b2)=>b2.sh-a.sh).slice(0,10);
   $('#conc').innerHTML=`<div class="hb" style="grid-template-columns:100px 1fr 44px">`+rows.map(r=>`<div class="nm">${b(...FIELDS[r.c])}</div><div class="tr" title="${ROWS[r.i][0]}"><div class="fi" style="width:${r.sh}%"></div></div><div class="vv">${r.sh.toFixed(0)}%</div>`).join('')+`</div><p class="muted" style="font-size:12.5px;margin-top:10px">${b('Share of each field’s disclosed enrolments held by its single largest SA4 (hover a bar for the SA4).','各专业已披露注册量中，被其最大的单个 SA4 占有的比例（悬停条形可看 SA4）。')}</p>`}
 drawConc();rend.push(drawConc);
 
@@ -1618,10 +1612,10 @@ const POL=[
 let polSel=null;
 function drawF4(){
   POL.forEach(p=>{const m=$('#mk'+p.id);m.style.left=p.x+'%';m.classList.toggle('on',polSel===p.id)});
-  const p=POL.find(x=>x.id===polSel);
-  $('#f4card').innerHTML=p?`<b>${b(...p.t)}</b>${b(...p.d)}<p class="w">${b('Timing is not proof of cause. Read the dashed line against the grant-rate lines; it does not tell you about your own application.','时间重合不是因果证明。请对照获签率曲线阅读虚线；它不能说明你自己的申请结果。','')}</p>`:`<b>${b('Pick a policy date','选择一个政策节点')}</b>${b('Each date is marked on the original Tableau snapshot. The thick line is the three-month average; the thin line is the monthly rate.','每个日期都标在原始 Tableau 快照上。粗线是三个月移动平均，细线是月度获签率。')}`}
+  $('#f4card').innerHTML=`<p class="lbl" style="margin-bottom:10px">${b('Policy dates on the chart','图上标出的政策节点')}</p>`+POL.map(p=>`<div class="pol${p.id===polSel?' on':''}" data-id="${p.id}"><b>${b(...p.t)}</b><span>${b(...p.d)}</span></div>`).join('')+`<p class="how">${b('Thick line = three-month average (right axis). Thin line = monthly grant rate (left axis).','粗线 = 三个月移动平均（右轴）。细线 = 月度获签率（左轴）。')}</p>`;
+  $$('#f4card .pol').forEach(x=>x.onclick=()=>{polSel=polSel===x.dataset.id?null:x.dataset.id;drawF4();chipsF4.draw()})}
 drawF4();
-chips($('#f4ctl'),POL.map(p=>({id:p.id,label:b(...p.t.map(s=>s.split(' — ')[0]))})),'one',id=>{polSel=polSel===id?null:id;drawF4()});
+const chipsF4=chips($('#f4ctl'),POL.map(p=>({id:p.id,label:b(...p.t.map(s=>s.split(' — ')[0]))})),'one',id=>{polSel=polSel===id?null:id;drawF4()});
 rend.push(drawF4);
 
 /* ---------------- FIG 5 ---------------- */
@@ -1635,7 +1629,7 @@ chips($('#f5ctl'),[{id:'cnt',label:b('Absolute counts','绝对数量'),on:1},{id
 rend.push(drawF5);
 
 /* ---------------- FIG 6 ---------------- */
-const f6=lineChart($('#f6chart'),{id:'f6',n:8,rm:150,min:70,max:135,ticks:[80,100,120],idx:6,partial:true,aria:'Indexed NSW enrolments, Sydney CPI and Sydney rents, 2019 equals 100',
+const f6=lineChart($('#f6chart'),{id:'f6',n:8,rm:150,h:470,min:70,max:135,ticks:[80,100,120],idx:6,partial:true,aria:'Indexed NSW enrolments, Sydney CPI and Sydney rents, 2019 equals 100',
   xl:['2019','2020','2021','2022','2023','2024','2025','2026*'],
   series:[{id:'e',c:'--c1',name:['Enrolments','注册量'],data:E6,dy:18},{id:'p',c:'--c3',name:['All Groups CPI','总体 CPI'],data:CPI,dy:-2},{id:'r',c:'--c4',name:['Rents CPI','租金 CPI'],data:RENT,dy:14}],
   onIdx:i=>{upd6(i);$('#f6r').value=i}});
