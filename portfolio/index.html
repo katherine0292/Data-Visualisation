@@ -1,0 +1,1004 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>The Price of Arrival</title>
+<meta name="description" content="Data visualisation case study: six figures on international student enrolments, study locations, visa policy and living costs in Sydney, 2019–2026.">
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+SC:wght@300;400;500;700&display=swap">
+<style>
+:root{
+  --bg:#ECECF0; --paper:#fff; --paper-2:#F6F6F9; --ink:#111114; --ink-2:#5C5C67; --ink-3:#9D9DA8; --line:#E4E4E9; --line-2:#D2D2D9;
+  --acc:#7B6AF0; --acc-soft:#F1EFFE; --acc-ink:#5140C9;
+  --c1:#6D5BE8; --c2:#E08A00; --c3:#D9483B; --c4:#1E9E88; --c5:#8C8CA0;
+  --heat0:#EEEBFF; --heat1:#B8AEFF; --heat2:#6D5BE8; --heat3:#2A1E8F;
+  --dark:#12162E; --dark-ink:#F1F1FA;
+  --f:"Inter Tight","Noto Sans SC",-apple-system,"PingFang SC","Helvetica Neue",Arial,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+  --ease:cubic-bezier(.22,.8,.2,1);--wrap:1120px;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#08080A; --paper:#111114; --paper-2:#17171B; --ink:#F2F2F5; --ink-2:#A9A9B4; --ink-3:#6F6F7A; --line:#24242A; --line-2:#34343C;
+  --acc:#9D90FF; --acc-soft:#1E1B33; --acc-ink:#C3BAFF;
+  --c1:#9D90FF; --c2:#F0A93A; --c3:#F0806F; --c4:#52C9B0; --c5:#7C7C90;
+  --heat0:#1B1838; --heat1:#4B3FC0; --heat2:#9D90FF; --heat3:#FFD08A;color-scheme:dark}}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+button{font:inherit;color:inherit;cursor:pointer;background:none;border:0;padding:0}
+:focus-visible{outline:2px solid var(--acc);outline-offset:3px;border-radius:6px}
+h1,h2,h3,h4,p{margin:0}
+h1,h2,h3{font-weight:300;letter-spacing:-.025em;text-wrap:balance}
+html.cn h1,html.cn h2,html.cn h3{font-weight:400;letter-spacing:-.01em;word-break:keep-all;overflow-wrap:anywhere}
+.zh{display:none}html.cn .zh{display:inline}html.cn .en{display:none}
+.lbl{font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);font-weight:500}
+html.cn .lbl{letter-spacing:.06em}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.num{font-variant-numeric:tabular-nums}
+.muted{color:var(--ink-2)}
+
+.top{position:sticky;top:0;z-index:70;background:color-mix(in srgb,var(--paper) 90%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.top .in{display:flex;align-items:center;gap:22px;height:58px;padding:0 max(18px,env(safe-area-inset-left))}
+.word{font-weight:600;letter-spacing:.14em;font-size:13px;text-decoration:none;color:inherit;white-space:nowrap}
+.tnav{display:none;gap:4px;margin-left:8px;overflow:hidden}
+.tnav a{font-size:12.5px;color:var(--ink-2);text-decoration:none;padding:6px 9px;border-radius:99px;white-space:nowrap;transition:.2s}
+.tnav a:hover{color:var(--ink)}
+.tnav a.on{background:var(--acc-soft);color:var(--acc-ink)}
+@media (min-width:1000px){.tnav{display:flex}}
+.sp{flex:1}
+.langs{display:flex;border:1px solid var(--line-2);border-radius:99px;padding:2px}
+.langs button{font-size:12px;padding:4px 11px;border-radius:99px;color:var(--ink-2)}
+.langs button[aria-pressed=true]{background:var(--ink);color:var(--paper)}
+.prog{position:absolute;left:0;bottom:-1px;height:2px;background:var(--acc);width:0}
+
+.sheet{margin:0 auto;background:var(--paper);max-width:1480px;overflow:clip}
+@media (min-width:900px){.sheet{margin:14px;border-radius:26px}}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 max(20px,env(safe-area-inset-left))}
+section.ch{padding:88px 0;border-top:1px solid var(--line)}
+section.ch.alt{background:var(--paper-2)}
+@media (max-width:700px){section.ch{padding:60px 0}}
+
+/* hero */
+.hero{padding:72px 0 56px;border:0;position:relative;overflow:hidden}
+.hero .kick{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:24px}
+.pill{font-size:12px;border:1px solid var(--line-2);border-radius:99px;padding:3px 11px;color:var(--ink-2)}
+.hero h1{font-size:clamp(44px,8vw,104px);line-height:.96;font-weight:300}
+.hero h1 em{font-style:normal;color:var(--acc)}
+.hero .lead{max-width:640px;margin-top:26px;font-size:clamp(17px,2vw,21px);color:var(--ink-2);line-height:1.55}
+.hero-grid{display:grid;gap:34px;margin-top:44px}
+@media (min-width:960px){.hero-grid{grid-template-columns:1.25fr 1fr;align-items:end}}
+.kpis{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.kpi{background:var(--paper);padding:18px 20px}
+.kpi b{display:block;font-weight:300;font-size:clamp(30px,4vw,44px);letter-spacing:-.03em;line-height:1.05}
+.kpi p{font-size:13px;color:var(--ink-2);margin-top:6px;line-height:1.4}
+.kpi.up b{color:var(--c1)}.kpi.dn b{color:var(--c2)}
+.heroviz{border:1px solid var(--line);border-radius:16px;padding:16px 18px 10px;background:var(--paper)}
+.heroviz .cap{display:flex;justify-content:space-between;gap:10px;font-size:12px;color:var(--ink-2);margin-bottom:4px}
+
+/* section head */
+.head{max-width:760px;margin-bottom:38px}
+.head .row{display:flex;gap:12px;align-items:center;margin-bottom:14px;flex-wrap:wrap}
+.fn{font-family:var(--mono);font-size:12px;background:var(--ink);color:var(--paper);padding:3px 9px;border-radius:6px;letter-spacing:.04em}
+.head h2{font-size:clamp(30px,4.6vw,54px);line-height:1.04}
+.head .sub{margin-top:16px;color:var(--ink-2);font-size:17.5px;max-width:640px}
+.q{margin-top:18px;padding:14px 18px;border-left:3px solid var(--acc);background:var(--acc-soft);border-radius:0 12px 12px 0;font-size:15.5px;max-width:640px}
+.q b{font-weight:500}
+
+/* figure card */
+.fig{border:1px solid var(--line);border-radius:20px;background:var(--paper);overflow:hidden}
+section.alt .fig{background:var(--paper)}
+.fig .bar{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;justify-content:space-between;padding:14px 20px;border-bottom:1px solid var(--line);background:var(--paper-2)}
+.fig .bar .t{font-size:14px;font-weight:500}
+.fig .bar .t small{font-weight:400;color:var(--ink-2);margin-left:8px;font-size:12.5px}
+.ctl{display:flex;gap:6px;flex-wrap:wrap}
+.chip{font-size:12.5px;padding:6px 12px;border:1px solid var(--line-2);border-radius:99px;color:var(--ink-2);transition:.2s;background:var(--paper);display:inline-flex;align-items:center;gap:7px}
+.chip:hover{border-color:var(--ink-3);color:var(--ink)}
+.chip[aria-pressed=true]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.chip i{width:9px;height:9px;border-radius:50%;display:inline-block}
+.chip[aria-pressed=false] i{opacity:.35}
+.plot{padding:18px 18px 8px}
+.plot svg{width:100%;height:auto;display:block;overflow:visible}
+.split{display:grid;gap:0}
+@media (min-width:900px){.split.two{grid-template-columns:1.6fr 1fr}.split.two>*+*{border-left:1px solid var(--line)}}
+@media (max-width:899px){.split>*+*{border-top:1px solid var(--line)}}
+.read{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--line);border-top:1px solid var(--line)}
+.read>div{background:var(--paper);padding:13px 18px}
+.read .v{font-size:26px;font-weight:300;letter-spacing:-.02em;line-height:1.15}
+.read .k{font-size:12px;color:var(--ink-2);margin-top:2px}
+.read .d{font-size:12.5px;font-family:var(--mono)}
+.up{color:var(--c1)}.dn{color:var(--c2)}.cpi{color:var(--c3)}.rent{color:var(--c4)}
+input[type=range]{width:100%;accent-color:var(--acc);margin:6px 0 2px}
+.scrub{padding:0 22px 12px;display:flex;gap:14px;align-items:center;font-size:12px;color:var(--ink-2)}
+.scrub input{flex:1}
+
+/* caption standard */
+.cs{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));border-top:1px solid var(--line);font-size:13px}
+.cs>div{padding:12px 18px;border-right:1px solid var(--line)}
+.cs>div:last-child{border-right:0}
+.cs b{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;font-weight:500;color:var(--acc-ink);margin-bottom:3px}
+.cs p{color:var(--ink-2);line-height:1.45}
+.rd{display:grid;gap:14px;margin-top:20px}
+@media (min-width:760px){.rd{grid-template-columns:1fr 1fr}}
+.rd>div{padding:16px 18px;border-radius:14px;border:1px solid var(--line);font-size:14.5px}
+.rd b{display:block;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;font-weight:500;margin-bottom:5px}
+.rd .y b{color:var(--c4)}.rd .n b{color:var(--c3)}
+.rd p{color:var(--ink-2)}
+
+/* svg text */
+svg text{font-family:var(--f);fill:var(--ink-2);font-size:12px}
+svg .ax{font-size:11.5px;fill:var(--ink-3);font-family:var(--mono)}
+svg .grid{stroke:var(--line);stroke-width:1}
+svg .base{stroke:var(--ink-3);stroke-dasharray:4 4}
+svg .lb{font-size:12.5px;font-weight:500}
+@media (max-width:640px){#f1chart svg .ax,#f6chart svg .ax{font-size:21px}#f1chart svg .lb,#f6chart svg .lb{font-size:23px}#heroChart svg .ax{font-size:20px}}
+.arc .ph{white-space:nowrap}
+@media (max-width:560px){.sb .r{grid-template-columns:78px 1fr;gap:8px}.sb .tk i{font-size:10px;padding-left:5px}}
+.draw{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1.6s var(--ease)}
+.go .draw{stroke-dashoffset:0}
+.sfade{transition:opacity .45s}
+
+/* bars */
+.hb{display:grid;grid-template-columns:minmax(120px,190px) 1fr 74px;gap:8px 12px;align-items:center;font-size:13px}
+.hb .nm{color:var(--ink-2);text-align:right;line-height:1.25}
+.hb .tr{height:20px;background:var(--paper-2);border-radius:4px;position:relative;overflow:hidden}
+.hb .fi{position:absolute;left:0;top:0;bottom:0;background:var(--c1);border-radius:4px;transition:width .8s var(--ease)}
+.hb .fi.t3{background:var(--c1)}.hb .fi.o{background:var(--c5)}
+.hb .vv{font-family:var(--mono);font-size:12px;color:var(--ink);text-align:right}
+.hb.hl .nm,.hb.hl .vv{color:var(--acc-ink);font-weight:500}
+@media (max-width:560px){.hb{grid-template-columns:90px 1fr 58px;font-size:11.5px}}
+
+/* heatmap */
+.hm{overflow-x:auto;padding:4px 18px 16px}
+.hmg{display:grid;grid-template-columns:150px repeat(13,minmax(52px,1fr));gap:2px;min-width:860px;font-size:11px}
+.hmg .ch2{font-size:10.5px;color:var(--ink-2);text-align:center;padding:2px 0 6px;line-height:1.15;align-self:end;cursor:pointer;transition:.2s}
+.hmg .rh{display:flex;align-items:center;font-size:11.5px;color:var(--ink-2);padding-right:8px;white-space:nowrap;position:sticky;left:0;background:var(--paper);z-index:2}
+.hmg .c{height:28px;display:grid;place-items:center;border-radius:3px;font-family:var(--mono);font-size:10px;transition:opacity .25s,transform .15s;cursor:default}
+.hmg .c.e{background:repeating-linear-gradient(135deg,var(--line) 0 2px,transparent 2px 5px)}
+.hmg .c:hover:not(.e){transform:scale(1.08);z-index:3;box-shadow:0 2px 10px #0003}
+.hmg.sel .c:not(.s),.hmg.sel .ch2:not(.s){opacity:.18}
+.hmg .ch2.s{color:var(--acc-ink);font-weight:600}
+.legend{display:flex;align-items:center;gap:10px;font-size:11.5px;color:var(--ink-2);padding:0 20px 14px;flex-wrap:wrap}
+.legend i{display:block;height:9px;width:180px;border-radius:5px;background:linear-gradient(90deg,var(--heat0),var(--heat1),var(--heat2),var(--heat3))}
+.legend s{display:inline-block;width:14px;height:10px;background:repeating-linear-gradient(135deg,var(--line-2) 0 2px,transparent 2px 5px);border-radius:2px;text-decoration:none}
+.hmread{padding:12px 20px;border-top:1px solid var(--line);font-size:14px;min-height:56px;color:var(--ink-2)}
+.hmread b{color:var(--ink);font-weight:500}
+.mix{display:grid;gap:8px;font-size:12.5px}
+.mix .r{display:grid;grid-template-columns:130px 1fr;gap:10px;align-items:center}
+.mix .r span:first-child{color:var(--ink-2);text-align:right;line-height:1.2}
+.mix .st{display:flex;height:22px;border-radius:4px;overflow:hidden;gap:1px}
+.mix .st i{display:block;height:100%;transition:opacity .2s,flex-grow .8s var(--ease)}
+.mixleg{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12px;color:var(--ink-2);margin-top:12px}
+.mixleg span{display:inline-flex;gap:6px;align-items:center;cursor:pointer}
+.mixleg i{width:10px;height:10px;border-radius:2px;display:block}
+
+/* image figure + overlay */
+.imgfig{position:relative;background:#fff;cursor:zoom-in}
+.imgfig img{width:100%;height:auto}
+.mk{position:absolute;top:1%;height:90%;width:0;border-left:2px dashed var(--c3);opacity:0;transition:opacity .35s;pointer-events:none}
+.mk.on{opacity:1}
+.mk::after{content:"";position:absolute;top:-4px;left:-6px;width:10px;height:10px;border-radius:50%;background:var(--c3);animation:pl 1.6s infinite}
+@keyframes pl{0%{box-shadow:0 0 0 0 #D9483B88}100%{box-shadow:0 0 0 14px #D9483B00}}
+.pcard{padding:16px 20px;font-size:14.5px;color:var(--ink-2);min-height:128px}
+.pcard b{color:var(--ink);font-weight:500;display:block;font-size:16px;margin-bottom:4px}
+.pcard .w{margin-top:8px;font-size:12.5px;color:var(--c3)}
+
+/* stack bars fig5 */
+.sb{display:grid;gap:18px;padding:10px 4px 6px}
+.sb .r{display:grid;grid-template-columns:96px 1fr;gap:12px;align-items:center}
+.sb .nm{font-size:13px;line-height:1.2}
+.sb .nm small{display:block;color:var(--ink-3);font-family:var(--mono);font-size:11px}
+.sb .tk{height:42px;display:flex;gap:2px;transition:width .8s var(--ease)}
+.sb .tk i{display:flex;align-items:center;justify-content:flex-start;padding-left:9px;font-style:normal;font-family:var(--mono);font-size:11.5px;border-radius:4px;overflow:hidden;white-space:nowrap;transition:flex-basis .8s var(--ease)}
+.sb .tk .nw{background:var(--c2);color:#111}
+.sb .tk .co{background:color-mix(in srgb,var(--c5) 40%,var(--paper));color:var(--ink)}
+.sb .pq{font-family:var(--mono);font-size:12.5px;color:var(--c2);margin-top:4px}
+
+/* storyboard */
+.arc{position:relative;margin:6px 0 18px}
+.arc svg{width:100%;height:auto;display:block}
+.arc .nd{position:absolute;width:30px;height:30px;margin:-15px 0 0 -15px;border-radius:50%;background:var(--paper);border:2px solid var(--line-2);font-family:var(--mono);font-size:11px;display:grid;place-items:center;transition:.3s;z-index:2}
+.arc .nd.on{background:var(--ink);color:var(--paper);border-color:var(--ink);transform:scale(1.2)}
+.arc .nd.pass{border-color:var(--c2)}
+.arc .ph{position:absolute;bottom:0;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);font-family:var(--mono)}
+.sbp{display:grid;gap:22px;align-items:center}
+@media (min-width:860px){.sbp{grid-template-columns:1.1fr 1fr}}
+.sbp .im{border-radius:14px;overflow:hidden;background:var(--paper-2);aspect-ratio:16/10;position:relative;cursor:zoom-in}
+.sbp .im img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .45s}
+.sbp h3{font-size:28px;margin:8px 0 12px;line-height:1.1}
+.sbp .bf{font-size:14.5px;color:var(--ink-2);margin-bottom:10px}
+.sbp .bf b{color:var(--ink);font-weight:500}
+.sbctl{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
+.btn{font-size:13px;padding:8px 16px;border-radius:99px;border:1px solid var(--line-2);transition:.2s;background:var(--paper)}
+.btn:hover{border-color:var(--ink)}
+.btn.pri{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.fgc{display:inline-flex;gap:5px;flex-wrap:wrap}
+.fgc a{font-family:var(--mono);font-size:11.5px;background:var(--acc-soft);color:var(--acc-ink);padding:2px 8px;border-radius:6px;text-decoration:none}
+
+/* chain */
+.chain{display:grid;gap:10px;margin-top:6px}
+@media (min-width:860px){.chain{grid-template-columns:repeat(4,1fr)}}
+.chain>div{border:1px solid var(--line);border-radius:14px;padding:16px 18px;background:var(--paper);position:relative;min-height:110px;transition:.4s}
+.chain>div::after{content:"→";position:absolute;right:-14px;top:50%;margin-top:-10px;color:var(--ink-3);z-index:1;display:none}
+@media (min-width:860px){.chain>div:not(:last-child)::after{display:block}}
+.chain b{display:block}
+.chain .t{font-size:15px;line-height:1.4;margin-top:6px}
+.etabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.persona{display:grid;gap:14px}
+@media (min-width:760px){.persona{grid-template-columns:1.3fr 1fr}}
+.pc{border:1px solid var(--line);border-radius:18px;padding:22px;background:var(--paper)}
+.pc .top2{display:flex;gap:16px;align-items:center;margin-bottom:12px}
+.pc .top2 img{width:64px;height:64px;border-radius:50%;object-fit:cover}
+.pc h3{font-size:24px}
+.pc .tg{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}
+.pc ul{margin:10px 0 0;padding:0;list-style:none;display:grid;gap:8px;font-size:14.5px;color:var(--ink-2)}
+.pc li{padding-left:16px;position:relative}
+.pc li::before{content:"";position:absolute;left:0;top:.65em;width:6px;height:6px;border-radius:50%;background:var(--acc)}
+
+/* generic */
+.cards{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.card{border:1px solid var(--line);border-radius:16px;padding:20px;background:var(--paper)}
+.card h4{font-size:16px;font-weight:500;margin:6px 0 6px}
+.card p{font-size:14.5px;color:var(--ink-2)}
+.tbl{width:100%;border-collapse:collapse;font-size:14px}
+.tbl th,.tbl td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+.tbl th{font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);font-weight:500}
+.scope{display:grid;grid-template-columns:150px repeat(6,1fr);gap:2px;font-size:12px;margin-top:8px}
+.scope .h{font-family:var(--mono);color:var(--ink-3);text-align:center;padding:6px 0}
+.scope .rowb{text-align:left;padding:10px 8px;border-radius:8px;font-size:13px;color:var(--ink-2);transition:.2s;border:1px solid transparent}
+.scope .rowb.on{background:var(--ink);color:var(--paper)}
+.scope .cl{background:var(--paper-2);border-radius:6px;height:38px;transition:.3s}
+.scope .cl.on{background:var(--acc)}
+@media (max-width:620px){.scope{grid-template-columns:110px repeat(6,1fr)}.scope .rowb{font-size:11.5px;padding:8px 4px}}
+.rings{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.ring{text-align:center}
+.ring svg{width:130px;height:130px}
+.ring p{font-size:13.5px;color:var(--ink-2);margin-top:8px}
+.flip{perspective:900px;cursor:pointer;min-height:150px}
+.flip .in2{position:relative;min-height:150px;transition:transform .6s var(--ease);transform-style:preserve-3d}
+.flip.on .in2{transform:rotateY(180deg)}
+.flip .f,.flip .b{position:absolute;inset:0;border:1px solid var(--line);border-radius:16px;padding:20px;backface-visibility:hidden;-webkit-backface-visibility:hidden;background:var(--paper)}
+.flip .b{transform:rotateY(180deg);background:var(--acc-soft)}
+.flip .f b{font-family:var(--mono);color:var(--acc-ink);font-size:12px}
+.flip h4{font-size:17px;font-weight:500;margin-top:8px}
+.flip .b p{font-size:14.5px;color:var(--ink-2)}
+.flip .hint{position:absolute;right:14px;bottom:10px;font-size:11px;color:var(--ink-3)}
+video{width:100%;border-radius:14px;background:#000;display:block}
+.links{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.links a{text-decoration:none;font-size:14px;border:1px solid var(--line-2);border-radius:12px;padding:10px 16px;color:var(--ink);transition:.2s;background:var(--paper)}
+.links a:hover{border-color:var(--ink)}
+.links a.pri{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+footer{padding:42px 0 54px;border-top:1px solid var(--line);font-size:13px;color:var(--ink-2)}
+.rv{opacity:0;transform:translateY(18px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.draw{transition:none;stroke-dashoffset:0}*{animation:none!important}}
+.lbx{position:fixed;inset:0;background:#0009;z-index:100;display:grid;place-items:center;padding:20px;cursor:zoom-out;overflow:auto}
+.lbx img{max-width:min(96vw,1500px);max-height:94vh;border-radius:8px;background:#fff}
+</style>
+</head>
+<body>
+<header class="top" id="top">
+  <div class="in">
+    <a class="word" href="#hero">THE PRICE OF ARRIVAL</a>
+    <nav class="tnav" id="tnav" aria-label="Sections"></nav>
+    <span class="sp"></span>
+    <div class="langs" role="group" aria-label="Language"><button id="l-zh" aria-pressed="false">中</button><button id="l-en" aria-pressed="true">EN</button></div>
+  </div>
+  <span class="prog" id="prog"></span>
+</header>
+
+<div class="sheet">
+
+<!-- HERO -->
+<section class="ch hero" id="hero" data-nav="Overview||概览">
+  <div class="wrap">
+    <div class="kick rv"><span class="pill"><span class="en">Data visualisation</span><span class="zh">数据可视化</span></span><span class="pill"><span class="en">Data storytelling</span><span class="zh">数据叙事</span></span><span class="pill">Tableau · HTML / SVG</span><span class="pill">2019–2026</span></div>
+    <h1 class="rv">The Price<br>of <em>Arrival</em></h1>
+    <p class="lead rv"><span class="en">What a record-high headline hides, and what a student deciding on Sydney needs to know before committing. Five public datasets, six figures, one decision story.</span><span class="zh">“创历史新高”的标题背后藏着什么？一位考虑去悉尼读书的学生，在做决定前真正需要知道什么。五个公开数据集、六张图表、一条决策故事线。</span></p>
+    <div class="hero-grid">
+      <div class="kpis rv">
+        <div class="kpi up"><b class="num" data-count="8.8" data-pre="+" data-suf="%" data-dec="1">+8.8%</b><p><span class="en">NSW course enrolments, Jan–May 2026 vs 2019</span><span class="zh">新州课程注册量，2026 年 1–5 月对比 2019 年同期</span></p></div>
+        <div class="kpi dn"><b class="num" data-count="17.6" data-pre="−" data-suf="%" data-dec="1">−17.6%</b><p><span class="en">NSW course commencements, same period</span><span class="zh">新州课程新入学量，同期</span></p></div>
+        <div class="kpi"><b class="num" data-count="85.8" data-suf="%" data-dec="1">85.8%</b><p><span class="en">of known 2025 Sydney enrolments sit in three SA4s</span><span class="zh">2025 年悉尼已披露注册量集中在三个 SA4</span></p></div>
+        <div class="kpi"><b class="num">6 · 10</b><p><span class="en">figures · story scenes, each tied to a decision</span><span class="zh">张图表 · 个故事场景，各对应一个决策</span></p></div>
+      </div>
+      <div class="heroviz rv">
+        <div class="cap"><span class="mono">FIG 1 · <span class="en">index, Jan–May 2019 = 100</span><span class="zh">指数，2019 年 1–5 月 = 100</span></span><span style="display:flex;gap:12px"><span class="up">● <span class="en">Enrolments</span><span class="zh">总注册量</span></span><span class="dn">● <span class="en">Commencements</span><span class="zh">新入学量</span></span></span></div>
+        <div id="heroChart"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 01 BRIEF -->
+<section class="ch" id="brief" data-nav="Brief||委托">
+  <div class="wrap">
+    <div class="head rv">
+      <div class="row"><span class="fn">01</span><span class="lbl"><span class="en">Commission and role</span><span class="zh">委托与职责</span></span></div>
+      <h2><span class="en">One headline, one decision</span><span class="zh">一条标题，一个决定</span></h2>
+      <p class="sub"><span class="en">Harbourline Education Consulting commissioned an English interactive data story for prospective students choosing Sydney. I worked independently as data visualisation designer and data storyteller, from sourcing data to the film and evaluation workbook.</span><span class="zh">Harbourline 教育咨询委托制作一套面向拟赴悉尼留学者的英文互动数据故事。我独立承担数据可视化设计与数据叙事，从数据整理一直做到成片和评估工作簿。</span></p>
+      <div class="q"><b><span class="en">Brief question:</span><span class="zh">委托问题：</span></b> <span class="en">Should I study in Sydney, and if so, when to apply, where to study, and how much flexibility should I leave for living costs?</span><span class="zh">我是否应该去悉尼读书？如果去，什么时候申请、去哪里读，又该为生活成本留出多少弹性？</span></div>
+    </div>
+    <div class="rv" style="display:grid;gap:14px">
+      <div class="etabs" id="roleTabs" role="tablist"></div>
+      <div class="card" id="roleBody" style="min-height:120px"></div>
+    </div>
+    <div class="cards rv" style="margin-top:28px">
+      <div class="card"><span class="lbl"><span class="en">Deliverable</span><span class="zh">交付 1</span></span><h4><span class="en">Interactive story</span><span class="zh">互动故事</span></h4><p><span class="en">19 slides, ten scenes, step-by-step reveals and speaker notes.</span><span class="zh">19 页幻灯片、十个场景，逐步揭示图表并附演讲者备注。</span></p></div>
+      <div class="card"><span class="lbl"><span class="en">Deliverable</span><span class="zh">交付 2</span></span><h4><span class="en">Six core figures</span><span class="zh">六张核心图表</span></h4><p><span class="en">Trend, map, heatmap, annotated timeline, stacked bars, indexed prices.</span><span class="zh">趋势图、地图、热力图、带注释的时间线、堆叠条形图、指数化价格图。</span></p></div>
+      <div class="card"><span class="lbl"><span class="en">Deliverable</span><span class="zh">交付 3</span></span><h4><span class="en">Story film</span><span class="zh">故事视频</span></h4><p><span class="en">A narrated English walkthrough with captions.</span><span class="zh">带英文字幕的英文解说视频。</span></p></div>
+      <div class="card"><span class="lbl"><span class="en">Deliverable</span><span class="zh">交付 4</span></span><h4><span class="en">Design evidence</span><span class="zh">设计依据</span></h4><p><span class="en">Value proposition canvas, empathy map, user stories, storyboard, benchmark workbook.</span><span class="zh">价值主张画布、同理心地图、用户故事、分镜、评估工作簿。</span></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 AUDIENCE -->
+<section class="ch alt" id="audience" data-nav="Audience||受众">
+  <div class="wrap">
+    <div class="head rv">
+      <div class="row"><span class="fn">02</span><span class="lbl"><span class="en">Audience and traceability</span><span class="zh">受众与可追溯性</span></span></div>
+      <h2><span class="en">From a worry to a figure</span><span class="zh">从一个顾虑到一张图</span></h2>
+      <p class="sub"><span class="en">Two personas drive what goes into the story. Every insight is traced to a user story, a figure and a storyboard scene, so each chart has a reason to be there.</span><span class="zh">两个角色决定故事里放什么。每条洞察都能追到用户故事、图表和分镜场景，每张图都有存在的理由。</span></p>
+    </div>
+    <div class="persona rv">
+      <div class="pc">
+        <div class="top2"><img src="img/meiface.jpg" alt="Illustration of Mei"><div><span class="lbl"><span class="en">Primary persona</span><span class="zh">主要角色</span></span><h3>Mei, 23</h3></div></div>
+        <p class="muted"><span class="en">Prospective international student weighing a Sydney Master's.</span><span class="zh">正在考虑赴悉尼读硕士的国际学生。</span></p>
+        <div class="tg"><span class="fgc"><a><span class="en">trusts official data</span><span class="zh">相信官方数据</span></a><a><span class="en">anecdotes still sway her</span><span class="zh">仍会被传闻影响</span></a></span></div>
+        <ul>
+          <li><span class="en">Wants one dollar figure for her budget, but sources only give an index.</span><span class="zh">想要一个能写进预算的金额，但数据源只给指数。</span></li>
+          <li><span class="en">Fears a mistimed application: a A$1,600 visa fee and possibly a lost year.</span><span class="zh">担心申请时点出错：A$1,600 的签证费，还可能赔上一年。</span></li>
+        </ul>
+      </div>
+      <div class="pc">
+        <span class="lbl"><span class="en">Secondary persona</span><span class="zh">次要角色</span></span><h3 style="margin-top:6px">Daniel, 41</h3>
+        <p class="muted" style="margin-top:6px"><span class="en">Education adviser briefing several students at once.</span><span class="zh">同时指导多位学生的教育顾问。</span></p>
+        <ul>
+          <li><span class="en">Copies charts into client decks, so captions must stand alone.</span><span class="zh">会把图表放进给客户的演示文稿，所以图注必须能独立成立。</span></li>
+          <li><span class="en">Avoids quoting a living cost he cannot verify.</span><span class="zh">不会引用自己无法核实的生活成本数字。</span></li>
+        </ul>
+        <p class="small" style="margin-top:14px;font-size:13px;color:var(--ink-2)"><span class="en">Result: every figure below carries a four-part caption — counts, period, excludes, source.</span><span class="zh">结果：下面每张图都带四段式图注：统计对象、时期、不包含内容、来源。</span></p>
+      </div>
+    </div>
+    <div class="rv" style="margin-top:34px">
+      <p class="lbl" style="margin-bottom:12px"><span class="en">Click an insight to follow the chain</span><span class="zh">点选一条洞察，查看追溯链</span></p>
+      <div class="etabs" id="etabs"></div>
+      <div class="chain" id="chain"></div>
+    </div>
+    <div class="rv" style="margin-top:34px">
+      <div class="fig"><div class="bar"><span class="t"><span class="en">Value proposition canvas</span><span class="zh">价值主张画布</span><small><span class="en">click to enlarge</span><span class="zh">点击放大</span></small></span></div>
+        <div class="imgfig" data-zoom><img src="img/vpc.webp" alt="Value proposition canvas for The Price of Arrival" loading="lazy" style="max-height:620px;object-fit:contain;margin:0 auto"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FIG 1 -->
+<section class="ch" id="fig1" data-nav="Fig 1">
+  <div class="wrap">
+    <div class="head rv">
+      <div class="row"><span class="fn">FIG 1</span><span class="lbl"><span class="en">Enrolments vs commencements</span><span class="zh">注册量与新入学量</span></span></div>
+      <h2><span class="en">The headline counts who is here, not who is arriving</span><span class="zh">标题数的是“在读的人”，而不是“新到的人”</span></h2>
+      <div class="q"><b><span class="en">Reader question:</span><span class="zh">读者问题：</span></b> <span class="en">Is “record high” about my intake?</span><span class="zh">“创新高”说的是我这一批吗？</span></div>
+    </div>
+    <div class="fig rv" id="f1">
+      <div class="bar"><span class="t"><span class="en">NSW international students, Jan–May year to date</span><span class="zh">新州国际学生，1–5 月累计</span><small><span class="en">Index, Jan–May 2019 = 100</span><span class="zh">指数，2019 年 1–5 月 = 100</span></small></span>
+        <div class="ctl" id="f1ctl"></div></div>
+      <div class="split two">
+        <div><div class="plot"><div id="f1chart"></div></div>
+          <div class="scrub"><span>2019</span><input type="range" id="f1r" min="0" max="7" value="7" aria-label="Year"><span>2026</span></div></div>
+        <div style="padding:18px 20px">
+          <p class="lbl" style="margin-bottom:6px"><span class="en">Gap between the two indices, index points</span><span class="zh">两条指数之差，指数点</span></p>
+          <div id="f1gap"></div>
+          <p class="muted" style="font-size:13px;margin-top:6px"><span class="en">Enrolments minus commencements. The gap opens from 2025 as new starts fall faster than the stock of enrolments.</span><span class="zh">总注册量减新入学量。2025 年起差距拉开：新入学下降得比在读存量更快。</span></p>
+        </div>
+      </div>
+      <div class="read" id="f1read"></div>
+      <div class="cs">
+        <div><b>COUNTS</b><p><span class="en">NSW course enrolments and commencements (registrations; one person can hold several).</span><span class="zh">新州课程注册量与新入学量（按注册计，一人可有多门课程）。</span></p></div>
+        <div><b>PERIOD</b><p><span class="en">January–May each year; index = value ÷ same series in Jan–May 2019 × 100.</span><span class="zh">每年 1–5 月；指数 = 当年值 ÷ 同序列 2019 年 1–5 月值 × 100。</span></p></div>
+        <div><b>EXCLUDES</b><p><span class="en">Unique students, visa outcomes, where students live.</span><span class="zh">独立学生人数、签证结果、居住地。</span></p></div>
+        <div><b>SOURCE</b><p><span class="en">Dept of Education, international student monthly summary.</span><span class="zh">澳大利亚教育部国际学生月度汇总。</span></p></div>
+      </div>
+    </div>
+    <div class="rd rv">
+      <div class="y"><b><span class="en">Can read</span><span class="zh">可以读出</span></b><p><span class="en">Enrolments are 8.8% above 2019 while commencements are 17.6% below. Volume recovered; new intake did not.</span><span class="zh">总注册量比 2019 年高 8.8%，新入学量低 17.6%。存量恢复了，新增没有。</span></p></div>
+      <div class="n"><b><span class="en">Cannot read</span><span class="zh">不能读出</span></b><p><span class="en">Neither line measures unique students entering Australia, so it says nothing about any one applicant’s chances.</span><span class="zh">两条线都不是“入境的独立学生数”，也不能说明任何个人的录取机会。</span></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FIG 2 -->
+<section class="ch alt" id="fig2" data-nav="Fig 2">
+  <div class="wrap">
+    <div class="head rv">
+      <div class="row"><span class="fn">FIG 2</span><span class="lbl"><span class="en">Study locations</span><span class="zh">学习地点</span></span></div>
+      <h2><span class="en">Sydney is one name for very unequal places</span><span class="zh">“悉尼”是一个名字，指向差别极大的地方</span></h2>
+      <div class="q"><b><span class="en">Reader question:</span><span class="zh">读者问题：</span></b> <span class="en">Where would I actually study?</span><span class="zh">我实际会在哪里上课？</span></div>
+    </div>
+    <div class="fig rv" id="f2">
+      <div class="bar"><span class="t"><span class="en">Known 2025 enrolments by Sydney SA4</span><span class="zh">2025 年悉尼各 SA4 已披露注册量</span><small><span class="en">sum of disclosed field cells</span><span class="zh">已披露专业单元格之和</span></small></span>
+        <div class="ctl" id="f2ctl"></div></div>
+      <div class="split two">
+        <div style="padding:20px"><div class="hb" id="f2bars"></div></div>
+        <div style="padding:20px">
+          <p class="lbl" style="margin-bottom:6px"><span class="en">Cumulative share of known enrolments</span><span class="zh">已披露注册量的累计占比</span></p>
+          <div id="f2cum"></div>
+          <p class="muted" style="font-size:13px;margin-top:6px"><span class="en">Hover or tap to read the cumulative share at each SA4 rank.</span><span class="zh">悬停或点击，读取各 SA4 排名处的累计占比。</span></p>
+        </div>
+      </div>
+      <div class="split two" style="border-top:1px solid var(--line)">
+        <div class="imgfig" data-zoom><img src="img/map.jpg" alt="Choropleth map of Sydney SA4 enrolments" loading="lazy" style="max-height:480px;object-fit:contain;margin:0 auto"></div>
+        <div style="padding:20px;font-size:14.5px;color:var(--ink-2)"><p class="lbl" style="margin-bottom:8px"><span class="en">Original Tableau map</span><span class="zh">原始 Tableau 地图</span></p>
+          <p><span class="en">Log-scaled colour keeps the smaller hubs visible. City and Inner South alone holds 223,386 known enrolments; the next two SA4s are Eastern Suburbs and Parramatta.</span><span class="zh">对数色阶让较小的学习中心也看得出来。仅 City and Inner South 就有 223,386 已披露注册量；其后两个 SA4 是 Eastern Suburbs 和 Parramatta。</span></p></div>
+      </div>
+      <div class="cs">
+        <div><b>COUNTS</b><p><span class="en">Course enrolments by place of study, disclosed values only, 14 Sydney SA4s.</span><span class="zh">按学习地点统计的课程注册量，仅含已披露值，14 个悉尼 SA4。</span></p></div>
+        <div><b>PERIOD</b><p><span class="en">Full-year 2025. Percentages use known enrolments as the denominator.</span><span class="zh">2025 全年。百分比以已披露注册量为分母。</span></p></div>
+        <div><b>EXCLUDES</b><p><span class="en">Where students live; suppressed values.</span><span class="zh">学生居住地；被隐去的数值。</span></p></div>
+        <div><b>SOURCE</b><p><span class="en">Dept of Education SA4 data; ABS ASGS Edition 3 boundaries.</span><span class="zh">教育部 SA4 数据；ABS ASGS 第 3 版边界。</span></p></div>
+      </div>
+    </div>
+    <div class="rd rv">
+      <div class="y"><b><span class="en">Can read</span><span class="zh">可以读出</span></b><p><span class="en">One SA4 holds 60.1% of known enrolments and three hold 85.8%. A log scale is needed to see the other 11 at all.</span><span class="zh">一个 SA4 占已披露注册量的 60.1%，三个占 85.8%。必须用对数色阶才能看到其余 11 个。</span></p></div>
+      <div class="n"><b><span class="en">Cannot read</span><span class="zh">不能读出</span></b><p><span class="en">The map shows places of study. It cannot say where students rent or live.</span><span class="zh">地图表示学习地点，不能据此判断学生住在哪里。</span></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FIG 3 -->
+<section class="ch" id="fig3" data-nav="Fig 3">
+  <div class="wrap">
+    <div class="head rv">
+      <div class="row"><span class="fn">FIG 3</span><span class="lbl"><span class="en">Location × field</span><span class="zh">地区 × 专业</span></span></div>
+      <h2><span class="en">Each hub has its own subject profile</span><span class="zh">每个学习中心都有自己的专业画像</span></h2>
+      <div class="q"><b><span class="en">Reader question:</span><span class="zh">读者问题：</span></b> <span class="en">Which areas teach my field?</span><span class="zh">我的专业主要在哪些区域开设？</span></div>
+    </div>
+    <div class="fig rv" id="f3">
+      <div class="bar"><span class="t"><span class="en">Disclosed 2025 enrolments, 14 SA4 × 13 fields</span><span class="zh">2025 年已披露注册量，14 个 SA4 × 13 个专业</span><small><span class="en">log colour scale</span><span class="zh">对数色阶</span></small></span>
+        <div class="ctl"><button class="chip" id="f3clear"><span class="en">Clear selection</span><span class="zh">清除选择</span></button></div></div>
+      <p class="muted" style="padding:12px 20px 0;font-size:13px"><span class="en">Click a column header to pick your field.</span><span class="zh">点击列标题选择你的专业。</span></p>
+      <div class="hm"><div class="hmg" id="hm"></div></div>
+      <div class="legend"><span>5</span><i></i><span>81,426</span><span style="margin-left:16px"><s></s> <span class="en">blank = not disclosed or unavailable, not zero</span><span class="zh">空白 = 未披露或不可用，不是 0</span></span></div>
+      <div class="hmread" id="hmread"></div>
+      <div class="split two" style="border-top:1px solid var(--line)">
+        <div style="padding:20px"><p class="lbl" style="margin-bottom:12px"><span class="en">Field mix within each of the six largest SA4s (derived)</span><span class="zh">六个最大 SA4 内部的专业构成（推算）</span></p><div class="mix" id="mix"></div><div class="mixleg" id="mixleg"></div></div>
+        <div style="padding:20px"><p class="lbl" style="margin-bottom:12px"><span class="en">Where each field concentrates (derived)</span><span class="zh">各专业集中在哪里（推算）</span></p><div id="conc"></div></div>
+      </div>
+      <div class="cs">
+        <div><b>COUNTS</b><p><span class="en">Disclosed enrolments for each SA4 × field cell; each filled cell shows its original count.</span><span class="zh">每个 SA4 × 专业单元格的已披露注册量；每个有值的格子都显示原始数字。</span></p></div>
+        <div><b>PERIOD</b><p><span class="en">Full-year 2025.</span><span class="zh">2025 全年。</span></p></div>
+        <div><b>EXCLUDES</b><p><span class="en">Suppressed cells, left blank. Colour compares counts, not within-area shares.</span><span class="zh">被隐去的单元格（留空）。颜色比较的是人数，不是地区内占比。</span></p></div>
+        <div><b>SOURCE</b><p><span class="en">Dept of Education SA4 enrolment data.</span><span class="zh">教育部 SA4 注册数据。</span></p></div>
+      </div>
+    </div>
+    <div class="rd rv">
+      <div class="y"><b><span class="en">Can read</span><span class="zh">可以读出</span></b><p><span class="en">City and Inner South is led by Business (81,426). In Outer South West the order flips: Health 614 against Business 48.</span><span class="zh">City and Inner South 以商科（81,426）为主；Outer South West 次序反转：健康 614，商科只有 48。</span></p></div>
+      <div class="n"><b><span class="en">Cannot read</span><span class="zh">不能读出</span></b><p><span class="en">A blank cell is not zero. The mix and concentration panels are my own calculations on the disclosed cells.</span><span class="zh">空白不等于零。构成与集中度面板是我基于已披露单元格的计算。</span></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FIG 4 -->
+<section class="ch alt" id="fig4" data-nav="Fig 4">
+  <div class="wrap">
+    <div class="head rv">
+      <div class="row"><span class="fn">FIG 4</span><span class="lbl"><span class="en">Visa timeline</span><span class="zh">签证时间线</span></span></div>
+      <h2><span class="en">Put every policy date beside the grant rate</span><span class="zh">把每个政策节点放在获签率旁边</span></h2>
+      <div class="q"><b><span class="en">Reader question:</span><span class="zh">读者问题：</span></b> <span class="en">Which changes matter when I time my application?</span><span class="zh">我安排申请时间时，哪些变化相关？</span></div>
+    </div>
+    <div class="fig rv" id="f4">
+      <div class="bar"><span class="t"><span class="en">National student visa grant rate, monthly</span><span class="zh">全国学生签证月度获签率</span><small><span class="en">with 3-month moving average</span><span class="zh">含三个月移动平均</span></small></span>
+        <div class="ctl" id="f4ctl"></div></div>
+      <div class="split two">
+        <div class="imgfig" id="f4img" data-zoom><img src="img/fig4.jpg" alt="Tableau snapshot of national student visa grant rate with policy annotations" loading="lazy"><i class="mk" id="mk0"></i><i class="mk" id="mk1"></i><i class="mk" id="mk2"></i></div>
+        <div class="pcard" id="f4card"></div>
+      </div>
+      <div class="cs">
+        <div><b>COUNTS</b><p><span class="en">National Subclass 500 monthly grant rate and its three-month average; selected policy dates.</span><span class="zh">全国 500 类学生签证月度获签率及其三个月平均；选定的政策日期。</span></p></div>
+        <div><b>PERIOD</b><p><span class="en">2019 to 2026 snapshot. Two axes: percentage (left), decimal (right).</span><span class="zh">2019 至 2026 快照。两条纵轴：百分比（左）、小数（右）。</span></p></div>
+        <div><b>EXCLUDES</b><p><span class="en">Personal approval odds; causal attribution.</span><span class="zh">个人获签概率；因果归因。</span></p></div>
+        <div><b>SOURCE</b><p><span class="en">Dept of Home Affairs student visa statistics.</span><span class="zh">内政部学生签证统计。</span></p></div>
+      </div>
+    </div>
+    <div class="rd rv">
+      <div class="y"><b><span class="en">Can read</span><span class="zh">可以读出</span></b><p><span class="en">Where the policy changes fall in time, and that the monthly rate swings widely after 2023.</span><span class="zh">政策变化落在哪些时间点，以及 2023 年之后月度获签率波动明显加大。</span></p></div>
+      <div class="n"><b><span class="en">Cannot read</span><span class="zh">不能读出</span></b><p><span class="en">Coincidence in time does not prove cause, and a national rate does not estimate any one person’s chance.</span><span class="zh">时间上的重合不足以证明因果，全国获签率也不能估算个人的获签概率。</span></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FIG 5 -->
+<section class="ch" id="fig5" data-nav="Fig 5">
+  <div class="wrap">
+    <div class="head rv">
+      <div class="row"><span class="fn">FIG 5</span><span class="lbl"><span class="en">Sector composition</span><span class="zh">教育部门构成</span></span></div>
+      <h2><span class="en">The biggest sector has the fewest newcomers</span><span class="zh">规模最大的部门，新入学占比最低</span></h2>
+      <div class="q"><b><span class="en">Reader question:</span><span class="zh">读者问题：</span></b> <span class="en">How much of my sector is new intake?</span><span class="zh">我所在的部门，有多少是新入学？</span></div>
+    </div>
+    <div class="fig rv" id="f5">
+      <div class="bar"><span class="t"><span class="en">NSW enrolments by sector, May 2026</span><span class="zh">新州各教育部门注册量，2026 年 5 月</span><small><span class="en">new vs continuing</span><span class="zh">新入学 vs 继续注册</span></small></span>
+        <div class="ctl" id="f5ctl"></div></div>
+      <div class="plot" style="padding:22px 20px"><div class="sb" id="f5bars"></div>
+        <div style="display:flex;gap:18px;font-size:12.5px;color:var(--ink-2);margin-top:16px"><span><i style="display:inline-block;width:10px;height:10px;background:var(--c2);border-radius:2px"></i> <span class="en">New commencements</span><span class="zh">新入学</span></span><span><i style="display:inline-block;width:10px;height:10px;background:color-mix(in srgb,var(--c5) 40%,var(--paper));border-radius:2px"></i> <span class="en">Continuing</span><span class="zh">继续注册</span></span></div></div>
+      <div class="split two" style="border-top:1px solid var(--line)">
+        <div class="imgfig" data-zoom><img src="img/fig5-slide.webp" alt="Figure 5 slide from the interactive story" loading="lazy"></div>
+        <div style="padding:20px;font-size:14.5px;color:var(--ink-2)"><p class="lbl" style="margin-bottom:8px"><span class="en">Method note</span><span class="zh">方法说明</span></p><p><span class="en">An earlier Sankey linked two unrelated snapshots and implied a flow the data could not identify. I replaced it with stacked bars that show absolute counts and a share label.</span><span class="zh">早期的桑基图把两个互不相关的快照连起来，暗示了数据无法识别的流动。我换成堆叠条形图，同时显示绝对数量和占比标签。</span></p></div>
+      </div>
+      <div class="cs">
+        <div><b>COUNTS</b><p><span class="en">Enrolments by sector. Continuing = total minus commencements; new share = commencements ÷ total.</span><span class="zh">各部门注册量。继续注册 = 总数 − 新入学；新入学占比 = 新入学 ÷ 总数。</span></p></div>
+        <div><b>PERIOD</b><p><span class="en">May 2026 snapshot.</span><span class="zh">2026 年 5 月快照。</span></p></div>
+        <div><b>EXCLUDES</b><p><span class="en">Transitions of individual students; schools and non-award courses.</span><span class="zh">学生个体的转换；中小学与非学历课程。</span></p></div>
+        <div><b>SOURCE</b><p><span class="en">Dept of Education monthly summary.</span><span class="zh">教育部月度汇总。</span></p></div>
+      </div>
+    </div>
+    <div class="rd rv">
+      <div class="y"><b><span class="en">Can read</span><span class="zh">可以读出</span></b><p><span class="en">Higher Education leads on volume (177,204) yet only 22.3% is new; ELICOS is small (16,403) with 49.9% new.</span><span class="zh">高等教育规模最大（177,204），新入学只占 22.3%；ELICOS 规模小（16,403），新入学占 49.9%。</span></p></div>
+      <div class="n"><b><span class="en">Cannot read</span><span class="zh">不能读出</span></b><p><span class="en">The categories describe registrations at the cut-off and do not follow any student from one sector to another.</span><span class="zh">这些类别描述的是截止时点的注册，并不追踪学生在部门之间的流转。</span></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FIG 6 -->
+<section class="ch alt" id="fig6" data-nav="Fig 6">
+  <div class="wrap">
+    <div class="head rv">
+      <div class="row"><span class="fn">FIG 6</span><span class="lbl"><span class="en">Prices and enrolments</span><span class="zh">价格与注册量</span></span></div>
+      <h2><span class="en">Prices kept climbing while enrolments dipped and returned</span><span class="zh">注册量先降后升，价格一路上行</span></h2>
+      <div class="q"><b><span class="en">Reader question:</span><span class="zh">读者问题：</span></b> <span class="en">How big a buffer should I plan for?</span><span class="zh">我该给预算留多大的缓冲？</span></div>
+    </div>
+    <div class="fig rv" id="f6">
+      <div class="bar"><span class="t"><span class="en">Annual mean indices, 2019 = 100</span><span class="zh">年均指数，2019 = 100</span><small><span class="en">2026 = Jan–May only</span><span class="zh">2026 仅含 1–5 月</span></small></span>
+        <div class="ctl" id="f6ctl"></div></div>
+      <div class="split two">
+        <div><div class="plot"><div id="f6chart"></div></div>
+          <div class="scrub"><span>2019</span><input type="range" id="f6r" min="0" max="7" value="6" aria-label="Year"><span>2026*</span></div></div>
+        <div style="padding:18px 20px;display:grid;gap:22px;align-content:start">
+          <div><p class="lbl" style="margin-bottom:8px"><span class="en">Change 2019 → 2025 vs own 2019 level</span><span class="zh">2019 → 2025 相对自身 2019 年水平的变化</span></p><div class="hb" id="f6chg" style="grid-template-columns:104px 1fr 56px"></div></div>
+          <div><p class="lbl" style="margin-bottom:6px"><span class="en">All Groups CPI minus enrolment index, points (derived)</span><span class="zh">总体 CPI 减注册指数，指数点（推算）</span></p><div id="f6gap"></div></div>
+        </div>
+      </div>
+      <div class="read" id="f6read"></div>
+      <div class="cs">
+        <div><b>COUNTS</b><p><span class="en">NSW enrolment index, Sydney All Groups CPI and Sydney Rents CPI. Annual means of available observations.</span><span class="zh">新州注册指数、悉尼总体 CPI 与悉尼租金 CPI。取可得观测的年均值。</span></p></div>
+        <div><b>PERIOD</b><p><span class="en">Enrolments rebased to the same month in 2019; CPI to June quarter 2019. 2026 covers Jan–May only.</span><span class="zh">注册量以 2019 年同月为基期；CPI 以 2019 年 6 月季度为基期。2026 仅含 1–5 月。</span></p></div>
+        <div><b>EXCLUDES</b><p><span class="en">Dollar rents and budgets; causation.</span><span class="zh">金额形式的租金和预算；因果关系。</span></p></div>
+        <div><b>SOURCE</b><p><span class="en">ABS CPI (Jun 2026 release); Dept of Education.</span><span class="zh">ABS CPI（2026 年 6 月发布）；教育部。</span></p></div>
+      </div>
+    </div>
+    <div class="rd rv">
+      <div class="y"><b><span class="en">Can read</span><span class="zh">可以读出</span></b><p><span class="en">By 2025 All Groups CPI stood at 123.0 and Rents CPI at 114.9, against 116.7 for enrolments. Plan for rising prices.</span><span class="zh">到 2025 年总体 CPI 为 123.0，租金 CPI 为 114.9，注册指数为 116.7。要按价格上行来留缓冲。</span></p></div>
+      <div class="n"><b><span class="en">Cannot read</span><span class="zh">不能读出</span></b><p><span class="en">An index cannot be turned into a monthly rent or a personal budget. That is why I dropped the budget calculator.</span><span class="zh">指数无法换算成个人月租或月度预算。这正是我取消预算计算器的原因。</span></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- STORY -->
+<section class="ch" id="story" data-nav="Story||故事">
+  <div class="wrap">
+    <div class="head rv">
+      <div class="row"><span class="fn">07</span><span class="lbl"><span class="en">Narrative design</span><span class="zh">叙事设计</span></span></div>
+      <h2><span class="en">Ten scenes, four stages, one plan</span><span class="zh">十个场景，四个阶段，一份计划</span></h2>
+      <p class="sub"><span class="en">The story follows Mei from the headline to a plan she can discuss with her family. Each turn points back to a numbered figure.</span><span class="zh">故事跟随 Mei 从新闻标题走到可以和家人讨论的行动计划。每个转折都回指具体图号。</span></p>
+    </div>
+    <div class="fig rv"><div class="plot" style="padding:22px 22px 20px">
+      <div class="arc" id="arc"></div>
+      <div class="sbp" id="sbp"></div>
+    </div></div>
+    <div class="rv" style="margin-top:34px">
+      <p class="lbl" style="margin-bottom:10px"><span class="en">Companion film</span><span class="zh">配套视频</span></p>
+      <video controls preload="metadata" playsinline src="../artifacts/the-price-of-arrival-story.mp4" aria-label="The Price of Arrival story film"></video>
+    </div>
+  </div>
+</section>
+
+<!-- METHOD -->
+<section class="ch alt" id="method" data-nav="Method||方法">
+  <div class="wrap">
+    <div class="head rv">
+      <div class="row"><span class="fn">08</span><span class="lbl"><span class="en">Data and design decisions</span><span class="zh">数据与设计决策</span></span></div>
+      <h2><span class="en">Four geographies, five datasets</span><span class="zh">四种地理口径，五个数据集</span></h2>
+      <p class="sub"><span class="en">Each figure uses a different geography and reporting convention. Pick a scope to see which figures use it.</span><span class="zh">每张图使用不同的地理口径和统计惯例。选择一种口径，查看哪些图使用它。</span></p>
+    </div>
+    <div class="fig rv"><div class="plot" style="padding:20px">
+      <div class="scope" id="scope"></div>
+      <p class="pcard" id="scopeTxt" style="padding:16px 4px 4px;min-height:60px"></p>
+    </div></div>
+    <p class="lbl rv" style="margin:44px 0 14px"><span class="en">Design decisions</span><span class="zh">设计决策</span></p>
+    <div class="cards rv">
+      <div class="card"><span class="lbl">01</span><h4><span class="en">One chart type, one job</span><span class="zh">一图一用</span></h4><p><span class="en">Trend, composition and geography each get the form that suits the comparison, not one signature chart.</span><span class="zh">趋势、构成、地理各用适合的图形，不套用同一种“招牌图”。</span></p></div>
+      <div class="card"><span class="lbl">02</span><h4><span class="en">Log scales for small hubs</span><span class="zh">对数色阶保留小中心</span></h4><p><span class="en">Values spanning orders of magnitude stay legible; suppressed cells stay blank, not zero.</span><span class="zh">跨越数量级的数值仍然可读；被隐去的单元格留空，而不是 0。</span></p></div>
+      <div class="card"><span class="lbl">03</span><h4><span class="en">Sankey replaced</span><span class="zh">换掉桑基图</span></h4><p><span class="en">It implied a flow between unrelated snapshots. Stacked bars show counts and shares honestly.</span><span class="zh">它暗示了互不相关快照之间的流动。堆叠条形图如实显示数量与占比。</span></p></div>
+      <div class="card"><span class="lbl">04</span><h4><span class="en">Budget calculator dropped</span><span class="zh">取消预算计算器</span></h4><p><span class="en">CPI cannot support a personal dollar figure, so the last scene asks for a buffer instead.</span><span class="zh">CPI 支撑不了个人金额，所以最后一幕改为建议留出缓冲。</span></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- EVALUATION -->
+<section class="ch" id="eval" data-nav="Evaluation||评估">
+  <div class="wrap">
+    <div class="head rv">
+      <div class="row"><span class="fn">09</span><span class="lbl"><span class="en">Limits and evaluation</span><span class="zh">局限与评估</span></span></div>
+      <h2><span class="en">What the data cannot say, kept visible</span><span class="zh">数据说不了的事，始终放在明处</span></h2>
+    </div>
+    <div class="cards rv" id="limits"></div>
+    <div class="fig rv" style="margin-top:34px"><div class="plot" style="padding:24px">
+      <p class="lbl" style="margin-bottom:6px"><span class="en">Evaluation plan</span><span class="zh">评估计划</span></p>
+      <p style="max-width:680px;color:var(--ink-2);font-size:15px;margin-bottom:22px"><span class="en">The workbook holds eleven self-assessed criteria and proposed audience checks. The two 80% figures are targets for a future test. No participant testing has been completed, and no result is claimed.</span><span class="zh">工作簿包含十一条自评标准和拟定的受众检验。两个 80% 是未来测试的目标值。尚未完成用户测试，也不声称任何结果。</span></p>
+      <div class="rings" id="rings"></div>
+    </div></div>
+    <div class="cards rv" style="margin-top:30px">
+      <div class="card"><span class="lbl"><span class="en">Next</span><span class="zh">下一步</span></span><h4><span class="en">Validate the personas</span><span class="zh">验证角色</span></h4><p><span class="en">Interview international students and education agents.</span><span class="zh">访谈国际学生与教育顾问。</span></p></div>
+      <div class="card"><span class="lbl"><span class="en">Next</span><span class="zh">下一步</span></span><h4><span class="en">Storyboard earlier</span><span class="zh">更早做分镜</span></h4><p><span class="en">Sequence panels before finalising empathy notes, so each note earns its panel.</span><span class="zh">在定稿同理心笔记前先排分镜，让每条笔记都有对应画面。</span></p></div>
+      <div class="card"><span class="lbl"><span class="en">Reflection</span><span class="zh">反思</span></span><h4><span class="en">Geographic attribution</span><span class="zh">地理归属</span></h4><p><span class="en">My final journal notes the need to treat Indigenous Cultural and Intellectual Property respectfully in future map work.</span><span class="zh">最后一篇日志记录了今后做地图类设计时，要尊重原住民文化与知识产权。</span></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- MATERIALS -->
+<section class="ch alt" id="mat" data-nav="Materials||材料">
+  <div class="wrap">
+    <div class="head rv">
+      <div class="row"><span class="fn">10</span><span class="lbl"><span class="en">Materials</span><span class="zh">材料</span></span></div>
+      <h2><span class="en">Open the story and the evidence</span><span class="zh">打开故事与依据</span></h2>
+    </div>
+    <div class="links rv">
+      <a class="pri" href="../"><span class="en">Open the interactive story</span><span class="zh">打开互动故事</span> →</a>
+      <a href="https://github.com/katherine0292/Data-Visualisation/blob/main/docs/commission-brief.md"><span class="en">Commission brief</span><span class="zh">委托简报</span></a>
+      <a href="https://github.com/katherine0292/Data-Visualisation/blob/main/docs/design-process.md"><span class="en">Design process</span><span class="zh">设计过程</span></a>
+      <a href="https://github.com/katherine0292/Data-Visualisation/blob/main/docs/methodology.md"><span class="en">Data and methodology</span><span class="zh">数据与方法</span></a>
+      <a href="https://github.com/katherine0292/Data-Visualisation/blob/main/artifacts/story-benchmark.xlsx"><span class="en">Benchmark workbook</span><span class="zh">评估工作簿</span></a>
+    </div>
+  </div>
+</section>
+<footer><div class="wrap">Shangcheng Lin (Katherine) · The Price of Arrival · <span class="en">All data are public Australian government aggregates, 2019–2026.</span><span class="zh">所有数据均为澳大利亚政府公开汇总统计，2019–2026。</span></div></footer>
+</div>
+
+<script>
+(function(){
+const R=document.documentElement,RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const b=(e,z)=>`<span class="en">${e}</span><span class="zh">${z}</span>`;
+const fmt=n=>n.toLocaleString('en-AU');
+let L='en';
+const isZh=()=>L==='zh';
+const rend=[];            // re-render callbacks on language change
+
+/* ---------------- data (from the project's story snapshot) ---------------- */
+const YRS=[2019,2020,2021,2022,2023,2024,2025,'2026'];
+const ENR=[100,100.73,85.03,77.94,99.36,116.57,117.66,108.83];
+const COM=[100,86.35,63.59,70.35,102.91,111.07,90.29,82.38];
+const E6=[100.00,97.84,80.97,78.37,100.52,115.32,116.69,113.07];
+const CPI=[100.22,100.71,103.47,109.77,116.24,119.99,123.00,126.70];
+const RENT=[99.79,97.34,95.42,96.24,103.29,111.07,114.88,117.62];
+const FIELDS=[['Agriculture','农业'],['Architecture','建筑'],['Business','商科'],['Creative arts','创意艺术'],['Dual qualification','双学位'],['Education','教育'],['Engineering','工程'],['Health','健康'],['Hospitality','酒店旅游'],['IT','信息技术'],['Mixed fields','综合领域'],['Sciences','理学'],['Society & culture','社会与文化']];
+const ROWS=[
+['City & Inner South',[499,5952,81426,5021,1440,12878,10319,5045,8878,28795,12049,5168,45916]],
+['Eastern Suburbs',[152,1656,15690,4449,2097,1425,8298,692,213,6705,4479,2779,8156]],
+['Parramatta',[0,3641,11920,73,51,3145,5453,2381,2857,3546,549,345,4793]],
+['Ryde',[164,31,3936,482,0,2122,1090,582,478,3697,1553,807,3256]],
+['Inner South West',[0,160,3138,12,7,2243,368,60,687,122,54,0,1354]],
+['Inner West',[0,633,2329,5,8,1067,1510,124,751,500,90,0,1147]],
+['North Sydney & Hornsby',[0,0,2405,21,6,530,36,1207,5,1334,305,52,387]],
+['Blacktown',[0,34,691,0,8,731,353,563,280,95,25,0,757]],
+['Outer West & Blue Mtns',[0,316,281,36,0,203,484,495,101,53,57,210,461]],
+['Northern Beaches',[0,0,626,13,0,0,0,0,115,8,323,0,454]],
+['Outer South West',[0,0,48,0,185,112,403,614,0,32,0,29,7]],
+['South West',[0,67,47,0,0,58,147,493,11,125,21,43,138]],
+['Baulkham Hills & Hawkesbury',[0,71,139,0,0,74,63,334,6,13,28,0,166]],
+['Sutherland',[0,0,0,0,0,59,0,0,0,0,0,0,743]]];
+const TOT=ROWS.map(r=>r[1].reduce((a,c)=>a+c,0)),GT=TOT.reduce((a,c)=>a+c,0);
+
+/* ---------------- generic helpers ---------------- */
+const NS='http://www.w3.org/2000/svg';
+function reveal(el,fn){const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){io.disconnect();fn&&fn()}}),{threshold:.25});io.observe(el)}
+function lineChart(box,o){
+  const W=960,H=o.h||360,Lm=46,Rm=o.rm||118,T=16,B=32;
+  const X=i=>Lm+(W-Lm-Rm)*i/(o.n-1),Y=v=>T+(H-T-B)*(1-(v-o.min)/(o.max-o.min));
+  const st={idx:o.idx,on:Object.fromEntries(o.series.map(s=>[s.id,true]))};
+  function draw(){
+    let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${o.aria}">`;
+    o.ticks.forEach(t=>{s+=`<line class="grid" x1="${Lm}" x2="${W-Rm}" y1="${Y(t)}" y2="${Y(t)}"/><text class="ax" x="${Lm-8}" y="${Y(t)+4}" text-anchor="end">${t}</text>`});
+    s+=`<line class="base" x1="${Lm}" x2="${W-Rm}" y1="${Y(100)}" y2="${Y(100)}"/>`;
+    o.xl.forEach((x,i)=>{s+=`<text class="ax" x="${X(i)}" y="${H-8}" text-anchor="middle">${x}</text>`});
+    o.series.forEach(se=>{
+      const pts=se.data.map((v,i)=>[X(i),Y(v)]);
+      const last=pts.length-1;
+      const solid=o.partial?pts.slice(0,last):pts;
+      const d=solid.map((p,i)=>(i?'L':'M')+p[0].toFixed(1)+' '+p[1].toFixed(1)).join(' ');
+      s+=`<g data-s="${se.id}" class="sfade" style="opacity:${st.on[se.id]?1:0}"><path class="draw" pathLength="1" d="${d}" fill="none" stroke="var(${se.c})" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>`;
+      if(o.partial)s+=`<path d="M${pts[last-1][0]} ${pts[last-1][1]} L${pts[last][0]} ${pts[last][1]}" fill="none" stroke="var(${se.c})" stroke-width="3" stroke-dasharray="4 5" stroke-linecap="round"/>`;
+      se.data.forEach((v,i)=>{s+=`<circle cx="${X(i)}" cy="${Y(v)}" r="3.2" fill="var(--paper)" stroke="var(${se.c})" stroke-width="2"/>`});
+      s+=`<text class="lb" x="${X(last)+12}" y="${Y(se.data[last])+(se.dy||4)}" style="fill:var(${se.c})">${isZh()?se.name[1]:se.name[0]}</text></g>`;
+    });
+    if(o.extra)s+=o.extra(X,Y,st);
+    s+=`<g id="${o.id}sc"><line y1="${T}" y2="${H-B}" stroke="var(--ink)" stroke-opacity=".35" stroke-dasharray="3 3"/>${o.series.map(se=>`<circle r="6" fill="var(${se.c})" stroke="var(--paper)" stroke-width="2" data-c="${se.id}"/>`).join('')}</g>`;
+    s+=`<rect x="${Lm}" y="${T}" width="${W-Lm-Rm}" height="${H-T-B}" fill="transparent" style="cursor:crosshair;touch-action:pan-y"/></svg>`;
+    box.innerHTML=s;
+    const svg=box.firstChild;
+    svg.querySelector('rect:last-child').addEventListener('pointermove',e=>{const r=svg.getBoundingClientRect();const x=(e.clientX-r.left)/r.width*W;let i=Math.round((x-Lm)/(W-Lm-Rm)*(o.n-1));set(Math.max(0,Math.min(o.n-1,i)))});
+    set(st.idx,true);
+    if(st.go)svg.classList.add('go');
+  }
+  function set(i,quiet){
+    st.idx=i;const g=box.querySelector('#'+o.id+'sc');if(!g)return;
+    g.querySelector('line').setAttribute('x1',X(i));g.querySelector('line').setAttribute('x2',X(i));
+    o.series.forEach(se=>{const c=g.querySelector(`[data-c="${se.id}"]`);c.setAttribute('cx',X(i));c.setAttribute('cy',Y(se.data[i]));c.style.opacity=st.on[se.id]?1:0});
+    if(!quiet&&o.onIdx)o.onIdx(i);
+  }
+  function show(id,v){st.on[id]=v;const g=box.querySelector(`[data-s="${id}"]`);if(g)g.style.opacity=v?1:0;set(st.idx,true)}
+  draw();rend.push(()=>{draw()});
+  reveal(box,()=>{st.go=true;box.firstChild&&box.firstChild.classList.add('go')});
+  return {set,show,st};
+}
+function chips(box,items,mode,onSel){ // items [{id,label,color}], mode 'one'|'multi'
+  const on=new Set(items.filter(i=>i.on).map(i=>i.id));
+  function draw(){box.innerHTML=items.map(i=>`<button class="chip" data-id="${i.id}" aria-pressed="${on.has(i.id)}">${i.color?`<i style="background:var(${i.color})"></i>`:''}${i.label}</button>`).join('');
+    box.querySelectorAll('button').forEach(bt=>bt.onclick=()=>{const id=bt.dataset.id;if(mode==='one'){on.clear();on.add(id)}else{on.has(id)?on.delete(id):on.add(id)}draw();onSel(id,on.has(id),on)})}
+  draw();rend.push(draw);return {on,draw};
+}
+
+/* ---------------- language ---------------- */
+function setLang(l){L=l;R.lang=l==='en'?'en':'zh-CN';R.classList.toggle('cn',l!=='en');$('#l-zh').setAttribute('aria-pressed',l!=='en');$('#l-en').setAttribute('aria-pressed',l==='en');try{localStorage.setItem('poa-lang',l)}catch(e){}rend.forEach(f=>f())}
+$('#l-zh').onclick=()=>setLang('zh');$('#l-en').onclick=()=>setLang('en');
+
+/* ---------------- nav ---------------- */
+const secs=$$('section.ch');
+$('#tnav').innerHTML=secs.map(s=>`<a href="#${s.id}" data-id="${s.id}">${b(...s.dataset.nav.split('||').concat(s.dataset.nav.split('||')).slice(0,2))}</a>`).join('');
+secs.forEach(s=>{const p=s.dataset.nav;if(!p.includes('||')){/* figure labels are language-neutral */}});
+/* (nav built from data-nav; "Fig n" entries get the same text both ways) */
+$$('#tnav a').forEach((a,i)=>{const n=secs[i].dataset.nav;if(!n.includes('||'))a.innerHTML=n});
+const links=$$('#tnav a');
+const progEl=$('#prog');
+function onScroll(){const h=document.documentElement;progEl.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';
+  let cur=secs[0].id;secs.forEach(s=>{if(s.getBoundingClientRect().top<innerHeight*.4)cur=s.id});links.forEach(a=>a.classList.toggle('on',a.dataset.id===cur))}
+addEventListener('scroll',onScroll,{passive:true});onScroll();
+const rv=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');rv.unobserve(e.target)}}),{threshold:.08});
+$$('.rv').forEach(e=>rv.observe(e));
+/* count-up */
+$$('[data-count]').forEach(el=>{const t=+el.dataset.count,d=+(el.dataset.dec||0),pre=el.dataset.pre||'',suf=el.dataset.suf||'';
+  reveal(el,()=>{if(RM)return;const t0=performance.now();(function f(n){const k=Math.min(1,(n-t0)/1400),e=1-Math.pow(1-k,3);el.textContent=pre+(t*e).toFixed(d)+suf;if(k<1)requestAnimationFrame(f)})(t0)})});
+/* lightbox */
+document.addEventListener('click',e=>{const z=e.target.closest('[data-zoom]');if(!z||e.target.closest('button'))return;const im=z.querySelector('img');if(!im)return;
+  const d=document.createElement('div');d.className='lbx';d.innerHTML=`<img src="${im.src}" alt="">`;d.onclick=()=>d.remove();document.body.appendChild(d)});
+addEventListener('keydown',e=>{if(e.key==='Escape')$$('.lbx').forEach(x=>x.remove())});
+
+/* ---------------- hero chart ---------------- */
+lineChart($('#heroChart'),{id:'h',n:8,min:55,max:125,ticks:[60,80,100,120],h:250,rm:70,idx:7,aria:'Indexed NSW enrolments and commencements, 2019 to 2026',
+  xl:YRS,series:[{id:'e',c:'--c1',name:['',''],data:ENR},{id:'c',c:'--c2',name:['',''],data:COM}]});
+
+/* ---------------- role tabs ---------------- */
+const ROLE=[
+ [['Data','数据'],'Sourced five public datasets covering enrolments, study locations, visa decisions and Sydney prices. Reconciled reporting periods and geographic boundaries, documented baselines and kept suppressed cells as missing.','整理五个公开数据集，涵盖注册量、学习地点、签证决定和悉尼价格。统一报告期和地理边界，记录基期，并把被隐去的单元格保留为缺失值。'],
+ [['Research','研究'],'Created the value proposition canvas, developed two personas and turned their decisions into user stories, defining what viewers should be able to explain after each figure.','制作价值主张画布，建立两个角色，把他们的决策转化为用户故事，并定义观众看完每张图后应能解释什么。'],
+ [['Visual analysis','可视化分析'],'Designed all six figures in Tableau: indexed trends, SA4 map, field heatmap, annotated visa timeline and sector composition. Chose chart types, scales, labels and annotations to fit each comparison.','在 Tableau 中设计全部六张图：指数趋势、SA4 地图、专业热力图、带注释的签证时间线和部门构成图。按各自要比较的内容选择图形、坐标尺度、标签和注释。'],
+ [['Narrative','叙事'],'Wrote and storyboarded Mei’s ten-scene journey and built the interactive presentation with step-by-step reveals and speaker notes. Produced the companion film.','撰写并绘制 Mei 的十场景分镜，搭建逐步揭示的互动演示和演讲者备注，并制作配套视频。'],
+ [['Evaluation','评估'],'Documented sources, calculations and limits for each figure, and built the benchmark workbook for self-assessment and proposed audience checks.','记录每张图的来源、计算和局限，并建立评估工作簿用于自评和拟定的受众检验。']];
+let roleI=0;
+function drawRole(){const box=$('#roleTabs');box.innerHTML=ROLE.map((r,i)=>`<button class="chip" role="tab" aria-pressed="${i===roleI}" data-i="${i}">${b(...r[0])}</button>`).join('');
+  box.querySelectorAll('button').forEach(x=>x.onclick=()=>{roleI=+x.dataset.i;drawRole()});
+  $('#roleBody').innerHTML=`<p>${b(ROLE[roleI][1],ROLE[roleI][2])}</p>`}
+drawRole();rend.push(drawRole);
+
+/* ---------------- traceability chain ---------------- */
+const TR=[
+ ['E1',['Headline ≠ arrivals','标题 ≠ 新到的人'],['“Record high” counts everyone enrolled, so Mei reads it as competition.','“创新高”数的是所有在读学生，Mei 把它当成竞争加剧。'],'US-M1',['See commencements next to enrolments','把新入学量放在注册量旁边'],['1','5'],'S1–S2'],
+ ['E4',['Students cluster in a few SA4s','学生集中在少数 SA4'],['Campus listings cluster around inner Sydney; “Sydney” feels like one place.','校区列表集中在悉尼内城，“悉尼”像是一个地方。'],'US-M2',['See where students actually study, by field','按专业看学生实际在哪里学习'],['2','3'],'S3–S4'],
+ ['E2',['Visa cost and timing risk','签证成本与时点风险'],['The fee rose from A$710 to A$1,600 and the Genuine Student test arrived.','签证费从 A$710 涨到 A$1,600，并引入真实学生测试。'],'US-M3',['Line the grant rate up with policy changes','把获签率与政策变化对齐'],['4','5'],'S5–S6'],
+ ['E3',['No reliable dollar figure','没有可靠的金额数字'],['Every source gives an index to interpret, never a budget.','每个来源给的都是需要自己解读的指数，而不是预算。'],'US-M4',['See costs rise against student numbers','看成本相对学生人数的变化'],['6'],'S7'],
+ ['E5',['Daniel needs citable charts','Daniel 需要可引用的图表'],['Charts are copied into client decks without surrounding text.','图表会被直接复制进客户演示，没有上下文文字。'],'US-S1 · S2',['One-slide export; captions state counts and exclusions','单页导出；图注写明统计对象与不包含内容'],['5','1–6'],'Caption standard']];
+let eI=0;
+function drawChain(){
+  $('#etabs').innerHTML=TR.map((t,i)=>`<button class="chip" aria-pressed="${i===eI}" data-i="${i}"><span class="mono">${t[0]}</span> ${b(...t[2-1])}</button>`).join('');
+  $('#etabs').querySelectorAll('button').forEach(x=>x.onclick=()=>{eI=+x.dataset.i;drawChain()});
+  const t=TR[eI];
+  $('#chain').innerHTML=`<div><b class="lbl">[1] ${b('Insight','洞察')} ${t[0]}</b><p class="t">${b(t[2][0],t[2][1])}</p></div>
+  <div><b class="lbl">[2] ${b('User story','用户故事')} ${t[3]}</b><p class="t">${b(t[4][0],t[4][1])}</p></div>
+  <div><b class="lbl">[3] ${b('Figure','图表')}</b><p class="t"><span class="fgc">${t[5].map(f=>`<a href="#fig${f.length===1?f:1}">FIG ${f}</a>`).join('')}</span></p></div>
+  <div><b class="lbl">[4] ${b('Storyboard','分镜')}</b><p class="t mono">${t[6]}</p></div>`}
+drawChain();rend.push(drawChain);
+
+/* ---------------- FIG 1 ---------------- */
+const f1read=()=>{};
+const f1=lineChart($('#f1chart'),{id:'f1',n:8,min:55,max:125,ticks:[60,80,100,120],idx:7,aria:'Indexed NSW enrolments and commencements, January to May, 2019 equals 100',
+  xl:YRS,series:[{id:'e',c:'--c1',name:['Enrolments','总注册量'],data:ENR,dy:-4},{id:'c',c:'--c2',name:['Commencements','新入学量'],data:COM,dy:12}],
+  onIdx:i=>{upd1(i);$('#f1r').value=i;gapHL(i)},
+  extra:(X,Y)=>`<g><line x1="${X(7)+4}" x2="${X(7)+4}" y1="${Y(108.83)}" y2="${Y(82.38)}" stroke="var(--ink)" stroke-opacity=".4"/><text class="lb" x="${X(7)-12}" y="${Y(108.83)-9}" text-anchor="end" style="fill:var(--c1)">+8.8%</text><text class="lb" x="${X(7)-12}" y="${Y(82.38)+20}" text-anchor="end" style="fill:var(--c2)">−17.6%</text></g>`});
+function upd1(i){const e=ENR[i],c=COM[i],pc=v=>{const d=v-100;return (d>=0?'+':'−')+Math.abs(d).toFixed(1)+'%'};
+  $('#f1read').innerHTML=`<div><div class="k">${b('Year','年份')}</div><div class="v num">${YRS[i]}${i===7?b(' (Jan–May)',' (1–5 月)'):''}</div></div>
+   <div><div class="k up">${b('Enrolments index','总注册指数')}</div><div class="v num up">${e.toFixed(1)}</div><div class="d">${i?pc(e)+' vs 2019':b('baseline','基期')}</div></div>
+   <div><div class="k dn">${b('Commencements index','新入学指数')}</div><div class="v num dn">${c.toFixed(1)}</div><div class="d">${i?pc(c)+' vs 2019':b('baseline','基期')}</div></div>
+   <div><div class="k">${b('Gap, points','差距，指数点')}</div><div class="v num">${(e-c).toFixed(1)}</div><div class="d">${b('enrolments − commencements','注册 − 新入学')}</div></div>`}
+upd1(7);rend.push(()=>upd1(f1.st.idx));
+$('#f1r').oninput=e=>f1.set(+e.target.value);
+chips($('#f1ctl'),[{id:'both',label:b('Both lines','两条线'),on:1},{id:'head',label:b('Headline view','标题视角')}],'one',id=>{f1.show('c',id==='both')});
+/* gap bars */
+function gapDraw(){const W=380,H=250,Lm=34,gap=ENR.map((v,i)=>v-COM[i]);const mx=34,Y=v=>H-34-(v+8)/(mx+8)*(H-50);
+  let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Gap between the two indices by year">`;
+  [0,10,20,30].forEach(t=>{s+=`<line class="grid" x1="${Lm}" x2="${W}" y1="${Y(t)}" y2="${Y(t)}"/><text class="ax" x="${Lm-6}" y="${Y(t)+4}" text-anchor="end">${t}</text>`});
+  const bw=(W-Lm)/8;
+  gap.forEach((g,i)=>{const x=Lm+i*bw+5,w=bw-10,y0=Y(0),y1=Y(g);s+=`<rect class="gb" data-i="${i}" x="${x}" y="${Math.min(y0,y1)}" width="${w}" height="${Math.abs(y1-y0)}" rx="3" fill="var(--c1)" style="opacity:.35;transition:opacity .2s"/><text class="ax" x="${x+w/2}" y="${H-12}" text-anchor="middle">${String(YRS[i]).slice(2)}</text><text class="ax" x="${x+w/2}" y="${Math.min(y0,y1)-5}" text-anchor="middle" style="fill:var(--ink-2)">${g.toFixed(0)}</text>`});
+  s+='</svg>';$('#f1gap').innerHTML=s;$$('#f1gap .gb').forEach(r=>{r.style.cursor='pointer';r.onclick=()=>f1.set(+r.dataset.i)});gapHL(f1.st.idx)}
+function gapHL(i){$$('#f1gap .gb').forEach(r=>r.style.opacity=(+r.dataset.i===i)?1:.35)}
+gapDraw();rend.push(gapDraw);
+
+/* ---------------- FIG 2 ---------------- */
+let f2mode='lin';
+const f2max=Math.max(...TOT);
+function drawF2(){
+  const order=TOT.map((t,i)=>i).sort((a,b2)=>TOT[b2]-TOT[a]);
+  $('#f2bars').innerHTML=order.map((i,rk)=>{const v=TOT[i],w=f2mode==='lin'?v/f2max*100:(Math.log10(v)/Math.log10(f2max))*100;
+    return `<div class="nm" data-r="${rk}">${ROWS[i][0]}</div><div class="tr"><div class="fi ${rk<3?'t3':'o'}" style="width:${w}%"></div></div><div class="vv">${fmt(v)}</div>`}).join('');
+  $$('#f2bars .nm').forEach((n,i)=>n.style.fontWeight=i<3?500:400);
+}
+drawF2();
+chips($('#f2ctl'),[{id:'lin',label:b('Linear','线性'),on:1},{id:'log',label:b('Log scale','对数')}],'one',id=>{f2mode=id;drawF2()});
+function cumDraw(){
+  const ord=[...TOT].sort((a,b2)=>b2-a);let c=0;const cum=ord.map(v=>(c+=v)/GT*100);
+  const W=380,H=260,Lm=34,X=i=>Lm+(W-Lm-10)*i/13,Y=v=>H-30-(v/100)*(H-44);
+  let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Cumulative share of known enrolments by SA4 rank">`;
+  [0,25,50,75,100].forEach(t=>{s+=`<line class="grid" x1="${Lm}" x2="${W-10}" y1="${Y(t)}" y2="${Y(t)}"/><text class="ax" x="${Lm-6}" y="${Y(t)+4}" text-anchor="end">${t}%</text>`});
+  s+=`<path class="draw" pathLength="1" d="${cum.map((v,i)=>(i?'L':'M')+X(i)+' '+Y(v)).join(' ')}" fill="none" stroke="var(--c1)" stroke-width="3"/>`;
+  cum.forEach((v,i)=>{s+=`<circle class="cd" data-i="${i}" cx="${X(i)}" cy="${Y(v)}" r="${i===0||i===2?5:3}" fill="${i===0||i===2?'var(--c1)':'var(--paper)'}" stroke="var(--c1)" stroke-width="2"/>`;s+=`<text class="ax" x="${X(i)}" y="${H-10}" text-anchor="middle">${i+1}</text>`});
+  s+=`<text class="lb" x="${X(0)+8}" y="${Y(cum[0])-8}" style="fill:var(--c1)">60.1%</text><text class="lb" x="${X(2)+8}" y="${Y(cum[2])-10}" style="fill:var(--c1)">85.8%</text>`;
+  s+=`<g id="cumtip" style="opacity:0"><rect rx="6" width="130" height="24" fill="var(--ink)"/><text class="lb" x="8" y="16" style="fill:var(--paper)"></text></g>`;
+  s+=`<text class="ax" x="${(Lm+W)/2}" y="${H+4}" text-anchor="middle" style="display:none">rank</text></svg>`;
+  const el=$('#f2cum');el.innerHTML=s;const svg=el.firstChild;
+  svg.querySelectorAll('.cd').forEach(cd=>{const sh=()=>{const i=+cd.dataset.i,t=svg.querySelector('#cumtip');t.style.opacity=1;t.querySelector('text').textContent=`#${i+1} → ${cum[i].toFixed(1)}%`;t.setAttribute('transform',`translate(${Math.min(X(i)-60,W-140)} ${Y(cum[i])+14})`)};cd.addEventListener('pointerenter',sh);cd.addEventListener('click',sh)});
+  reveal(el,()=>svg.classList.add('go'));
+}
+cumDraw();rend.push(cumDraw);
+
+/* ---------------- FIG 3 ---------------- */
+const stops=[[238,235,255],[184,174,255],[109,91,232],[42,30,143]];
+const stopsD=[[27,24,56],[75,63,192],[157,144,255],[255,208,138]];
+function colr(t){const dk=matchMedia('(prefers-color-scheme: dark)').matches&&R.dataset.theme!=='light',S=dk?stopsD:stops;t=Math.max(0,Math.min(1,t));const k=t*(S.length-1),i=Math.min(S.length-2,Math.floor(k)),f=k-i,a=S[i],c=S[i+1];return a.map((v,j)=>Math.round(v+(c[j]-v)*f))}
+const lmin=Math.log10(5),lmax=Math.log10(81426);
+let selF=-1;
+const COLTOT=FIELDS.map((_,c)=>ROWS.reduce((a,r)=>a+r[1][c],0));
+function drawHM(){
+  let h='<div></div>'+FIELDS.map((f,c)=>`<div class="ch2${selF===c?' s':''}" data-c="${c}">${b(...f)}</div>`).join('');
+  ROWS.forEach(([n,v],r)=>{h+=`<div class="rh">${n}</div>`;v.forEach((x,c)=>{const s=selF===c?' s':'';if(!x){h+=`<div class="c e${s}" data-r="${r}" data-c="${c}"></div>`;return}
+    const t=(Math.log10(x)-lmin)/(lmax-lmin),rgb=colr(t),lum=(rgb[0]*299+rgb[1]*587+rgb[2]*114)/1000;h+=`<div class="c${s}" data-r="${r}" data-c="${c}" style="background:rgb(${rgb});color:${lum>140?'#14142a':'#fff'}">${fmt(x)}</div>`})});
+  const g=$('#hm');g.innerHTML=h;g.classList.toggle('sel',selF>=0);
+  g.querySelectorAll('.ch2').forEach(e=>e.onclick=()=>{selF=selF===+e.dataset.c?-1:+e.dataset.c;drawHM();readHM()});
+  g.querySelectorAll('.c').forEach(e=>{const f=()=>{const r=+e.dataset.r,c=+e.dataset.c,v=ROWS[r][1][c];$('#hmread').innerHTML=v?`<b>${ROWS[r][0]}</b> × <b>${b(...FIELDS[c])}</b>: <b class="mono">${fmt(v)}</b> ${b('known enrolments','已披露注册量')}`:`<b>${ROWS[r][0]}</b> × <b>${b(...FIELDS[c])}</b>: ${b('not disclosed or unavailable. This is a blank, not zero.','未披露或不可用。这是空白，不是 0。')}`};e.addEventListener('pointerenter',f);e.addEventListener('click',f)})}
+function readHM(){
+  if(selF<0){$('#hmread').innerHTML=b('Hover a cell for its count, or click a field name to see where it is taught.','悬停单元格查看数值，或点击专业名称查看它主要在哪里开设。');return}
+  const c=selF,rk=ROWS.map((r,i)=>[i,r[1][c]]).filter(x=>x[1]).sort((a,b2)=>b2[1]-a[1]).slice(0,3);
+  $('#hmread').innerHTML=`<b>${b(...FIELDS[c])}</b> — ${b('largest known enrolments: ','已披露注册量最大的区域：')}`+rk.map(([i,v])=>`<b>${ROWS[i][0]}</b> <span class="mono">${fmt(v)}</span> (${(v/COLTOT[c]*100).toFixed(0)}%)`).join(' · ')}
+drawHM();readHM();rend.push(()=>{drawHM();readHM()});
+$('#f3clear').onclick=()=>{selF=-1;drawHM();readHM()};
+matchMedia('(prefers-color-scheme: dark)').addEventListener('change',()=>drawHM());
+/* mix */
+const MIXG=[[2,'--c1'],[12,'--c4'],[9,'--c2'],[6,'--c3'],[5,'--heat1'],[7,'--c5']];
+function drawMix(){
+  const used=MIXG.map(m=>m[0]);let h='';
+  ROWS.slice(0,6).forEach(([n,v],r)=>{const tot=TOT[r];const segs=MIXG.map(([c,col])=>`<i data-c="${c}" style="flex-grow:${v[c]};flex-basis:0;background:var(${col})" title="${FIELDS[c][0]} ${(v[c]/tot*100).toFixed(0)}%"></i>`).join('');
+    const other=tot-used.reduce((a,c)=>a+v[c],0);h+=`<div class="r"><span>${n}</span><div class="st">${segs}<i style="flex-grow:${other};flex-basis:0;background:var(--line-2)" title="Other"></i></div></div>`});
+  $('#mix').innerHTML=h;
+  $('#mixleg').innerHTML=MIXG.map(([c,col])=>`<span data-c="${c}"><i style="background:var(${col})"></i>${b(...FIELDS[c])}</span>`).join('')+`<span><i style="background:var(--line-2)"></i>${b('Other','其他')}</span>`;
+  $$('#mixleg span[data-c]').forEach(s=>{const c=s.dataset.c;s.onpointerenter=()=>$$('#mix i[data-c]').forEach(i=>i.style.opacity=i.dataset.c===c?1:.2);s.onpointerleave=()=>$$('#mix i').forEach(i=>i.style.opacity=1)})}
+drawMix();rend.push(drawMix);
+function drawConc(){ // top region share per field
+  const rows=FIELDS.map((f,c)=>{const mx=ROWS.reduce((best,r,i)=>r[1][c]>best[1]?[i,r[1][c]]:best,[0,0]);return {c,i:mx[0],sh:mx[1]/COLTOT[c]*100}}).sort((a,b2)=>b2.sh-a.sh);
+  $('#conc').innerHTML=`<div class="hb" style="grid-template-columns:100px 1fr 44px">`+rows.map(r=>`<div class="nm">${b(...FIELDS[r.c])}</div><div class="tr" title="${ROWS[r.i][0]}"><div class="fi" style="width:${r.sh}%"></div></div><div class="vv">${r.sh.toFixed(0)}%</div>`).join('')+`</div><p class="muted" style="font-size:12.5px;margin-top:10px">${b('Share of each field’s disclosed enrolments held by its single largest SA4 (hover a bar for the SA4).','各专业已披露注册量中，被其最大的单个 SA4 占有的比例（悬停条形可看 SA4）。')}</p>`}
+drawConc();rend.push(drawConc);
+
+/* ---------------- FIG 4 ---------------- */
+const POL=[
+ {id:'0',x:63.5,t:['Mar 2024 — Genuine Student test','2024 年 3 月 — 真实学生测试'],d:['The Genuine Student requirement replaced the earlier Genuine Temporary Entrant test.','真实学生要求取代了此前的真实临时入境者测试。']},
+ {id:'1',x:66.6,t:['Jul 2024 — Visa fee increase','2024 年 7 月 — 签证费上调'],d:['The student visa application fee rose from A$710 to A$1,600.','学生签证申请费由 A$710 上调至 A$1,600。']},
+ {id:'2',x:70.7,t:['Dec 2024 — Ministerial Direction 111','2024 年 12 月 — 部长指令 111'],d:['MD111 replaced MD107 and concerned the order in which offshore applications are processed, linked to enrolment caps.','MD111 取代 MD107，涉及境外申请的处理顺序，并与招生上限相关。']}];
+let polSel=null;
+function drawF4(){
+  POL.forEach(p=>{const m=$('#mk'+p.id);m.style.left=p.x+'%';m.classList.toggle('on',polSel===p.id)});
+  const p=POL.find(x=>x.id===polSel);
+  $('#f4card').innerHTML=p?`<b>${b(...p.t)}</b>${b(...p.d)}<p class="w">${b('Timing is not proof of cause. Read the dashed line against the grant-rate lines; it does not tell you about your own application.','时间重合不是因果证明。请对照获签率曲线阅读虚线；它不能说明你自己的申请结果。','')}</p>`:`<b>${b('Pick a policy date','选择一个政策节点')}</b>${b('Each date is marked on the original Tableau snapshot. The thick line is the three-month average; the thin line is the monthly rate.','每个日期都标在原始 Tableau 快照上。粗线是三个月移动平均，细线是月度获签率。')}`}
+drawF4();
+chips($('#f4ctl'),POL.map(p=>({id:p.id,label:b(...p.t.map(s=>s.split(' — ')[0]))})),'one',id=>{polSel=polSel===id?null:id;drawF4()});
+rend.push(drawF4);
+
+/* ---------------- FIG 5 ---------------- */
+const SEC=[{n:['Higher Education','高等教育'],nw:39571,co:137633},{n:['VET','职业教育（VET）'],nw:23413,co:60435},{n:['ELICOS','英语课程'],nw:Math.round(16403*.499),co:16403-Math.round(16403*.499),approx:true}];
+let f5mode='cnt';
+function drawF5(){const mx=177204;
+  $('#f5bars').innerHTML=SEC.map(s=>{const tot=s.nw+s.co,w=f5mode==='cnt'?tot/mx*100:100,pc=s.nw/tot*100;
+   return `<div class="r"><div class="nm">${b(...s.n)}<small>${fmt(tot)}</small></div><div><div class="tk" style="width:${Math.max(w,4)}%"><i class="nw" style="flex:${s.nw} 1 0;min-width:${f5mode==='cnt'&&s.nw/mx<.05?0:0}px">${s.nw/mx>.1||f5mode==='shr'?(s.approx?'≈':'')+fmt(s.nw):''}</i><i class="co" style="flex:${s.co} 1 0">${s.co/mx>.1||f5mode==='shr'?(s.approx?'≈':'')+fmt(s.co):''}</i></div><div class="pq">${pc.toFixed(1)}% ${b('new','为新入学')}</div></div></div>`}).join('')}
+drawF5();
+chips($('#f5ctl'),[{id:'cnt',label:b('Absolute counts','绝对数量'),on:1},{id:'shr',label:b('Share of each sector','各部门占比')}],'one',id=>{f5mode=id;drawF5()});
+rend.push(drawF5);
+
+/* ---------------- FIG 6 ---------------- */
+const f6=lineChart($('#f6chart'),{id:'f6',n:8,min:70,max:135,ticks:[80,100,120],idx:6,partial:true,aria:'Indexed NSW enrolments, Sydney CPI and Sydney rents, 2019 equals 100',
+  xl:['2019','2020','2021','2022','2023','2024','2025','2026*'],
+  series:[{id:'e',c:'--c1',name:['Enrolments','注册量'],data:E6,dy:18},{id:'p',c:'--c3',name:['All Groups CPI','总体 CPI'],data:CPI,dy:-2},{id:'r',c:'--c4',name:['Rents CPI','租金 CPI'],data:RENT,dy:14}],
+  onIdx:i=>{upd6(i);$('#f6r').value=i}});
+function upd6(i){const xs=['2019','2020','2021','2022','2023','2024','2025','2026*'];
+  $('#f6read').innerHTML=`<div><div class="k">${b('Year','年份')}</div><div class="v num">${xs[i]}</div>${i===7?`<div class="d">${b('Jan–May only','仅 1–5 月')}</div>`:''}</div>
+  <div><div class="k up">${b('Enrolments','注册量')}</div><div class="v num up">${E6[i].toFixed(1)}</div></div>
+  <div><div class="k cpi">${b('All Groups CPI','总体 CPI')}</div><div class="v num cpi">${CPI[i].toFixed(1)}</div></div>
+  <div><div class="k rent">${b('Rents CPI','租金 CPI')}</div><div class="v num rent">${RENT[i].toFixed(1)}</div></div>`}
+upd6(6);rend.push(()=>upd6(f6.st.idx));
+$('#f6r').oninput=e=>f6.set(+e.target.value);
+chips($('#f6ctl'),[{id:'e',label:b('Enrolments','注册量'),color:'--c1',on:1},{id:'p',label:b('All Groups CPI','总体 CPI'),color:'--c3',on:1},{id:'r',label:b('Rents CPI','租金 CPI'),color:'--c4',on:1}],'multi',(id,on)=>f6.show(id,on));
+function drawChg(){const d=[['Enrolments','注册量',E6[6]/E6[0],'--c1'],['All Groups CPI','总体 CPI',CPI[6]/CPI[0],'--c3'],['Rents CPI','租金 CPI',RENT[6]/RENT[0],'--c4']];
+  $('#f6chg').innerHTML=d.map(([e,z,r,c])=>`<div class="nm">${b(e,z)}</div><div class="tr"><div class="fi" style="width:${(r-1)*100/30*100}%;background:var(${c})"></div></div><div class="vv">+${((r-1)*100).toFixed(1)}%</div>`).join('');
+  reveal($('#f6chg'),()=>{});}
+drawChg();rend.push(drawChg);
+function drawGap6(){const g=CPI.map((v,i)=>v-E6[i]);const W=380,H=170,Lm=30,bw=(W-Lm)/8,mx=34,Y=v=>H-26-(v/mx)*(H-40);
+  let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Difference between All Groups CPI and the enrolment index by year">`;
+  [0,10,20,30].forEach(t=>{s+=`<line class="grid" x1="${Lm}" x2="${W}" y1="${Y(t)}" y2="${Y(t)}"/><text class="ax" x="${Lm-5}" y="${Y(t)+4}" text-anchor="end">${t}</text>`});
+  g.forEach((v,i)=>{const x=Lm+i*bw+5,w=bw-10;s+=`<rect x="${x}" y="${Y(v)}" width="${w}" height="${Y(0)-Y(v)}" rx="3" fill="var(--c3)" style="opacity:${i===7?.4:.85}"/><text class="ax" x="${x+w/2}" y="${Y(v)-4}" text-anchor="middle" style="fill:var(--ink-2)">${v.toFixed(0)}</text><text class="ax" x="${x+w/2}" y="${H-8}" text-anchor="middle">${i===7?'26*':String(YRS[i]).slice(2)}</text>`});
+  $('#f6gap').innerHTML=s+'</svg>'}
+drawGap6();rend.push(drawGap6);
+
+/* ---------------- STORY ---------------- */
+const SC=[
+ [['The headline','标题'],'Mei reads a record-high headline and assumes it describes competition for her intake.','Mei 看到“创新高”的标题，以为它说的是自己这一批的竞争。',['1'],1],
+ [['Two different counts','两种不同的数'],'She separates enrolments from commencements and asks which one applies to her.','她把总注册量和新入学量分开，问哪一个才与自己有关。',['1'],1],
+ [['Study hubs','学习中心'],'Sydney becomes a set of study locations with very different levels of activity.','悉尼变成一组活跃程度差别很大的学习地点。',['2'],2],
+ [['Field fit','专业匹配'],'She sees that the geographic pattern changes with the field of study.','她看到地理分布会随专业而变。',['3'],2],
+ [['The visa timeline','签证时间线'],'She notes selected policy dates and adds a check against official requirements to her plan.','她记下几个政策日期，并把“核对官方要求”加进计划。',['4'],2],
+ [['Sector composition','部门构成'],'She compares new and continuing registrations in her own education sector.','她比较自己所在教育部门的新入学与继续注册。',['5'],2],
+ [['Prices over time','价格走势'],'She treats the index as evidence of price pressure and plans to check her own costs.','她把指数当作价格压力的证据，并打算核对自己的实际成本。',['6'],2],
+ [['Putting it together','合在一起看'],'A viable plan depends on timing, location, intake and affordability together.','可行的计划取决于时点、地点、批次和可负担性的总和。',['1–6'],3],
+ [['A plan with her family','与家人的计划'],'She checks timing, narrows the campus search, plans a buffer and compares intakes.','她核对时点、缩小校区范围、预留缓冲并比较入学批次。',['1–6'],4],
+ [['Arrival','抵达'],'The illustrated outcome completes the persona’s decision arc.','插画结局完成了这位角色的决策弧线。',['—'],4]];
+const PH=[['Setting','开场'],['Rising insights','洞察递进'],['Aha','顿悟'],['Decision','决策']];
+const PTS=[[4,84],[14,76],[24,66],[34,58],[44,50],[54,42],[64,34],[76,12],[87,44],[96,78]];
+let sc=0,timer=null;
+function bez(){let d='M'+PTS[0][0]*10+' '+PTS[0][1]*2;for(let i=0;i<PTS.length-1;i++){const p0=PTS[i-1]||PTS[i],p1=PTS[i],p2=PTS[i+1],p3=PTS[i+2]||p2;d+=` C${(p1[0]+(p2[0]-p0[0])/6)*10} ${(p1[1]+(p2[1]-p0[1])/6)*2} ${(p2[0]-(p3[0]-p1[0])/6)*10} ${(p2[1]-(p3[1]-p1[1])/6)*2} ${p2[0]*10} ${p2[1]*2}`}return d}
+function drawArc(){
+  const arc=$('#arc');arc.style.height='';
+  arc.innerHTML=`<svg viewBox="0 0 1000 200" preserveAspectRatio="none" style="height:170px"><path d="${bez()}" fill="none" stroke="var(--line-2)" stroke-width="2.5"/><path id="arcp" class="draw" pathLength="1" d="${bez()}" fill="none" stroke="var(--c2)" stroke-width="3" style="stroke-dasharray:1;stroke-dashoffset:${1-sc/9}"/></svg>`+PTS.map((p,i)=>`<button class="nd${i===sc?' on':''}${i<sc?' pass':''}" data-i="${i}" style="left:${p[0]}%;top:${p[1]/100*170}px" aria-label="Scene ${i+1}">${i+1}</button>`).join('');
+  arc.style.position='relative';arc.style.paddingBottom='26px';
+  arc.insertAdjacentHTML('beforeend',[[0,'Setting'],[1,'Rising insights'],[2,'Aha'],[3,'Decision']].map(([k,e],j)=>`<span class="ph" style="left:${[4,40,76,92][j]}%;transform:translateX(${j===3?'-100%':'-30%'})">${b(...PH[k])}</span>`).join(''));
+  $$('#arc .nd').forEach(n=>n.onclick=()=>{go(+n.dataset.i)})}
+function drawScene(){
+  const s=SC[sc];
+  $('#sbp').innerHTML=`<div class="im" data-zoom><img src="img/s${sc+1}.jpg" alt="Storyboard scene ${sc+1}" loading="lazy"></div>
+  <div><span class="lbl">${b('Scene','场景')} ${sc+1} / 10 · ${b(...PH[s[4]-1])}</span><h3>${b(...s[0])}</h3><p class="bf">${b(s[1],s[2])}</p>
+  <p class="lbl" style="margin-bottom:6px">${b('Evidence','对应图表')}</p><span class="fgc">${s[3].map(f=>f==='—'?`<a>—</a>`:`<a href="#fig${f[0]}">FIG ${f}</a>`).join('')}</span>
+  <div class="sbctl"><button class="btn" id="prv">← ${b('Prev','上一幕')}</button><button class="btn pri" id="nxt">${b('Next','下一幕')} →</button><button class="btn" id="ply">${timer?'❚❚ '+b('Pause','暂停'):'▶ '+b('Play','自动播放')}</button></div></div>`;
+  $('#prv').onclick=()=>go((sc+9)%10);$('#nxt').onclick=()=>go((sc+1)%10);$('#ply').onclick=()=>{if(timer){clearInterval(timer);timer=null}else{timer=setInterval(()=>go((sc+1)%10),3600)}drawScene()}}
+function go(i){sc=i;drawArc();drawScene()}
+go(0);rend.push(()=>{drawArc();drawScene()});
+
+/* ---------------- METHOD: scope matrix ---------------- */
+const SCOPES=[
+ [['NSW','新州'],[1,5],'Course enrolments and commencements: monthly summary (Fig 1) and the May 2026 sector snapshot (Fig 5).','课程注册量与新入学量：月度汇总（图 1）和 2026 年 5 月部门快照（图 5）。'],
+ [['Sydney SA4','悉尼 SA4'],[2,3],'Place of study across 14 SA4s, full-year 2025, disclosed values only (Figs 2, 3).','14 个 SA4 的学习地点，2025 全年，仅含已披露值（图 2、3）。'],
+ [['Sydney prices','悉尼价格'],[6],'Sydney All Groups and Rents CPI, set beside the NSW enrolment index (Fig 6).','悉尼总体与租金 CPI，与新州注册指数并列（图 6）。'],
+ [['Australia','全国'],[4],'National Subclass 500 grant rate. It cannot be localised to Sydney or to one sector (Fig 4).','全国 500 类签证获签率。不能细分到悉尼或某个部门（图 4）。']];
+let scp=0;
+function drawScope(){
+  let h='<div></div>'+[1,2,3,4,5,6].map(n=>`<div class="h">FIG ${n}</div>`).join('');
+  SCOPES.forEach((s,i)=>{h+=`<button class="rowb${i===scp?' on':''}" data-i="${i}">${b(...s[0])}</button>`+[1,2,3,4,5,6].map(n=>`<div class="cl${s[1].includes(n)&&i===scp?' on':''}" style="${s[1].includes(n)?'':'opacity:.55'}"></div>`).join('')});
+  $('#scope').innerHTML=h;$$('#scope .rowb').forEach(x=>x.onclick=()=>{scp=+x.dataset.i;drawScope()});
+  $('#scopeTxt').innerHTML=b(SCOPES[scp][2],SCOPES[scp][3])}
+drawScope();rend.push(drawScope);
+
+/* ---------------- EVAL ---------------- */
+const LIM=[['01',['An index is not a dollar figure','指数不是金额'],'CPI shows relative change only. I withdrew a monthly budget promise rather than overstate it.','CPI 只显示相对变化。我取消了“每月预算”的承诺，而不是夸大它。'],
+ ['02',['Place of study, not residence','学习地点，不是居住地'],'SA4 data shows where students are enrolled to study, not where they live.','SA4 数据显示学生在哪里注册上课，而不是住在哪里。'],
+ ['03',['2026 is partial','2026 年不完整'],'January–May means are not directly equivalent to a full year.','1–5 月均值不能直接等同于全年。'],
+ ['04',['Patterns, not causation','是规律，不是因果'],'Mixed observation frequencies and baselines limit what the comparisons can show.','观测频率和基期不一致，限制了比较能说明的内容。']];
+function drawLim(){
+  $('#limits').innerHTML=LIM.map((l,i)=>`<div class="flip${$$('#limits .flip')[i]&&$$('#limits .flip')[i].classList.contains('on')?' on':''}" tabindex="0" role="button" aria-label="Flip card"><div class="in2"><div class="f"><b>${l[0]}</b><h4>${b(...l[1])}</h4><span class="hint">${b('tap to flip','点击翻面')}</span></div><div class="b"><p>${b(l[2],l[3])}</p></div></div></div>`).join('');
+  $$('#limits .flip').forEach(f=>{const t=()=>f.classList.toggle('on');f.onclick=t;f.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();t()}}})}
+drawLim();rend.push(()=>{});
+function drawRings(){
+  const mk=(label,tgt)=>`<div class="ring"><svg viewBox="0 0 130 130"><circle cx="65" cy="65" r="54" fill="none" stroke="var(--line)" stroke-width="10"/><circle class="rg" cx="65" cy="65" r="54" fill="none" stroke="var(--c1)" stroke-width="10" stroke-dasharray="${2*Math.PI*54*tgt/100} 999" stroke-linecap="round" transform="rotate(-90 65 65)" style="stroke-dashoffset:${2*Math.PI*54*tgt/100};transition:stroke-dashoffset 1.4s var(--ease)" opacity=".35"/><text x="65" y="66" text-anchor="middle" style="font-size:24px;fill:var(--ink);font-weight:300">${tgt}%</text><text x="65" y="86" text-anchor="middle" style="font-size:10.5px;letter-spacing:.12em">TARGET</text></svg><p>${label}</p></div>`;
+  $('#rings').innerHTML=mk(b('Distinguish enrolments from commencements','区分总注册量与新入学量'),80)+mk(b('Explain the CPI limitation','解释 CPI 的局限'),80)+`<div class="ring" style="align-self:center"><p style="font-size:14px">${b('Measured results: none yet. Both rings are proposed targets, drawn faint on purpose.','实测结果：暂无。两个圆环都是拟定目标，所以刻意画得很淡。')}</p></div>`;
+  reveal($('#rings'),()=>$$('#rings .rg').forEach(r=>r.style.strokeDashoffset=0))}
+drawRings();rend.push(drawRings);
+
+/* start */
+try{const s=localStorage.getItem('poa-lang');if(s==='zh')setLang('zh')}catch(e){}
+})();
+</script>
+</body>
+</html>
