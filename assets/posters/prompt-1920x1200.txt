@@ -1,0 +1,17 @@
+Mode: built-in image_gen; reference-based generation.
+Reference: the-price-of-arrival-1440x480.png
+Final deliverable: the-price-of-arrival-1920x1200.png (1920 × 1200 px).
+Original ImageGen canvas: 1586 × 992 px (8:5 with integer-pixel rounding). Mechanically resampled with sips to exact 1920 × 1200 px; no cropping or conceptual edits.
+
+Use case: illustration-story.
+Asset type: project poster, exact requested canvas 1920 × 1200 px, horizontal 8:5 aspect ratio.
+Primary request: Create an intentionally recomposed 1920×1200 version of THE PRICE OF ARRIVAL poster, based on the provided reference image. This is an 8:5 companion version to the panoramic original, not a stretched banner or a cropped panorama.
+Input images: Image 1 is the visual style and project identity reference. Preserve the handmade mid-century travel-journal feeling, navy and amber identity, and illustrated student/data/Sydney story; recompose the scene naturally to fill 8:5.
+Scene/backdrop: Sydney harbour in afternoon light, recognisable cream Opera House and Harbour Bridge, teal water, a pale blue sky with soft hand-painted cloud shapes, a few eucalyptus leaves framing the top.
+Subject: A young woman student traveller with long brown hair, cream knitted jumper, amber backpack, open research notebook, and golden amber suitcase. Notebook pages transform into a flowing warm-cream paper ribbon with small elegant bar-chart and map-grid marks, then into an amber route line leading across the harbour toward the city. This visual represents moving from financial headlines to an informed study-abroad plan.
+Style/medium: polished editorial hand-painted gouache illustration and vintage travel-poster print; tactile paper grain, warm ink, expressive brushwork and imperfect printed edges matching the supplied original.
+Composition/framing: Use the taller landscape 8:5 canvas fully. Make the left approximately 42% a calm deep navy text field. Integrate the girl into the middle foreground, visible from head to upper legs with notebook and suitcase, and create a more expansive harbour/city illustration in the right half and upper middle. Artwork continues to all four edges with no border. Balance strong bold title with rich illustration; do not place the scene inside a small strip. Let title dominate the left with intentional three-line typography: THE PRICE / OF / ARRIVAL, or THE PRICE / OF ARRIVAL if more visually balanced. Caption stays on a single line beneath. Maintain generous margins so no text touches edges.
+Color palette: deep midnight navy, warm ivory, saturated golden amber, eucalyptus green, harbour teal, dusty pale blue. No aura gradient.
+Text (verbatim, exact spelling): small header "DATA VISUALISATION / SYDNEY"; large bold condensed uppercase title "THE PRICE OF ARRIVAL"; one-line caption "From a headline to a plan."
+Constraints: Output a single finished illustration poster at aspect ratio exactly 8:5 with target pixel size 1920×1200. All three text elements must be clear and spelled exactly. No extra invented text, numbers, logos or watermarks. Keep reference's visual quality but design specifically for the new format. Do not stretch the reference or frame it within a blank canvas.
+

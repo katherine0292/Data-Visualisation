@@ -4,6 +4,8 @@
 
 International student enrolments, study locations, visa policy and living costs in Sydney, 2019–2026
 
+[![The Price of Arrival — From a headline to a plan](assets/posters/the-price-of-arrival-1440x480.png)](portfolio/index.html)
+
 A record-high enrolment headline tells a prospective student very little about their next intake, where their course is taught or how much flexibility they need in their budget. I turned five public datasets into an interactive story that follows Mei, a prospective Master's student, as she weighs those decisions.
 
 [Download the interactive story](index.html) · [Watch the story film](artifacts/the-price-of-arrival-story.mp4) · [Read the English commission brief](docs/commission-brief.md)
@@ -40,6 +42,10 @@ The 19-slide presentation contains ten illustrated story scenes. It introduces M
 I used the audience's questions to decide what belonged in the story. I dropped the proposed personal budget calculator after checking what CPI could support. The final scene asks Mei to use price trends when planning a buffer, then check current costs for her own circumstances. For the location view, I used logarithmic colour scales to keep smaller hubs visible and retained suppressed observations as missing.
 
 ## Run locally
+
+Open [`portfolio/index.html`](portfolio/index.html) for the bilingual case study. Its full-width poster is exactly **1440 × 480** (3:1), with a hand-painted travel-journal style inspired by the story scenes and the presentation's midnight-blue and amber palette. The [generation prompt](assets/posters/prompt.txt) is included beside the PNG.
+
+Download the standalone [1920 × 1200 poster](assets/posters/the-price-of-arrival-1920x1200.png), recomposed for 8:5 with the same illustrated student, Sydney harbour and data-route motif. Its [generation prompt](assets/posters/prompt-1920x1200.txt) is included alongside the PNG.
 
 Download or clone the repository and open `index.html` in a desktop browser. Use **→** and **←** or the on-screen arrows to move through the slides and reveals. Press **N** for speaker notes and **F** for fullscreen. The charts and storyboard images are embedded. The page uses fallback fonts when Google Fonts is unavailable. GitHub displays the source file in the repository, so download it to run the presentation.
 
