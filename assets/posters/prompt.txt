@@ -1,0 +1,18 @@
+The Price of Arrival — Creative landscape poster
+Created using the built-in ImageGen tool, 2026-11-23.
+Generated at 2172 × 724 (3:1), exported to the requested 1440 × 480 without cropping.
+Final file: the-price-of-arrival-1440x480.png
+Style informed by portfolio/img/s1.jpg, portfolio/img/s10.jpg and the interactive story's navy/amber palette.
+Illustrated bars and map grids are narrative motifs, not plots of the project's data.
+
+FINAL GENERATION PROMPT
+
+Use case: ads-marketing
+Asset type: a fully finished illustrated portfolio banner / landscape poster, output exactly 1440 pixels wide by 480 pixels tall, 3:1 aspect ratio.
+Primary request: an original, art-directed creative poster for the independent data storytelling project "THE PRICE OF ARRIVAL", about a prospective international student's decision to study in Sydney. The project turns public data on intake, study locations, historical visa settings and living-cost trends into a usable plan.
+Style/medium: rich editorial travel-poster illustration, hand-painted gouache, fine coloured-pencil detail, tactile screenprint paper grain. Warm, thoughtful illustrated storytelling, like a carefully drawn travel journal, combined with the confidence of a data journalism cover. NOT photorealistic, not 3D, not an app mockup. No aura gradients.
+Scene and composition: an uninterrupted panoramic composition. The left 43% is a quiet midnight-navy field for excellent typography. On the right, a small long-brown-haired female student in a cream sweater stands with an ochre suitcase and an open planning notebook; behind her the Sydney Opera House and Harbour Bridge emerge as an elegant layered illustrated harbour cityscape. Keep geographic landmarks recognizable but artistic, not a detailed factual map. One broad warm ivory paper route curls in from the notebook across the middle-right, carrying a few restrained abstract bars and map-grid marks, then becomes an amber line leading into the harbour. It is a visual metaphor for making decisions through data, not a real plotted chart. The composition must feel like one coherent illustrated landscape, not a collage of panels or cards. A little muted teal water, warm ochre architecture and tiny sage foliage, soft painterly clouds, plenty of breathing room.
+Color palette: dominant midnight navy #15182F, rich amber gold #FFB83F, warm paper ivory #F5EBDD, dusty slate blue #7E91AA, muted sage #66816A. Flat layered colour and subtle ink texture, strong foreground/background contrast. NO lavender-pink iridescence or pastel aura.
+Typography: beautiful, clean, accurately spelled, large condensed editorial sans-serif on the left, inspired by bold travel-poster typography. Top small kicker: "DATA VISUALISATION / SYDNEY". Main title, large and dominant, across two deliberate lines: first line "THE PRICE" in warm ivory, second line "OF ARRIVAL" in amber gold. Bottom-left restrained readable caption: "From a headline to a plan." Main type area entirely within x=5–45%, y=23–73%. Small kicker at y=12%, caption y=86%. Large title should be absolutely readable at webpage size, aligned flush left, elegant spacing.
+Text (verbatim): "DATA VISUALISATION / SYDNEY", "THE PRICE", "OF ARRIVAL", "From a headline to a plan."
+Constraints: EXACTLY 1440 × 480 landscape output, full bleed with no outside margin, no border, no rounded corners, no frame. All title lettering must be correct with no extra or invented wording. Keep the main student, suitcase and landmarks completely within the frame. Do not add statistical values, currency, percentages, simulated government documents, airline logos, axes with fictitious data, watermarks or signatures. Make it polished, narrative, memorable and clearly about Sydney study planning through data.
