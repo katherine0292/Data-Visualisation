@@ -970,6 +970,7 @@ function toggleNotes(){
 notesButton.addEventListener('click',e=>{e.stopPropagation();toggleNotes()});
 closeNotesButton.addEventListener('click',toggleNotes);
 document.addEventListener('keydown',e=>{
+  if(e.defaultPrevented||e.altKey||e.ctrlKey||e.metaKey||e.target.closest('input,textarea,select,[contenteditable="true"]'))return;
   if((e.key==='Enter'||e.key===' ')&&e.target instanceof HTMLButtonElement)return;
   if(e.key==='Escape'&&!notes.hidden){toggleNotes();return}
   if(['ArrowRight','PageDown',' ','Enter','ArrowDown'].includes(e.key)){e.preventDefault();next()}
@@ -981,7 +982,12 @@ document.addEventListener('keydown',e=>{
 });
 function fit(){const k=Math.min(innerWidth/1600,innerHeight/900);stage.style.setProperty('--k',k)}
 addEventListener('resize',fit);fit();
-const m=/^#s(\d+)$/.exec(location.hash||'');if(m)cur=Math.min(slides.length-1,Math.max(0,+m[1]-1));
+function followHash(){
+  const m=/^#s(\d+)$/.exec(location.hash||'');
+  if(m)go(+m[1]-1);
+}
+addEventListener('hashchange',followHash);
+followHash();
 render();
 })();
 </script>
