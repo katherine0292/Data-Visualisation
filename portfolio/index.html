@@ -1,4 +1,19 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><link rel="icon" href="data:,"><style>:root{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><link rel="icon" href="data:,"><style>:root{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}
+/* Questions lead the case study; full evidence remains available on demand. */
+.question-links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:28px}
+.question-links a{border:1px solid var(--line);border-radius:12px;padding:14px 16px;text-decoration:none;font-size:16px;line-height:1.45}
+.question-links a:hover{border-color:var(--acc);background:var(--paper-2)}
+.case-detail{border-top:1px solid var(--line-2);margin-top:28px;padding-top:18px;min-width:0}
+.case-detail summary{cursor:pointer;font-size:16px;font-weight:500;color:var(--ink);padding:6px 0;line-height:1.5}
+.case-detail summary:focus-visible{outline:2px solid var(--acc);outline-offset:4px}
+.detail-body{padding-top:24px;min-width:0}
+.case-detail:not([open]) .detail-body{display:none}
+.case-detail .body{max-width:none}
+.case-figure,#audience,#method{scroll-margin-top:80px}
+.case-detail .pfig:first-child{margin-top:0}
+.para{font-size:16px;line-height:1.65;color:var(--ink-2)}
+@media(max-width:600px){.question-links{grid-template-columns:minmax(0,1fr)}}
+</style>
 <title>The Price of Arrival</title>
 <meta name="description" content="Data visualisation case study: six figures on international student enrolments, study locations, visa policy and living costs in Sydney, 2019–2026.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1026,70 +1041,10 @@ video{width:100%;height:auto;aspect-ratio:16/9;border-radius:14px;background:#00
 
 <section class="banner arrival-poster" id="hero" aria-label="The Price of Arrival">
   <img src="../assets/posters/the-price-of-arrival-1440x480.png" width="1440" height="480" fetchpriority="high" decoding="async" alt="The Price of Arrival. From a headline to a plan. An illustrated student follows a paper route from her planning notebook toward Sydney Harbour, connecting data with her study decision.">
-</section>
+</section><section class="ch intro" id="overview" data-nav="Overview||概览"><div class="wrap"><div class="rv"><p class="lbl">The Price of Arrival</p><h1><span class="t-en">From a record-high headline to a student’s next decision</span><span class="t-zh">从一条“创新高”的标题，到学生的下一步决定</span></h1><p class="lede" style="margin-top:20px"><span class="t-en">An independent data visualisation commission for Harbourline Education Consulting: help prospective students distinguish intake, study location, historical visa context and price pressure.</span><span class="t-zh">为 Harbourline 教育咨询独立承接的数据可视化委托：帮助拟留学生区分入学批次、学习地点、历史签证背景与价格压力。</span></p></div><div class="meta2"><div><span class="lbl"><span class="t-en">My role</span><span class="t-zh">我的职责</span></span><p><span class="t-en">Data preparation, Tableau figures, audience framing, narrative, HTML presentation and companion film.</span><span class="t-zh">数据准备、Tableau 图表、受众框定、叙事、HTML 演示与配套视频。</span></p></div><div><span class="lbl"><span class="t-en">This stage’s delivery</span><span class="t-zh">本阶段交付</span></span><p><span class="t-en">Five public data inputs; six figures; a 19-slide, ten-scene story; film, methodology and self-assessment workbook.</span><span class="t-zh">五类公开数据输入、六张图、19 页十场景故事，以及视频、方法文档与自评工作簿。</span></p></div></div><div class="links rv" style="margin-top:24px"><a class="pri" href="../"><span class="t-en">Open the complete interactive story</span><span class="t-zh">打开完整互动故事</span></a><a href="#story"><span class="t-en">See the narrative and delivery</span><span class="t-zh">查看叙事与交付</span></a></div><div class="question-links rv"><a href="#fig1"><span class="t-en">Which count describes my intake?</span><span class="t-zh">哪个统计量与我的批次有关？</span></a><a href="#fig3"><span class="t-en">Where should I look for my field?</span><span class="t-zh">我的专业应该看哪些地点？</span></a><a href="#fig4"><span class="t-en">What is historical visa context?</span><span class="t-zh">哪些只是历史签证背景？</span></a><a href="#fig6"><span class="t-en">What can prices tell my budget?</span><span class="t-zh">价格指数能告诉预算什么？</span></a></div><details class="case-detail"><summary><span class="t-en">Explore audience assumptions and my contribution</span><span class="t-zh">查看受众假设与我的贡献</span></summary><div class="detail-body"><div id="audience"><div class="rv" style="display:grid;gap:14px;margin-bottom:24px"><div class="ctl" id="roleTabs" role="tablist"></div><div class="card" id="roleBody"></div></div><div class="body">
 
-<!-- 01 overview -->
-<section class="ch intro" id="overview" data-nav="Overview||概览">
-  <div class="wrap">
-    <div class="rv">
-      <p class="lbl">The Price of Arrival</p>
-      <h1><span class="t-en">Turning a record-high headline into a decision a student can use</span><span class="t-zh">把一条“创历史新高”的标题，变成学生用得上的决策</span></h1>
-      <div class="meta2">
-        <div><span class="lbl"><span class="t-en">Role</span><span class="t-zh">职责</span></span><p><span class="t-en">Data visualisation designer and data storyteller. Independent project.</span><span class="t-zh">数据可视化设计师与数据叙事者。独立完成。</span></p></div>
-        <div><span class="lbl"><span class="t-en">Tools</span><span class="t-zh">工具</span></span><p>Tableau · HTML / SVG · <span class="t-en">presentation with speaker notes</span><span class="t-zh">带演讲者备注的演示</span></p></div>
-        <div><span class="lbl"><span class="t-en">Data</span><span class="t-zh">数据</span></span><p><span class="t-en">Five public Australian datasets, 2019–2026</span><span class="t-zh">五个澳大利亚公开数据集，2019–2026</span></p></div>
-        <div><span class="lbl"><span class="t-en">Output</span><span class="t-zh">成果</span></span><p><span class="t-en">Interactive story, six figures, story film, evaluation workbook</span><span class="t-zh">互动故事、六张图表、故事视频、评估工作簿</span></p></div>
-      </div>
-    </div>
-    <div class="stats rv" style="margin-top:34px">
-      <div><b class="num" data-c="5">5</b><p><span class="t-en">public datasets joined into one evidence base</span><span class="t-zh">个公开数据集整合为同一证据基础</span></p></div>
-      <div><b class="num" data-c="6">6</b><p><span class="t-en">core figures, each with a four-part caption</span><span class="t-zh">张核心图表，各带四段式图注</span></p></div>
-      <div><b class="num" data-c="10">10</b><p><span class="t-en">story scenes in four stages</span><span class="t-zh">个故事场景，分为四个阶段</span></p></div>
-      <div><b class="num" data-c="182">182</b><p><span class="t-en">SA4 × field cells compared in Figure 3</span><span class="t-zh">图 3 中比较的 SA4 × 专业单元格</span></p></div>
-    </div>
-    <div class="body" style="margin-top:44px">
-      <p class="callout rv" style="margin:0 0 26px"><b><span class="t-en">Brief question:</span><span class="t-zh">委托问题：</span></b> <span class="t-en">Should I study in Sydney, and if so, when to apply, where to study, and how much flexibility should I leave for living costs?</span><span class="t-zh">我是否应该去悉尼读书？如果去，什么时候申请、去哪里读，又该为生活成本留出多少弹性？</span></p>
-      <p class="muted small rv" style="margin-bottom:18px"><span class="t-en">Harbourline Education Consulting commissioned an English interactive data story for prospective students choosing Sydney. I took it from sourcing the data to the film and evaluation workbook.</span><span class="t-zh">Harbourline 教育咨询委托制作一套面向拟赴悉尼留学者的英文互动数据故事。我从数据整理一直做到成片和评估工作簿。</span></p>
-      <div class="rv" style="display:grid;gap:14px">
-        <div class="ctl" id="roleTabs" role="tablist"></div>
-        <div class="card" id="roleBody"></div>
-      </div>
-      <div class="cards rv" style="margin-top:22px">
-        <div class="card"><span class="lbl"><span class="t-en">Deliverable</span><span class="t-zh">交付 1</span></span><h4><span class="t-en">Interactive story</span><span class="t-zh">互动故事</span></h4><p><span class="t-en">19 slides, ten scenes, step-by-step reveals and speaker notes.</span><span class="t-zh">19 页幻灯片、十个场景，逐步揭示图表并附演讲者备注。</span></p></div>
-        <div class="card"><span class="lbl"><span class="t-en">Deliverable</span><span class="t-zh">交付 2</span></span><h4><span class="t-en">Six core figures</span><span class="t-zh">六张核心图表</span></h4><p><span class="t-en">Trend, map, heatmap, annotated timeline, stacked bars, indexed prices.</span><span class="t-zh">趋势图、地图、热力图、带注释的时间线、堆叠条形图、指数化价格图。</span></p></div>
-        <div class="card"><span class="lbl"><span class="t-en">Deliverable</span><span class="t-zh">交付 3</span></span><h4><span class="t-en">Story film</span><span class="t-zh">故事视频</span></h4><p><span class="t-en">A narrated English walkthrough with captions.</span><span class="t-zh">带英文字幕的英文解说视频。</span></p></div>
-        <div class="card"><span class="lbl"><span class="t-en">Deliverable</span><span class="t-zh">交付 4</span></span><h4><span class="t-en">Design evidence</span><span class="t-zh">设计依据</span></h4><p><span class="t-en">Value proposition canvas, empathy map, user stories, storyboard, benchmark workbook.</span><span class="t-zh">价值主张画布、同理心地图、用户故事、分镜、评估工作簿。</span></p></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="ch alt" id="audience" data-nav="Audience||受众">
-  <div class="wrap">
-    <div class="head"><div class="row"><span class="no">02</span><span class="lbl"><span class="t-en">Audience and traceability</span><span class="t-zh">受众与可追溯性</span></span></div><h2><span class="mask"><span><span class="t-en">From a worry to a figure</span><span class="t-zh">从一个顾虑到一张图</span></span></span></h2><p class="lede rv"><span class="t-en">Two personas drive what goes into the story. Every insight is traced to a user story, a figure and a storyboard scene, so each chart has a reason to be there.</span><span class="t-zh">两个角色决定故事里放什么。每条洞察都能追到用户故事、图表和分镜场景，每张图都有存在的理由。</span></p></div>
-    <div class="body">
-
-    <div class="persona rv">
-      <div class="pc">
-        <div class="top2"><img src="img/meiface.jpg" width="300" height="318" alt="Illustration of Mei"><div><span class="lbl"><span class="t-en">Primary persona</span><span class="t-zh">主要角色</span></span><h3>Mei, 23</h3></div></div>
-        <p class="muted"><span class="t-en">Prospective international student weighing a Sydney Master's.</span><span class="t-zh">正在考虑赴悉尼读硕士的国际学生。</span></p>
-        <div class="ptag"><span class="fgc"><a><span class="t-en">trusts official data</span><span class="t-zh">相信官方数据</span></a><a><span class="t-en">anecdotes still sway her</span><span class="t-zh">仍会被传闻影响</span></a></span></div>
-        <ul>
-          <li><span class="t-en">Wants one dollar figure for her budget, but sources only give an index.</span><span class="t-zh">想要一个能写进预算的金额，但数据源只给指数。</span></li>
-          <li><span class="t-en">Fears a mistimed application: a A$1,600 visa fee and possibly a lost year.</span><span class="t-zh">担心申请时点出错：A$1,600 的签证费，还可能赔上一年。</span></li>
-        </ul>
-      </div>
-      <div class="pc">
-        <span class="lbl"><span class="t-en">Secondary persona</span><span class="t-zh">次要角色</span></span><h3 style="margin-top:6px">Daniel, 41</h3>
-        <p class="muted" style="margin-top:6px"><span class="t-en">Education adviser briefing several students at once.</span><span class="t-zh">同时指导多位学生的教育顾问。</span></p>
-        <ul>
-          <li><span class="t-en">Copies charts into client decks, so captions must stand alone.</span><span class="t-zh">会把图表放进给客户的演示文稿，所以图注必须能独立成立。</span></li>
-          <li><span class="t-en">Avoids quoting a living cost he cannot verify.</span><span class="t-zh">不会引用自己无法核实的生活成本数字。</span></li>
-        </ul>
-        <p class="small" style="margin-top:14px;font-size:13px;color:var(--ink-2)"><span class="t-en">Result: every figure below carries a four-part caption — counts, period, excludes, source.</span><span class="t-zh">结果：下面每张图都带四段式图注：统计对象、时期、不包含内容、来源。</span></p>
-      </div>
-    </div>
-    <div class="rv" style="margin-top:34px">
+    <p class="para"><span class="t-en">Mei represents a prospective Master’s student; Daniel represents an adviser who reuses charts. They are provisional personas informed by project research and my own experience. Interviews remain a future validation step.</span><span class="t-zh">Mei 代表拟读硕士的学生，Daniel 代表需要复用图表的顾问。角色来自项目研究与个人经验，属于待验证的受众假设；访谈仍是后续步骤。</span></p>
+<div class="rv" style="margin-top:34px">
       <p class="lbl" style="margin-bottom:12px"><span class="t-en">Click an insight to follow the chain</span><span class="t-zh">点选一条洞察，查看追溯链</span></p>
       <div class="etabs" id="etabs"></div>
       <div class="pchain" id="chain"></div>
@@ -1098,15 +1053,10 @@ video{width:100%;height:auto;aspect-ratio:16/9;border-radius:14px;background:#00
       <div class="pfig"><div class="pbar"><span class="t"><span class="t-en">Value proposition canvas</span><span class="t-zh">价值主张画布</span><small><span class="t-en">click to enlarge</span><span class="t-zh">点击放大</span></small></span></div>
         <div class="imgfig" data-zoom><img src="img/vpc.webp" width="1800" height="2002" alt="Value proposition canvas for The Price of Arrival" loading="lazy" style="max-height:620px;object-fit:contain;margin:0 auto"></div></div>
     </div>
-    </div>
-  </div>
-</section>
-
-<section class="ch" id="fig1" data-nav="Fig 1">
+    </div></div></div></details></div></section><section class="ch" id="fig1" data-nav="Intake||入学批次">
   <div class="wrap">
-    <div class="head"><div class="row"><span class="no">03</span><span class="lbl">FIG 1 · <span class="t-en">Enrolments vs commencements</span><span class="t-zh">注册量与新入学量</span></span></div><h2><span class="mask"><span><span class="t-en">The headline counts who is here, not who is arriving</span><span class="t-zh">标题数的是“在读的人”，而不是“新到的人”</span></span></span></h2></div>
-    <div class="body">
-      <p class="callout rv" style="margin:0 0 26px"><b><span class="t-en">Reader question:</span><span class="t-zh">读者问题：</span></b> <span class="t-en">Is “record high” about my intake?</span><span class="t-zh">“创新高”说的是我这一批吗？</span></p>
+    <div class="head"><span class="lbl"><span class="t-en">Reader question · intake</span><span class="t-zh">读者问题 · 入学批次</span></span><h2><span class="mask"><span><span class="t-en">Which count describes the intake?</span><span class="t-zh">哪个统计量与入学批次有关？</span></span></span></h2></div><div class="body"><p class="lede rv" style="margin-bottom:24px"><span class="t-en">The headline foregrounds enrolments. I placed commencements beside it on matching Jan–May baselines, so a recovered total cannot be mistaken for recovered new intake.</span><span class="t-zh">标题关注总注册量。我把新入学量与它并置，统一到 1–5 月基期，避免把总量恢复当成新增批次恢复。</span></p>
+
 
     <div class="pfig rv" id="f1">
       <div class="pbar"><span class="t"><span class="t-en">NSW international students, Jan–May year to date</span><span class="t-zh">新州国际学生，1–5 月累计</span><small><span class="t-en">Index, Jan–May 2019 = 100</span><span class="t-zh">指数，2019 年 1–5 月 = 100</span></small></span>
@@ -1131,16 +1081,62 @@ video{width:100%;height:auto;aspect-ratio:16/9;border-radius:14px;background:#00
     <div class="rd rv">
       <div class="y"><b><span class="t-en">Can read</span><span class="t-zh">可以读出</span></b><p><span class="t-en">Enrolments are 8.8% above 2019 while commencements are 17.6% below. Volume recovered; new intake did not.</span><span class="t-zh">总注册量比 2019 年高 8.8%，新入学量低 17.6%。存量恢复了，新增没有。</span></p></div>
       <div class="n"><b><span class="t-en">Cannot read</span><span class="t-zh">不能读出</span></b><p><span class="t-en">Neither line measures unique students entering Australia, so it says nothing about any one applicant’s chances.</span><span class="t-zh">两条线都不是“入境的独立学生数”，也不能说明任何个人的录取机会。</span></p></div>
+    </div><details class="case-detail"><summary><span class="t-en">Explore sector composition and the Sankey decision · Figure 5</span><span class="t-zh">展开部门构成与桑基图取舍 · 图 5</span></summary><div class="detail-body"><div class="case-figure" id="fig5"><div class="body">
+
+
+    <div class="pfig rv" id="f5">
+      <div class="pbar"><span class="t"><span class="t-en">NSW enrolments by sector, May 2026</span><span class="t-zh">新州各教育部门注册量，2026 年 5 月</span><small><span class="t-en">new vs continuing</span><span class="t-zh">新入学 vs 继续注册</span></small></span>
+        <div class="ctl" id="f5ctl"></div></div>
+      <div class="plot" style="padding:22px 20px"><div class="sb" id="f5bars"></div>
+        <div style="display:flex;gap:18px;font-size:12.5px;color:var(--ink-2);margin-top:16px"><span><i style="display:inline-block;width:10px;height:10px;background:var(--c2);border-radius:2px"></i> <span class="t-en">New commencements</span><span class="t-zh">新入学</span></span><span><i style="display:inline-block;width:10px;height:10px;background:color-mix(in srgb,var(--c5) 40%,var(--paper));border-radius:2px"></i> <span class="t-en">Continuing</span><span class="t-zh">继续注册</span></span></div></div>
+      <div class="split two" style="border-top:1px solid var(--line)">
+        <div class="imgfig" data-zoom><img src="img/fig5-slide.webp" width="1600" height="900" alt="Figure 5 slide from the interactive story" loading="lazy"></div>
+        <div style="padding:20px;font-size:14.5px;color:var(--ink-2);display:grid;gap:14px;align-content:start"><p class="lbl"><span class="t-en">Method note</span><span class="t-zh">方法说明</span></p>
+          <p><span class="t-en">An earlier Sankey linked two unrelated snapshots and implied a flow the data could not identify. I replaced it with stacked bars that show absolute counts and a share label.</span><span class="t-zh">早期的桑基图把两个互不相关的快照连起来，暗示了数据无法识别的流动。我换成堆叠条形图，同时显示绝对数量和占比标签。</span></p>
+          <table class="tbl"><thead><tr><th><span class="t-en">Sector</span><span class="t-zh">部门</span></th><th><span class="t-en">Total</span><span class="t-zh">总数</span></th><th><span class="t-en">New share</span><span class="t-zh">新入学占比</span></th></tr></thead><tbody><tr><td>Higher Education</td><td class="mono">177,204</td><td class="mono">22.3%</td></tr><tr><td>VET</td><td class="mono">83,848</td><td class="mono">27.9%</td></tr><tr><td>ELICOS</td><td class="mono">16,403</td><td class="mono">49.9%</td></tr></tbody></table></div>
+      </div>
+      <div class="cs">
+        <div><b>COUNTS</b><p><span class="t-en">Enrolments by sector. Continuing = total minus commencements; new share = commencements ÷ total.</span><span class="t-zh">各部门注册量。继续注册 = 总数 − 新入学；新入学占比 = 新入学 ÷ 总数。</span></p></div>
+        <div><b>PERIOD</b><p><span class="t-en">May 2026 snapshot.</span><span class="t-zh">2026 年 5 月快照。</span></p></div>
+        <div><b>EXCLUDES</b><p><span class="t-en">Transitions of individual students; schools and non-award courses.</span><span class="t-zh">学生个体的转换；中小学与非学历课程。</span></p></div>
+        <div><b>SOURCE</b><p><span class="t-en">Dept of Education monthly summary.</span><span class="t-zh">教育部月度汇总。</span></p></div>
+      </div>
     </div>
+    <div class="rd rv">
+      <div class="y"><b><span class="t-en">Can read</span><span class="t-zh">可以读出</span></b><p><span class="t-en">Higher Education leads on volume (177,204) yet only 22.3% is new; ELICOS is small (16,403) with 49.9% new.</span><span class="t-zh">高等教育规模最大（177,204），新入学只占 22.3%；ELICOS 规模小（16,403），新入学占 49.9%。</span></p></div>
+      <div class="n"><b><span class="t-en">Cannot read</span><span class="t-zh">不能读出</span></b><p><span class="t-en">The categories describe registrations at the cut-off and do not follow any student from one sector to another.</span><span class="t-zh">这些类别描述的是截止时点的注册，并不追踪学生在部门之间的流转。</span></p></div>
+    </div>
+    </div></div></div></details>
     </div>
   </div>
-</section>
-
-<section class="ch alt" id="fig2" data-nav="Fig 2">
+</section><section class="ch" id="fig3" data-nav="Study location||学习地点">
   <div class="wrap">
-    <div class="head"><div class="row"><span class="no">04</span><span class="lbl">FIG 2 · <span class="t-en">Study locations</span><span class="t-zh">学习地点</span></span></div><h2><span class="mask"><span><span class="t-en">Sydney is one name for very unequal places</span><span class="t-zh">“悉尼”是一个名字，指向差别极大的地方</span></span></span></h2></div>
-    <div class="body">
-      <p class="callout rv" style="margin:0 0 26px"><b><span class="t-en">Reader question:</span><span class="t-zh">读者问题：</span></b> <span class="t-en">Where would I actually study?</span><span class="t-zh">我实际会在哪里上课？</span></p>
+    <div class="head"><span class="lbl"><span class="t-en">Reader question · location</span><span class="t-zh">读者问题 · 学习地点</span></span><h2><span class="mask"><span><span class="t-en">Where should I look for my field?</span><span class="t-zh">我的专业应该看哪些地点？</span></span></span></h2></div><div class="body"><p class="lede rv" style="margin-bottom:24px"><span class="t-en">I used a log-colour heatmap to make smaller study hubs visible, while keeping suppressed cells blank. It helps narrow a campus search; it does not locate students’ homes.</span><span class="t-zh">我用对数色阶热力图保留较小学习中心的差别，并将被隐去的单元格留空。它帮助缩小校区搜索范围，不用于定位学生住处。</span></p>
+
+
+    <div class="pfig rv" id="f3">
+      <div class="pbar"><span class="t"><span class="t-en">Disclosed 2025 enrolments, 14 SA4 × 13 fields</span><span class="t-zh">2025 年已披露注册量，14 个 SA4 × 13 个专业</span><small><span class="t-en">log colour scale</span><span class="t-zh">对数色阶</span></small></span>
+        <div class="ctl"><button class="chip" id="f3clear"><span class="t-en">Clear selection</span><span class="t-zh">清除选择</span></button></div></div>
+      <p class="muted" style="padding:12px 20px 0;font-size:13px"><span class="t-en">Click a column header to pick your field.</span><span class="t-zh">点击列标题选择你的专业。</span></p>
+      <div class="hm"><div class="hmg" id="hm"></div></div>
+      <div class="legend"><span>5</span><i></i><span>81,426</span><span style="margin-left:16px"><s></s> <span class="t-en">blank = not disclosed or unavailable, not zero</span><span class="t-zh">空白 = 未披露或不可用，不是 0</span></span></div>
+      <div class="hmread" id="hmread"></div>
+      <div class="split two" style="border-top:1px solid var(--line)">
+        <div style="padding:20px"><p class="lbl" style="margin-bottom:12px"><span class="t-en">Field mix within each of the nine largest SA4s (derived)</span><span class="t-zh">九个最大 SA4 内部的专业构成（推算）</span></p><div class="mix" id="mix"></div><div class="mixleg" id="mixleg"></div></div>
+        <div style="padding:20px"><p class="lbl" style="margin-bottom:12px"><span class="t-en">Where ten fields concentrate most (derived)</span><span class="t-zh">十个专业最集中的地方（推算）</span></p><div id="conc"></div></div>
+      </div>
+      <div class="cs">
+        <div><b>COUNTS</b><p><span class="t-en">Disclosed enrolments for each SA4 × field cell; each filled cell shows its original count.</span><span class="t-zh">每个 SA4 × 专业单元格的已披露注册量；每个有值的格子都显示原始数字。</span></p></div>
+        <div><b>PERIOD</b><p><span class="t-en">Full-year 2025.</span><span class="t-zh">2025 全年。</span></p></div>
+        <div><b>EXCLUDES</b><p><span class="t-en">Suppressed cells, left blank. Colour compares counts, not within-area shares.</span><span class="t-zh">被隐去的单元格（留空）。颜色比较的是人数，不是地区内占比。</span></p></div>
+        <div><b>SOURCE</b><p><span class="t-en">Dept of Education SA4 enrolment data.</span><span class="t-zh">教育部 SA4 注册数据。</span></p></div>
+      </div>
+    </div>
+    <div class="rd rv">
+      <div class="y"><b><span class="t-en">Can read</span><span class="t-zh">可以读出</span></b><p><span class="t-en">City and Inner South is led by Business (81,426). In Outer South West the order flips: Health 614 against Business 48.</span><span class="t-zh">City and Inner South 以商科（81,426）为主；Outer South West 次序反转：健康 614，商科只有 48。</span></p></div>
+      <div class="n"><b><span class="t-en">Cannot read</span><span class="t-zh">不能读出</span></b><p><span class="t-en">A blank cell is not zero. The mix and concentration panels are my own calculations on the disclosed cells.</span><span class="t-zh">空白不等于零。构成与集中度面板是我基于已披露单元格的计算。</span></p></div>
+    </div><details class="case-detail"><summary><span class="t-en">Explore regional totals and the Tableau map · Figure 2</span><span class="t-zh">展开区域总量与 Tableau 地图 · 图 2</span></summary><div class="detail-body"><div class="case-figure" id="fig2"><div class="body">
+
 
     <div class="pfig rv" id="f2">
       <div class="pbar"><span class="t"><span class="t-en">Known 2025 enrolments by Sydney SA4</span><span class="t-zh">2025 年悉尼各 SA4 已披露注册量</span><small><span class="t-en">sum of disclosed field cells</span><span class="t-zh">已披露专业单元格之和</span></small></span>
@@ -1170,47 +1166,11 @@ video{width:100%;height:auto;aspect-ratio:16/9;border-radius:14px;background:#00
       <div class="y"><b><span class="t-en">Can read</span><span class="t-zh">可以读出</span></b><p><span class="t-en">One SA4 holds 60.1% of known enrolments and three hold 85.8%. A log scale is needed to see the other 11 at all.</span><span class="t-zh">一个 SA4 占已披露注册量的 60.1%，三个占 85.8%。必须用对数色阶才能看到其余 11 个。</span></p></div>
       <div class="n"><b><span class="t-en">Cannot read</span><span class="t-zh">不能读出</span></b><p><span class="t-en">The map shows places of study. It cannot say where students rent or live.</span><span class="t-zh">地图表示学习地点，不能据此判断学生住在哪里。</span></p></div>
     </div>
+    </div></div></div></details>
     </div>
   </div>
-</section>
+</section><section class="ch alt" id="fig4" data-nav="Visa context||签证背景"><div class="wrap"><div class="head"><span class="lbl"><span class="t-en">Reader question · timing</span><span class="t-zh">读者问题 · 申请时点</span></span><h2><span class="mask"><span><span class="t-en">What belongs to historical visa context?</span><span class="t-zh">哪些信息只是历史签证背景？</span></span></span></h2></div><p class="lede rv"><span class="t-en">I placed selected policy dates beside the national grant-rate series. This supports a check against the requirements relevant to an intake; timing alone does not show policy effects or a person’s approval odds.</span><span class="t-zh">我把选定的政策日期放在全国获签率旁，提示读者核对自己批次适用的要求；时间重合不能说明政策效果或个人获签概率。</span></p><details class="case-detail"><summary><span class="t-en">Explore the annotated national timeline · Figure 4</span><span class="t-zh">展开带注释的全国时间线 · 图 4</span></summary><div class="detail-body"><div class="body">
 
-<section class="ch" id="fig3" data-nav="Fig 3">
-  <div class="wrap">
-    <div class="head"><div class="row"><span class="no">05</span><span class="lbl">FIG 3 · <span class="t-en">Location × field</span><span class="t-zh">地区 × 专业</span></span></div><h2><span class="mask"><span><span class="t-en">Each hub has its own subject profile</span><span class="t-zh">每个学习中心都有自己的专业画像</span></span></span></h2></div>
-    <div class="body">
-      <p class="callout rv" style="margin:0 0 26px"><b><span class="t-en">Reader question:</span><span class="t-zh">读者问题：</span></b> <span class="t-en">Which areas teach my field?</span><span class="t-zh">我的专业主要在哪些区域开设？</span></p>
-
-    <div class="pfig rv" id="f3">
-      <div class="pbar"><span class="t"><span class="t-en">Disclosed 2025 enrolments, 14 SA4 × 13 fields</span><span class="t-zh">2025 年已披露注册量，14 个 SA4 × 13 个专业</span><small><span class="t-en">log colour scale</span><span class="t-zh">对数色阶</span></small></span>
-        <div class="ctl"><button class="chip" id="f3clear"><span class="t-en">Clear selection</span><span class="t-zh">清除选择</span></button></div></div>
-      <p class="muted" style="padding:12px 20px 0;font-size:13px"><span class="t-en">Click a column header to pick your field.</span><span class="t-zh">点击列标题选择你的专业。</span></p>
-      <div class="hm"><div class="hmg" id="hm"></div></div>
-      <div class="legend"><span>5</span><i></i><span>81,426</span><span style="margin-left:16px"><s></s> <span class="t-en">blank = not disclosed or unavailable, not zero</span><span class="t-zh">空白 = 未披露或不可用，不是 0</span></span></div>
-      <div class="hmread" id="hmread"></div>
-      <div class="split two" style="border-top:1px solid var(--line)">
-        <div style="padding:20px"><p class="lbl" style="margin-bottom:12px"><span class="t-en">Field mix within each of the nine largest SA4s (derived)</span><span class="t-zh">九个最大 SA4 内部的专业构成（推算）</span></p><div class="mix" id="mix"></div><div class="mixleg" id="mixleg"></div></div>
-        <div style="padding:20px"><p class="lbl" style="margin-bottom:12px"><span class="t-en">Where ten fields concentrate most (derived)</span><span class="t-zh">十个专业最集中的地方（推算）</span></p><div id="conc"></div></div>
-      </div>
-      <div class="cs">
-        <div><b>COUNTS</b><p><span class="t-en">Disclosed enrolments for each SA4 × field cell; each filled cell shows its original count.</span><span class="t-zh">每个 SA4 × 专业单元格的已披露注册量；每个有值的格子都显示原始数字。</span></p></div>
-        <div><b>PERIOD</b><p><span class="t-en">Full-year 2025.</span><span class="t-zh">2025 全年。</span></p></div>
-        <div><b>EXCLUDES</b><p><span class="t-en">Suppressed cells, left blank. Colour compares counts, not within-area shares.</span><span class="t-zh">被隐去的单元格（留空）。颜色比较的是人数，不是地区内占比。</span></p></div>
-        <div><b>SOURCE</b><p><span class="t-en">Dept of Education SA4 enrolment data.</span><span class="t-zh">教育部 SA4 注册数据。</span></p></div>
-      </div>
-    </div>
-    <div class="rd rv">
-      <div class="y"><b><span class="t-en">Can read</span><span class="t-zh">可以读出</span></b><p><span class="t-en">City and Inner South is led by Business (81,426). In Outer South West the order flips: Health 614 against Business 48.</span><span class="t-zh">City and Inner South 以商科（81,426）为主；Outer South West 次序反转：健康 614，商科只有 48。</span></p></div>
-      <div class="n"><b><span class="t-en">Cannot read</span><span class="t-zh">不能读出</span></b><p><span class="t-en">A blank cell is not zero. The mix and concentration panels are my own calculations on the disclosed cells.</span><span class="t-zh">空白不等于零。构成与集中度面板是我基于已披露单元格的计算。</span></p></div>
-    </div>
-    </div>
-  </div>
-</section>
-
-<section class="ch alt" id="fig4" data-nav="Fig 4">
-  <div class="wrap">
-    <div class="head"><div class="row"><span class="no">06</span><span class="lbl">FIG 4 · <span class="t-en">Visa timeline</span><span class="t-zh">签证时间线</span></span></div><h2><span class="mask"><span><span class="t-en">Put every policy date beside the grant rate</span><span class="t-zh">把每个政策节点放在获签率旁边</span></span></span></h2></div>
-    <div class="body">
-      <p class="callout rv" style="margin:0 0 26px"><b><span class="t-en">Reader question:</span><span class="t-zh">读者问题：</span></b> <span class="t-en">Which changes matter when I time my application?</span><span class="t-zh">我安排申请时间时，哪些变化相关？</span></p>
 
     <div class="pfig rv" id="f4">
       <div class="pbar"><span class="t"><span class="t-en">National student visa grant rate, monthly</span><span class="t-zh">全国学生签证月度获签率</span><small><span class="t-en">with 3-month moving average</span><span class="t-zh">含三个月移动平均</span></small></span>
@@ -1230,47 +1190,10 @@ video{width:100%;height:auto;aspect-ratio:16/9;border-radius:14px;background:#00
       <div class="y"><b><span class="t-en">Can read</span><span class="t-zh">可以读出</span></b><p><span class="t-en">Where the policy changes fall in time, and that the monthly rate swings widely after 2023.</span><span class="t-zh">政策变化落在哪些时间点，以及 2023 年之后月度获签率波动明显加大。</span></p></div>
       <div class="n"><b><span class="t-en">Cannot read</span><span class="t-zh">不能读出</span></b><p><span class="t-en">Coincidence in time does not prove cause, and a national rate does not estimate any one person’s chance.</span><span class="t-zh">时间上的重合不足以证明因果，全国获签率也不能估算个人的获签概率。</span></p></div>
     </div>
-    </div>
-  </div>
-</section>
-
-<section class="ch" id="fig5" data-nav="Fig 5">
+    </div></div></details></div></section><section class="ch alt" id="fig6" data-nav="Affordability||价格与预算">
   <div class="wrap">
-    <div class="head"><div class="row"><span class="no">07</span><span class="lbl">FIG 5 · <span class="t-en">Sector composition</span><span class="t-zh">教育部门构成</span></span></div><h2><span class="mask"><span><span class="t-en">The biggest sector has the fewest newcomers</span><span class="t-zh">规模最大的部门，新入学占比最低</span></span></span></h2></div>
-    <div class="body">
-      <p class="callout rv" style="margin:0 0 26px"><b><span class="t-en">Reader question:</span><span class="t-zh">读者问题：</span></b> <span class="t-en">How much of my sector is new intake?</span><span class="t-zh">我所在的部门，有多少是新入学？</span></p>
+    <div class="head"><span class="lbl"><span class="t-en">Reader question · affordability</span><span class="t-zh">读者问题 · 可负担性</span></span><h2><span class="mask"><span><span class="t-en">What can price trends tell a budget?</span><span class="t-zh">价格走势能告诉预算什么？</span></span></span></h2></div><div class="body"><p class="lede rv" style="margin-bottom:24px"><span class="t-en">I dropped the proposed budget calculator because CPI measures price change rather than personal dollar costs. The story instead asks Mei to plan a buffer and check her actual spending.</span><span class="t-zh">CPI 衡量价格变化，不能提供个人开销金额，因此我取消了预算计算器，改为让 Mei 预留缓冲并核对自己的实际支出。</span></p>
 
-    <div class="pfig rv" id="f5">
-      <div class="pbar"><span class="t"><span class="t-en">NSW enrolments by sector, May 2026</span><span class="t-zh">新州各教育部门注册量，2026 年 5 月</span><small><span class="t-en">new vs continuing</span><span class="t-zh">新入学 vs 继续注册</span></small></span>
-        <div class="ctl" id="f5ctl"></div></div>
-      <div class="plot" style="padding:22px 20px"><div class="sb" id="f5bars"></div>
-        <div style="display:flex;gap:18px;font-size:12.5px;color:var(--ink-2);margin-top:16px"><span><i style="display:inline-block;width:10px;height:10px;background:var(--c2);border-radius:2px"></i> <span class="t-en">New commencements</span><span class="t-zh">新入学</span></span><span><i style="display:inline-block;width:10px;height:10px;background:color-mix(in srgb,var(--c5) 40%,var(--paper));border-radius:2px"></i> <span class="t-en">Continuing</span><span class="t-zh">继续注册</span></span></div></div>
-      <div class="split two" style="border-top:1px solid var(--line)">
-        <div class="imgfig" data-zoom><img src="img/fig5-slide.webp" width="1600" height="900" alt="Figure 5 slide from the interactive story" loading="lazy"></div>
-        <div style="padding:20px;font-size:14.5px;color:var(--ink-2);display:grid;gap:14px;align-content:start"><p class="lbl"><span class="t-en">Method note</span><span class="t-zh">方法说明</span></p>
-          <p><span class="t-en">An earlier Sankey linked two unrelated snapshots and implied a flow the data could not identify. I replaced it with stacked bars that show absolute counts and a share label.</span><span class="t-zh">早期的桑基图把两个互不相关的快照连起来，暗示了数据无法识别的流动。我换成堆叠条形图，同时显示绝对数量和占比标签。</span></p>
-          <table class="tbl"><thead><tr><th><span class="t-en">Sector</span><span class="t-zh">部门</span></th><th><span class="t-en">Total</span><span class="t-zh">总数</span></th><th><span class="t-en">New share</span><span class="t-zh">新入学占比</span></th></tr></thead><tbody><tr><td>Higher Education</td><td class="mono">177,204</td><td class="mono">22.3%</td></tr><tr><td>VET</td><td class="mono">83,848</td><td class="mono">27.9%</td></tr><tr><td>ELICOS</td><td class="mono">16,403</td><td class="mono">49.9%</td></tr></tbody></table></div>
-      </div>
-      <div class="cs">
-        <div><b>COUNTS</b><p><span class="t-en">Enrolments by sector. Continuing = total minus commencements; new share = commencements ÷ total.</span><span class="t-zh">各部门注册量。继续注册 = 总数 − 新入学；新入学占比 = 新入学 ÷ 总数。</span></p></div>
-        <div><b>PERIOD</b><p><span class="t-en">May 2026 snapshot.</span><span class="t-zh">2026 年 5 月快照。</span></p></div>
-        <div><b>EXCLUDES</b><p><span class="t-en">Transitions of individual students; schools and non-award courses.</span><span class="t-zh">学生个体的转换；中小学与非学历课程。</span></p></div>
-        <div><b>SOURCE</b><p><span class="t-en">Dept of Education monthly summary.</span><span class="t-zh">教育部月度汇总。</span></p></div>
-      </div>
-    </div>
-    <div class="rd rv">
-      <div class="y"><b><span class="t-en">Can read</span><span class="t-zh">可以读出</span></b><p><span class="t-en">Higher Education leads on volume (177,204) yet only 22.3% is new; ELICOS is small (16,403) with 49.9% new.</span><span class="t-zh">高等教育规模最大（177,204），新入学只占 22.3%；ELICOS 规模小（16,403），新入学占 49.9%。</span></p></div>
-      <div class="n"><b><span class="t-en">Cannot read</span><span class="t-zh">不能读出</span></b><p><span class="t-en">The categories describe registrations at the cut-off and do not follow any student from one sector to another.</span><span class="t-zh">这些类别描述的是截止时点的注册，并不追踪学生在部门之间的流转。</span></p></div>
-    </div>
-    </div>
-  </div>
-</section>
-
-<section class="ch alt" id="fig6" data-nav="Fig 6">
-  <div class="wrap">
-    <div class="head"><div class="row"><span class="no">08</span><span class="lbl">FIG 6 · <span class="t-en">Prices and enrolments</span><span class="t-zh">价格与注册量</span></span></div><h2><span class="mask"><span><span class="t-en">Prices kept climbing while enrolments dipped and returned</span><span class="t-zh">注册量先降后升，价格一路上行</span></span></span></h2></div>
-    <div class="body">
-      <p class="callout rv" style="margin:0 0 26px"><b><span class="t-en">Reader question:</span><span class="t-zh">读者问题：</span></b> <span class="t-en">How big a buffer should I plan for?</span><span class="t-zh">我该给预算留多大的缓冲？</span></p>
 
     <div class="pfig rv" id="f6">
       <div class="pbar"><span class="t"><span class="t-en">Annual mean indices, 2019 = 100</span><span class="t-zh">年均指数，2019 = 100</span><small><span class="t-en">2026 = Jan–May only</span><span class="t-zh">2026 仅含 1–5 月</span></small></span>
@@ -1293,16 +1216,11 @@ video{width:100%;height:auto;aspect-ratio:16/9;border-radius:14px;background:#00
     </div>
     <div class="rd rv">
       <div class="y"><b><span class="t-en">Can read</span><span class="t-zh">可以读出</span></b><p><span class="t-en">By 2025 All Groups CPI stood at 123.0 and Rents CPI at 114.9, against 116.7 for enrolments. Plan for rising prices.</span><span class="t-zh">到 2025 年总体 CPI 为 123.0，租金 CPI 为 114.9，注册指数为 116.7。要按价格上行来留缓冲。</span></p></div>
-      <div class="n"><b><span class="t-en">Cannot read</span><span class="t-zh">不能读出</span></b><p><span class="t-en">An index cannot be turned into a monthly rent or a personal budget. That is why I dropped the budget calculator.</span><span class="t-zh">指数无法换算成个人月租或月度预算。这正是我取消预算计算器的原因。</span></p></div>
+      <div class="n"><b><span class="t-en">Cannot read</span><span class="t-zh">不能读出</span></b><p><span class="t-en">An index cannot be turned into a monthly rent or a personal budget.</span><span class="t-zh">指数无法换算成个人月租或月度预算。</span></p></div>
     </div>
     </div>
   </div>
-</section>
-
-<section class="ch" id="story" data-nav="Story||故事">
-  <div class="wrap">
-    <div class="head"><div class="row"><span class="no">09</span><span class="lbl"><span class="t-en">Narrative design</span><span class="t-zh">叙事设计</span></span></div><h2><span class="mask"><span><span class="t-en">Ten scenes, four stages, one plan</span><span class="t-zh">十个场景，四个阶段，一份计划</span></span></span></h2><p class="lede rv"><span class="t-en">The story follows Mei from the headline to a plan she can discuss with her family. Each turn points back to a numbered figure.</span><span class="t-zh">故事跟随 Mei 从新闻标题走到可以和家人讨论的行动计划。每个转折都回指具体图号。</span></p></div>
-    <div class="body">
+</section><section class="ch" id="story" data-nav="Story and delivery||故事与交付"><div class="wrap"><div class="head"><span class="lbl"><span class="t-en">Narrative and handover</span><span class="t-zh">叙事与交付</span></span><h2><span class="mask"><span><span class="t-en">A decision story delivered in two formats</span><span class="t-zh">用两种形式交付一个决策故事</span></span></span></h2></div><p class="lede rv"><span class="t-en">The 19-slide presentation moves through ten illustrated scenes, from Mei’s interpretation of the headline to four checks she can discuss with her family. Her illustrated arrival is a persona scenario, not an observed customer outcome.</span><span class="t-zh">19 页演示用十个插画场景，从 Mei 对标题的理解走到可与家人讨论的四项核对。插画中的抵达是角色故事的结局，不是真实客户成效。</span></p><div class="links rv" style="margin-top:24px"><a class="pri" href="../"><span class="t-en">Open all six figures in the interactive story</span><span class="t-zh">在互动故事中查看全部六张图</span></a><a href="../artifacts/the-price-of-arrival-story.mp4"><span class="t-en">Open the companion film</span><span class="t-zh">打开配套视频</span></a></div><details class="case-detail"><summary><span class="t-en">Explore all ten storyboard scenes and the film</span><span class="t-zh">展开十场景分镜与视频</span></summary><div class="detail-body"><div class="body">
 
     <div class="pfig rv"><div class="plot" style="padding:22px 22px 20px">
       <div class="arc" id="arc"></div>
@@ -1310,55 +1228,11 @@ video{width:100%;height:auto;aspect-ratio:16/9;border-radius:14px;background:#00
     </div></div>
     <div class="rv" style="margin-top:34px">
       <p class="lbl" style="margin-bottom:10px"><span class="t-en">Companion film</span><span class="t-zh">配套视频</span></p>
-      <video controls preload="metadata" playsinline src="https://katherine0292.github.io/price-of-arrival-data-visualization/video/The_Price_of_Arrival_story.mp4" width="1920" height="1080" aria-label="The Price of Arrival story film"></video>
+      <video controls preload="metadata" playsinline src="../artifacts/the-price-of-arrival-story.mp4" width="1920" height="1080" aria-label="The Price of Arrival story film"></video>
     </div>
-    </div>
-  </div>
-</section>
-
-<section class="ch alt" id="method" data-nav="Method||方法">
+    </div></div></details></div></section><section class="ch alt" id="eval" data-nav="Evidence||证据"><div class="wrap"><div class="head"><span class="lbl"><span class="t-en">Evidence and next steps</span><span class="t-zh">证据与后续步骤</span></span><h2><span class="mask"><span><span class="t-en">Design delivery and evaluation</span><span class="t-zh">设计交付与后续评估</span></span></span></h2></div><div class="cards rv"><div class="card"><span class="lbl"><span class="t-en">Completed</span><span class="t-zh">已完成</span></span><h4><span class="t-en">Reusable figures and a working story</span><span class="t-zh">可复用图表与可用故事</span></h4><p><span class="t-en">Six figures with sources and limits, the working presentation, film, audience-to-story mapping and a self-assessment framework. Data findings demonstrate the analysis; they do not measure viewer understanding.</span><span class="t-zh">六张带来源和局限的图表、可用演示、视频、受众到故事的映射，以及自评框架。数据发现证明分析内容，不衡量观众理解。</span></p></div><div class="card"><span class="lbl"><span class="t-en">Not yet measured</span><span class="t-zh">尚未测量</span></span><h4><span class="t-en">Audience understanding and use</span><span class="t-zh">受众理解与使用</span></h4><p><span class="t-en">Audience testing is a next step. The eleven workbook criteria are self-assessed; comprehension and completion rates are proposed measures. Persona interviews also remain to be done.</span><span class="t-zh">受众测试是下一步工作。工作簿十一项标准是自评；理解率与完成率是拟定指标，角色访谈也尚待开展。</span></p></div></div><p class="para rv" style="margin-top:24px"><span class="t-en">My involvement covered research, design and production through this handover. I did not take part in subsequent operation or receive later usage or business data.</span><span class="t-zh">我的工作覆盖研究、设计与制作，止于本阶段交付。我未参与后续运营，也未取得后续使用或商业数据。</span></p><details class="case-detail"><summary><span class="t-en">Review data scope and interpretation limits</span><span class="t-zh">查看数据口径与解释边界</span></summary><div class="detail-body"><div id="method"><p class="para"><span class="t-en">NSW course activity, Sydney study locations and prices, and national visa decisions answer different questions. The repository preserves the final figure snapshots and methods; raw extracts and the Tableau workbook are not included.</span><span class="t-zh">新州课程活动、悉尼学习地点与价格、全国签证决定回答不同问题。仓库保留最终图表快照与方法说明，不含原始提取文件和 Tableau 工作簿。</span></p><div class="pfig" style="margin-top:22px"><div class="plot" style="padding:20px"><div class="scope" id="scope"></div><p class="pcard" id="scopeTxt" style="padding:16px 4px 4px"></p></div></div><div class="cards" id="limits" style="margin-top:24px"></div></div></div></details><details class="case-detail"><summary><span class="t-en">See the proposed evaluation targets</span><span class="t-zh">查看拟定的评估目标</span></summary><div class="detail-body"><p class="para"><span class="t-en">The workbook proposes 80% targets for distinguishing enrolments from commencements and explaining the CPI limitation. These are future-test thresholds, with no observed audience rate.</span><span class="t-zh">工作簿为区分注册量与新入学量、解释 CPI 局限拟定了 80% 的未来测试目标，尚无实测受众比例。</span></p><div class="rings" id="rings" style="margin-top:20px"></div></div></details></div></section><section class="ch alt" id="mat" data-nav="Materials||材料">
   <div class="wrap">
-    <div class="head"><div class="row"><span class="no">10</span><span class="lbl"><span class="t-en">Data and design decisions</span><span class="t-zh">数据与设计决策</span></span></div><h2><span class="mask"><span><span class="t-en">Four geographies, five datasets</span><span class="t-zh">四种地理口径，五个数据集</span></span></span></h2><p class="lede rv"><span class="t-en">Each figure uses a different geography and reporting convention. Pick a scope to see which figures use it.</span><span class="t-zh">每张图使用不同的地理口径和统计惯例。选择一种口径，查看哪些图使用它。</span></p></div>
-    <div class="body">
-
-    <div class="pfig rv"><div class="plot" style="padding:20px">
-      <div class="scope" id="scope"></div>
-      <p class="pcard" id="scopeTxt" style="padding:16px 4px 4px"></p>
-    </div></div>
-    <p class="lbl rv" style="margin:44px 0 14px"><span class="t-en">Design decisions</span><span class="t-zh">设计决策</span></p>
-    <div class="cards rv">
-      <div class="card"><span class="lbl">01</span><h4><span class="t-en">One chart type, one job</span><span class="t-zh">一图一用</span></h4><p><span class="t-en">Trend, composition and geography each get the form that suits the comparison, not one signature chart.</span><span class="t-zh">趋势、构成、地理各用适合的图形，不套用同一种“招牌图”。</span></p></div>
-      <div class="card"><span class="lbl">02</span><h4><span class="t-en">Log scales for small hubs</span><span class="t-zh">对数色阶保留小中心</span></h4><p><span class="t-en">Values spanning orders of magnitude stay legible; suppressed cells stay blank, not zero.</span><span class="t-zh">跨越数量级的数值仍然可读；被隐去的单元格留空，而不是 0。</span></p></div>
-      <div class="card"><span class="lbl">03</span><h4><span class="t-en">Sankey replaced</span><span class="t-zh">换掉桑基图</span></h4><p><span class="t-en">It implied a flow between unrelated snapshots. Stacked bars show counts and shares honestly.</span><span class="t-zh">它暗示了互不相关快照之间的流动。堆叠条形图如实显示数量与占比。</span></p></div>
-      <div class="card"><span class="lbl">04</span><h4><span class="t-en">Budget calculator dropped</span><span class="t-zh">取消预算计算器</span></h4><p><span class="t-en">CPI cannot support a personal dollar figure, so the last scene asks for a buffer instead.</span><span class="t-zh">CPI 支撑不了个人金额，所以最后一幕改为建议留出缓冲。</span></p></div>
-    </div>
-    </div>
-  </div>
-</section>
-
-<section class="ch" id="eval" data-nav="Evaluation||评估">
-  <div class="wrap">
-    <div class="head"><div class="row"><span class="no">11</span><span class="lbl"><span class="t-en">Limits and evaluation</span><span class="t-zh">局限与评估</span></span></div><h2><span class="mask"><span><span class="t-en">What the data cannot say, kept visible</span><span class="t-zh">数据说不了的事，始终放在明处</span></span></span></h2></div>
-    <div class="body">
-
-    <div class="cards rv" id="limits"></div>
-    <div class="pfig rv" style="margin-top:34px"><div class="plot" style="padding:24px">
-      <p class="lbl" style="margin-bottom:6px"><span class="t-en">Evaluation plan</span><span class="t-zh">评估计划</span></p>
-      <p style="color:var(--ink-2);font-size:15px;margin-bottom:22px"><span class="t-en">The workbook holds eleven self-assessed criteria and proposed audience checks. The two 80% figures are targets for a future test. No participant testing has been completed, and no result is claimed.</span><span class="t-zh">工作簿包含十一条自评标准和拟定的受众检验。两个 80% 是未来测试的目标值。尚未完成用户测试，也不声称任何结果。</span></p>
-      <div class="rings" id="rings"></div>
-    </div></div>
-    <div class="cards rv" style="margin-top:30px">
-      <div class="card"><span class="lbl"><span class="t-en">Next</span><span class="t-zh">下一步</span></span><h4><span class="t-en">Validate the personas</span><span class="t-zh">验证角色</span></h4><p><span class="t-en">Interview international students and education agents.</span><span class="t-zh">访谈国际学生与教育顾问。</span></p></div>
-      <div class="card"><span class="lbl"><span class="t-en">Next</span><span class="t-zh">下一步</span></span><h4><span class="t-en">Storyboard earlier</span><span class="t-zh">更早做分镜</span></h4><p><span class="t-en">Sequence panels before finalising empathy notes, so each note earns its panel.</span><span class="t-zh">在定稿同理心笔记前先排分镜，让每条笔记都有对应画面。</span></p></div>
-      <div class="card"><span class="lbl"><span class="t-en">Reflection</span><span class="t-zh">反思</span></span><h4><span class="t-en">Geographic attribution</span><span class="t-zh">地理归属</span></h4><p><span class="t-en">My final journal notes the need to treat Indigenous Cultural and Intellectual Property respectfully in future map work.</span><span class="t-zh">最后一篇日志记录了今后做地图类设计时，要尊重原住民文化与知识产权。</span></p></div>
-    </div>
-    </div>
-  </div>
-</section>
-
-<section class="ch alt" id="mat" data-nav="Materials||材料">
-  <div class="wrap">
-    <div class="head"><div class="row"><span class="no">12</span><span class="lbl"><span class="t-en">Materials</span><span class="t-zh">材料</span></span></div><h2><span class="mask"><span><span class="t-en">Open the story and the evidence</span><span class="t-zh">打开故事与依据</span></span></span></h2></div>
+    <div class="head"><div class="row"><span class="lbl"><span class="t-en">Materials</span><span class="t-zh">材料</span></span></div><h2><span class="mask"><span><span class="t-en">Open the story and the evidence</span><span class="t-zh">打开故事与依据</span></span></span></h2></div>
     <div class="body">
 
     <div class="links rv">
@@ -1467,7 +1341,7 @@ function setLang(l){L=l;R.lang=l==='en'?'en':'zh-CN';R.classList.toggle('zh',l!=
 $('#l-zh').onclick=()=>setLang('zh');$('#l-en').onclick=()=>setLang('en');
 
 /* ---------------- rail, menu, chapter chip (shared page shell) ---------------- */
-const SECS=$$('section.ch');
+const SECS=$$('section.ch[data-nav]');
 const NAV=SECS.map((s,i)=>({id:s.id,n:String(i+1).padStart(2,'0'),l:s.dataset.nav.split('||')}));
 const navT=n=>L==='en'?n.l[0]:(n.l[1]||n.l[0]);
 function buildNav(){const ol=$('#rail');ol.querySelectorAll('li').forEach(l=>l.remove());const ml=$('#menu-list');ml.innerHTML='';
@@ -1490,10 +1364,18 @@ addEventListener('keydown',e=>{if(!$('#menu').classList.contains('open'))return;
 // Native fragment links keep destinations and browser history in sync. Image dimensions
 // reserve lazy-loaded content so scrolling cannot land above a moving chapter.
 $$('section[id]').forEach(el=>el.tabIndex=-1);
-document.addEventListener('click',e=>{if(e.target.closest('[data-go]'))closeMenu(false)});
+function openEvidenceAtHash(hash){
+  if(!hash||hash==='#')return null;let el;try{el=document.getElementById(decodeURIComponent(hash.slice(1)))}catch(e){return null}if(!el)return null;
+  for(let d=el.closest('details');d;d=d.parentElement.closest('details'))d.open=true;
+  return el;
+}
+document.addEventListener('click',e=>{if(e.target.closest('[data-go]'))closeMenu(false);const a=e.target.closest('a[href^="#"]');if(a)openEvidenceAtHash(a.getAttribute('href'))});
+addEventListener('hashchange',()=>{const el=openEvidenceAtHash(location.hash);if(el)requestAnimationFrame(()=>el.scrollIntoView({block:'start'}))});
+openEvidenceAtHash(location.hash);
 function onScroll(){const h=Math.max(1,document.documentElement.scrollHeight-innerHeight);$('#prog').style.setProperty('--p',(scrollY/h).toFixed(4));
   const away=$('#hero').getBoundingClientRect().bottom>innerHeight*.35;$('.rail').classList.toggle('away',away);$('.chip-now').classList.toggle('away',away);
   const mid=innerHeight*.45;let idx=-1;SECS.forEach((s,i)=>{const r=s.getBoundingClientRect();if(r.top<=mid&&r.bottom>mid)idx=i});setNow(idx)}
+document.addEventListener('toggle',()=>requestAnimationFrame(onScroll),true);
 addEventListener('scroll',()=>requestAnimationFrame(onScroll),{passive:true});addEventListener('resize',()=>{moveDot();onScroll()});
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('revealed');io.unobserve(e.target)}}),{threshold:.12,rootMargin:'0px 0px -8% 0px'});
 $$('.head,.rv,.body').forEach(el=>io.observe(el));
@@ -1515,7 +1397,7 @@ addEventListener('keydown',e=>{if(lightbox){if(e.key==='Escape'){e.preventDefaul
 /* ---------------- role tabs ---------------- */
 const ROLE=[
  [['Data','数据'],'Sourced five public datasets covering enrolments, study locations, visa decisions and Sydney prices. Reconciled reporting periods and geographic boundaries, documented baselines and kept suppressed cells as missing.','整理五个公开数据集，涵盖注册量、学习地点、签证决定和悉尼价格。统一报告期和地理边界，记录基期，并把被隐去的单元格保留为缺失值。'],
- [['Research','研究'],'Created the value proposition canvas, developed two personas and turned their decisions into user stories, defining what viewers should be able to explain after each figure.','制作价值主张画布，建立两个角色，把他们的决策转化为用户故事，并定义观众看完每张图后应能解释什么。'],
+ [['Research','研究'],'Created the value proposition canvas and provisional personas from project research and my own experience, then translated their decisions into user stories. Interviews remain to be done.','基于项目研究与个人经验制作价值主张画布和待验证角色，再把决策转为用户故事；访谈尚待执行。'],
  [['Visual analysis','可视化分析'],'Designed all six figures in Tableau: indexed trends, SA4 map, field heatmap, annotated visa timeline and sector composition. Chose chart types, scales, labels and annotations to fit each comparison.','在 Tableau 中设计全部六张图：指数趋势、SA4 地图、专业热力图、带注释的签证时间线和部门构成图。按各自要比较的内容选择图形、坐标尺度、标签和注释。'],
  [['Narrative','叙事'],'Wrote and storyboarded Mei’s ten-scene journey and built the interactive presentation with step-by-step reveals and speaker notes. Produced the companion film.','撰写并绘制 Mei 的十场景分镜，搭建逐步揭示的互动演示和演讲者备注，并制作配套视频。'],
  [['Evaluation','评估'],'Documented sources, calculations and limits for each figure, and built the benchmark workbook for self-assessment and proposed audience checks.','记录每张图的来源、计算和局限，并建立评估工作簿用于自评和拟定的受众检验。']];
@@ -1747,5 +1629,3 @@ buildNav();onScroll();
 </script>
 </body>
 </html>
-
-</body></html>
