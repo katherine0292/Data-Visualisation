@@ -126,9 +126,9 @@ section.ch.dark{background:var(--dark);color:var(--dark-ink)}
 .head{display:grid;grid-template-columns:minmax(0,1fr);gap:14px;margin-bottom:clamp(36px,5vw,64px)}
 .head .row{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
 .head .no{font-size:13px;font-weight:500;color:var(--acc)}
-.head h2{font-size:clamp(32px,4.6vw,62px);line-height:1.08;max-width:22ch}
-html.zh .head h2{line-height:1.22;max-width:20em}
-.head .lede{font-size:clamp(16px,1.3vw,18.5px);color:var(--ink-2);max-width:62ch;margin-top:6px}
+.head h2{font-size:clamp(32px,4.6vw,62px);line-height:1.08;text-wrap:wrap}
+html.zh .head h2{line-height:1.22}
+.head .lede{font-size:clamp(16px,1.3vw,18.5px);color:var(--ink-2);margin-top:6px}
 .dark .head .lede{color:var(--dark-ink-2)}
 .tg{font-size:11px;letter-spacing:.08em;text-transform:uppercase;border:1px solid currentColor;border-radius:99px;padding:3px 9px;color:var(--acc-ink)}
 .mask{display:block;overflow:hidden;padding-bottom:.06em}
@@ -155,7 +155,7 @@ section.folded .body{display:none}section.folded .fold{display:flex}section.fold
 .stats>div:not(:nth-child(4n+1)){padding-left:20px;border-left:1px solid var(--line)}
 .stats b{display:block;font-size:clamp(44px,5.6vw,80px);font-weight:300;line-height:1;letter-spacing:-.04em}
 .stats b sup{font-size:.36em;color:var(--acc);margin-left:3px;vertical-align:top;position:relative;top:.25em}
-.stats p{margin-top:14px;font-size:14px;color:var(--ink-2);max-width:26ch}
+.stats p{margin-top:14px;font-size:14px;color:var(--ink-2)}
 
 /* bars */
 .bars{display:grid;gap:22px}
@@ -463,9 +463,9 @@ html.zh .hero h1{font-size:clamp(30px,3.3vw,46px);line-height:1.24}
 section.ch{padding-block:clamp(52px,6.5vw,92px)}
 .head{margin-bottom:clamp(26px,3.2vw,40px);gap:10px}
 .head .no{font-size:12px}
-.head h2{font-size:clamp(24px,2.5vw,34px);line-height:1.22;max-width:30ch}
-html.zh .head h2{font-size:clamp(22px,2.3vw,31px);line-height:1.38;max-width:26em}
-.head .lede{font-size:15.5px;max-width:68ch}
+.head h2{font-size:clamp(24px,2.5vw,34px);line-height:1.22}
+html.zh .head h2{font-size:clamp(22px,2.3vw,31px);line-height:1.38}
+.head .lede{font-size:15.5px}
 .lbl{font-size:11px}
 .k{margin-bottom:12px}
 .stats b{font-size:clamp(34px,3.4vw,46px)}
@@ -606,7 +606,9 @@ section.ch{padding-block:clamp(40px,4.6vw,68px)}
 .scr img.on{opacity:1;transform:none}
 @media (max-width:760px){
   .sheet{zoom:.78}
-  .top .in{height:54px}
+  .top .in{height:54px;gap:10px;padding-left:max(14px,env(safe-area-inset-left,0px));padding-right:max(14px,env(safe-area-inset-right,0px))}
+  .top .word{font-size:clamp(12px,3.3vw,14px);letter-spacing:.06em;white-space:nowrap;flex-shrink:0}
+  .top .menu-btn,.top .langs{flex-shrink:0}
   .g2{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
   .play{grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr)}
   .meta2{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -745,7 +747,7 @@ html.zh .slide h3{font-weight:400}
 .rn p{font-size:14.5px;line-height:1.5}
 .rn b{font-weight:300;font-size:26px;letter-spacing:-.02em;display:block;margin-bottom:2px}
 .st-hint{margin-top:14px;font-size:12.5px;color:rgba(236,238,250,.55);max-width:70ch}
-.callout{margin-top:18px;border-left:3px solid var(--acc);background:var(--acc-soft);border-radius:0 14px 14px 0;padding:16px 20px;font-size:15px;max-width:76ch}
+.callout{margin-top:18px;border-left:3px solid var(--acc);background:var(--acc-soft);border-radius:0 14px 14px 0;padding:16px 20px;font-size:15px}
 .callout b{font-weight:500}
 .ethic{display:none}
 @media (max-width:560px){.arc .aph{display:none}}
@@ -786,7 +788,7 @@ html.zh .slide h3{font-weight:400}
 .rn p{font-size:14.5px;line-height:1.5}
 .rn b{font-weight:300;font-size:26px;letter-spacing:-.02em;display:block;margin-bottom:2px}
 .st-hint{margin-top:14px;font-size:12.5px;color:rgba(236,238,250,.55);max-width:70ch}
-.callout{margin-top:18px;border-left:3px solid var(--acc);background:var(--acc-soft);border-radius:0 14px 14px 0;padding:16px 20px;font-size:15px;max-width:76ch}
+.callout{margin-top:18px;border-left:3px solid var(--acc);background:var(--acc-soft);border-radius:0 14px 14px 0;padding:16px 20px;font-size:15px}
 .callout b{font-weight:500}
 .ethic{display:none}
 @media (max-width:560px){.arc .aph{display:none}}
@@ -960,10 +962,11 @@ svg .slb{font-size:12.5px;font-weight:500}
 .prng{text-align:center}
 .prng svg{width:130px;height:130px}
 .prng p{font-size:13.5px;color:var(--ink-2);margin-top:8px}
-.flip{perspective:900px;cursor:pointer;min-height:118px}
-.flip .in2{position:relative;min-height:118px;transition:transform .6s var(--ease);transform-style:preserve-3d}
+.flip{display:grid;perspective:900px;cursor:pointer;min-height:118px}
+.flip .in2{position:relative;display:grid;min-height:118px;transition:transform .6s var(--ease);transform-style:preserve-3d}
 .flip.on .in2{transform:rotateY(180deg)}
-.flip .f,.flip .b{position:absolute;inset:0;border:1px solid var(--line);border-radius:16px;padding:20px;backface-visibility:hidden;-webkit-backface-visibility:hidden;background:var(--paper)}
+.flip .f,.flip .b{position:relative;grid-area:1/1;border:1px solid var(--line);border-radius:16px;padding:20px;backface-visibility:hidden;-webkit-backface-visibility:hidden;background:var(--paper)}
+.flip .f{padding-bottom:36px}
 .flip .b{transform:rotateY(180deg);background:var(--acc-soft)}
 .flip .f b{font-family:var(--mono);color:var(--acc-ink);font-size:12px}
 .flip h4{font-size:17px;font-weight:500;margin-top:8px}
@@ -1046,7 +1049,7 @@ video{width:100%;height:auto;aspect-ratio:16/9;border-radius:14px;background:#00
     </div>
     <div class="body" style="margin-top:44px">
       <p class="callout rv" style="margin:0 0 26px"><b><span class="t-en">Brief question:</span><span class="t-zh">委托问题：</span></b> <span class="t-en">Should I study in Sydney, and if so, when to apply, where to study, and how much flexibility should I leave for living costs?</span><span class="t-zh">我是否应该去悉尼读书？如果去，什么时候申请、去哪里读，又该为生活成本留出多少弹性？</span></p>
-      <p class="muted small rv" style="max-width:68ch;margin-bottom:18px"><span class="t-en">Harbourline Education Consulting commissioned an English interactive data story for prospective students choosing Sydney. I took it from sourcing the data to the film and evaluation workbook.</span><span class="t-zh">Harbourline 教育咨询委托制作一套面向拟赴悉尼留学者的英文互动数据故事。我从数据整理一直做到成片和评估工作簿。</span></p>
+      <p class="muted small rv" style="margin-bottom:18px"><span class="t-en">Harbourline Education Consulting commissioned an English interactive data story for prospective students choosing Sydney. I took it from sourcing the data to the film and evaluation workbook.</span><span class="t-zh">Harbourline 教育咨询委托制作一套面向拟赴悉尼留学者的英文互动数据故事。我从数据整理一直做到成片和评估工作簿。</span></p>
       <div class="rv" style="display:grid;gap:14px">
         <div class="ctl" id="roleTabs" role="tablist"></div>
         <div class="card" id="roleBody"></div>
@@ -1341,7 +1344,7 @@ video{width:100%;height:auto;aspect-ratio:16/9;border-radius:14px;background:#00
     <div class="cards rv" id="limits"></div>
     <div class="pfig rv" style="margin-top:34px"><div class="plot" style="padding:24px">
       <p class="lbl" style="margin-bottom:6px"><span class="t-en">Evaluation plan</span><span class="t-zh">评估计划</span></p>
-      <p style="max-width:680px;color:var(--ink-2);font-size:15px;margin-bottom:22px"><span class="t-en">The workbook holds eleven self-assessed criteria and proposed audience checks. The two 80% figures are targets for a future test. No participant testing has been completed, and no result is claimed.</span><span class="t-zh">工作簿包含十一条自评标准和拟定的受众检验。两个 80% 是未来测试的目标值。尚未完成用户测试，也不声称任何结果。</span></p>
+      <p style="color:var(--ink-2);font-size:15px;margin-bottom:22px"><span class="t-en">The workbook holds eleven self-assessed criteria and proposed audience checks. The two 80% figures are targets for a future test. No participant testing has been completed, and no result is claimed.</span><span class="t-zh">工作簿包含十一条自评标准和拟定的受众检验。两个 80% 是未来测试的目标值。尚未完成用户测试，也不声称任何结果。</span></p>
       <div class="rings" id="rings"></div>
     </div></div>
     <div class="cards rv" style="margin-top:30px">
