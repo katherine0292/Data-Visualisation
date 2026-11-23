@@ -39,9 +39,16 @@ The 19-slide presentation contains ten illustrated story scenes. It introduces M
 
 I used the audience's questions to decide what belonged in the story. I dropped the proposed personal budget calculator after checking what CPI could support. The final scene asks Mei to use price trends when planning a buffer, then check current costs for her own circumstances. For the location view, I used logarithmic colour scales to keep smaller hubs visible and retained suppressed observations as missing.
 
+
+## Design delivery and next steps
+
+This case study covers research, design and production through the interactive-story handover. The six figures are descriptive data findings; they are not measurements of audience understanding. The benchmark workbook records eleven self-assessed criteria and future audience targets. Audience testing and persona interviews remain next steps.
+
+I did not participate in subsequent operation or receive post-delivery usage or business data. The repository preserves the final figure snapshots and methods; it does not include raw extracts or the Tableau workbook. See the [methodology](docs/methodology.md) for the figure definitions and interpretation limits.
+
 ## Run locally
 
-Open [`portfolio/index.html`](portfolio/index.html) for the bilingual case study. Its full-width poster is exactly **1440 × 480** (3:1), with a hand-painted travel-journal style inspired by the story scenes and the presentation's midnight-blue and amber palette. The [generation prompt](assets/posters/prompt.txt) is included beside the PNG.
+Open [`portfolio/index.html`](portfolio/index.html) for the bilingual case study, organised around four reader questions. Three representative figures lead the page; the remaining figures, all ten storyboard scenes and future evaluation targets remain expandable. The complete interactive story is linked throughout. Its full-width poster is exactly **1440 × 480** (3:1), with a hand-painted travel-journal style inspired by the story scenes and the presentation's midnight-blue and amber palette. The [generation prompt](assets/posters/prompt.txt) is included beside the PNG.
 
 Download the standalone [1920 × 1200 poster](assets/posters/the-price-of-arrival-1920x1200.png), recomposed for 8:5 with the same illustrated student, Sydney harbour and data-route motif. Its [generation prompt](assets/posters/prompt-1920x1200.txt) is included alongside the PNG.
 
