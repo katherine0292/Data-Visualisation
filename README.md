@@ -8,9 +8,7 @@ International student enrolments, study locations, visa policy and living costs 
 
 A record-high enrolment headline tells a prospective student very little about their next intake, where their course is taught or how much flexibility they need in their budget. I turned five public datasets into an interactive story that follows Mei, a prospective Master's student, as she weighs those decisions.
 
-[Download the interactive story](index.html) · [Watch the story film](artifacts/the-price-of-arrival-story.mp4) · [Read the English commission brief](docs/commission-brief.md)
-
-[![Figure 5 in the interactive story, comparing new and continuing enrolments across three education sectors](assets/figure-5-preview.png)](index.html#s12)
+[Open the portfolio](https://katherine0292.github.io/Data-Visualisation/portfolio/) · [Download the interactive story](index.html) · [Watch the story film](https://katherine0292.github.io/price-of-arrival-data-visualization/video/The_Price_of_Arrival_story.mp4) · [Read the English commission brief](docs/commission-brief.md)
 
 ## My role
 
@@ -57,7 +55,7 @@ Download or clone the repository and open `index.html` in a desktop browser. Use
 | [Design process and contribution](docs/design-process.md) | How the four reflective journals informed the case study, plus the audience, scene and evidence mapping. |
 | [Data and methodology](docs/methodology.md) | Source register, geography, dates, transformations and limits for each figure. |
 | [Value proposition canvas](artifacts/value-proposition-canvas.jpg) | Audience needs, design responses and the figure behind each decision. |
-| [Story film](artifacts/the-price-of-arrival-story.mp4) | A narrated English walkthrough of the six figures and Mei’s decision, with English captions. |
+| [Story film](https://katherine0292.github.io/price-of-arrival-data-visualization/video/The_Price_of_Arrival_story.mp4) | A narrated English walkthrough of the six figures and Mei’s decision, with English captions. |
 | [Story benchmark workbook](artifacts/story-benchmark.xlsx) | My self-assessment rubric and proposed audience measures. The percentages in the workbook are evaluation targets. |
 
 **Portfolio author** Shangcheng Lin (Katherine), [katherine0292](https://github.com/katherine0292)
